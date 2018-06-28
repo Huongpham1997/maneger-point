@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: TuanPV
- * Date: 6/14/2018
- * Time: 2:02 PM
- */
+
 include('../connect.php');
 if (!empty($_POST['submit_class'])) {
     $class_name = $_POST['class_name'];

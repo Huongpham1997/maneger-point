@@ -29,7 +29,13 @@ class PointModel extends Controller {
 			return $this->result = "dang nhap thanh cong";
 		}
 		else{
-			return $this->result = "tk hoac mk bi sai ";
+			return $this->result = "Tài khoản hoặc mật khẩu bị sai ";
 		}
+	}
+	public function processLogout(){
+		unset($_SESSION['user']); 
+	 	session_destroy();
+	 	$this->result = "Đăng xuất thành công ";
+	 	return true; 
 	}
 }

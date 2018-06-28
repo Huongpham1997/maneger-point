@@ -5,12 +5,11 @@ class App
     protected $controller = 'home';
     protected $method = 'index';
     protected $params = [];
-    //require_once 'connect.php';
-    //session_start();
     
     public function __construct()
     {
         $url = $this->parseUrl();
+        var_dump($url);
         // get controller has in url
         if (file_exists('../app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: TuanPV
- * Date: 6/14/2018
- * Time: 1:57 PM
- */
+
 ?>
 <?php include('../extend/header.php'); ?>
 <body>

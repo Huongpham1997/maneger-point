@@ -1,6 +1,4 @@
-<?php
-//session_start();
-?>
+<?php require_once '../app/extend/header.php'; ?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,7 +25,7 @@
                        aria-expanded="false">Quản lý điểm <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php
-                        include('connect.php');
+                        include('../app/core/connect.php');
                         $sql = "SELECT * FROM `class`"; // Tạo bảng class có các trường dữ liệu id, class_name, total_student, year, name_teacher
                         $result = $con->query($sql); // thực hiện truy vấn
                         if ($result->num_rows > 0) { // có dữ liệu trả về
@@ -59,7 +57,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Thay đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="login/logout.php">Thoát</a></li>
+                        <li><a href="home/logout">Thoát</a></li>
                     </ul>
                 </li>
             </ul>
