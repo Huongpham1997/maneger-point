@@ -25,9 +25,10 @@
                        aria-expanded="false">Quản lý điểm <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php
-                        include('../app/core/connect.php');
+                        $con = new Controller();
+                        $con = $con->model('Connect');
                         $sql = "SELECT * FROM `class`"; // Tạo bảng class có các trường dữ liệu id, class_name, total_student, year, name_teacher
-                        $result = $con->query($sql); // thực hiện truy vấn
+                        $result = $con->getConnect($sql); // thực hiện truy vấn
                         if ($result->num_rows > 0) { // có dữ liệu trả về
                             $i = 1;
                             while ($row = $result->fetch_assoc()) {
@@ -57,7 +58,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Thay đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="home/logout">Thoát</a></li>
+                        <li><a href="?url=home/logout">Thoát</a></li>
                     </ul>
                 </li>
             </ul>
