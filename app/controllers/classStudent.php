@@ -1,5 +1,5 @@
 <?php
-
+//
 class classStudent extends Controller // dat ten file the nao thi phai dat class nhu the 
 {
 	public function index(){
