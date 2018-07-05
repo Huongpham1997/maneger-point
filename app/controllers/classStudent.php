@@ -17,14 +17,18 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 	}
 
 	public function addClass(){
-		$processclass = $this->model('ClassStudentModel');
+		$processClass = $this->model('ClassStudentModel');
 		if (!empty($_POST['submit_class'])) {
-			$processclass->class_name = $_POST['class_name'];
-			$processclass->total_student = (int)$_POST['total_student'];
-			$processclass->year = $_POST['year'];
-			$processclass->name_teacher = $_POST['name_teacher'];
-			$resultClass = $processclass->addClassStudent();
-			$this->view('class-students/class-form', ['data' => $result['data']]);     
+            $processClass->class_name = $_POST['class_name'];
+            $processClass->total_student = (int)$_POST['total_student'];
+            $processClass->year = $_POST['year'];
+            $processClass->name_teacher = $_POST['name_teacher'];
+			$resultClass = $processClass->addClassStudent();
+			if($resultClass['success']){
+                $this->view('class-students/class-index', ['resultMessageAdd' => $resultClass['message']]);
+            }else{
+                $this->view('class-students/class-form',['resultMessageAdd' => $resultClass['message']]);
+            }
 		}
 	}
 }
