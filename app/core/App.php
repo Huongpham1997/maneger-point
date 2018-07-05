@@ -11,6 +11,7 @@ class App
 //        print($_GET['url']);
 
         $url = $this->parseUrl();
+        // var_dump($url);die();
         // get controller has in url
         if (file_exists('../app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
@@ -30,7 +31,6 @@ class App
 
         $this->params = $url ? array_values($url) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
-        session_start();
     }
 
     // this function parse url to get controller, action or params

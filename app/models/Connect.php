@@ -4,7 +4,7 @@ class Connect extends Controller
 {
     public function getConnect($sql)
     {
-        $con = mysqli_connect("45.32.112.173", "root", "vps@123");
+        $con = mysqli_connect("localhost", "root", "");
         mysqli_select_db($con, "quanlidiem");
         mysqli_query($con, 'SET NAMES"UTF8"');
 

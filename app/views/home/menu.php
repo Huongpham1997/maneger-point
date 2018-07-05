@@ -18,13 +18,14 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Giới thiệu <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Quản lý giáo viên</a></li>
-                <li><a href="manager-student/student-index.php">Quản lý học sinh</a></li>
-                <li><a href="manager-class/class-index.php">Quản lý các lớp</a></li>
+                <li><a href="#">Quản lý học sinh</a></li>
+                <li><a href="?url=classStudent/index">Quản lý các lớp</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Quản lý điểm <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php
+                        // cách gọi sql từ file view Chỗ này sửa thành theo MVC đi nhé không viết truy vấn ngoài file thế này 
                         $con = new Controller();
                         $con = $con->model('Connect');
                         $sql = "SELECT * FROM `class`"; // Tạo bảng class có các trường dữ liệu id, class_name, total_student, year, name_teacher
@@ -52,7 +53,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Xin chào <?= $_SESSION['user']['fullName']?$_SESSION['user']['fullName']:'' ?><span class="caret"></span></a>
+                       aria-expanded="false">Xin chào <?= !empty($_SESSION['user']['fullName'])?$_SESSION['user']['fullName']:'' ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Xem thông tin</a></li>
                         <li role="separator" class="divider"></li>

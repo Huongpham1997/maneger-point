@@ -1,3 +1,7 @@
+<?php if(empty($_SESSION['user']['username'])){
+            @ob_start();
+            session_start();            
+        } ?>
 <!DOCTYPE html>
 <html>
 <head>

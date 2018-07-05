@@ -34,6 +34,7 @@ class home extends Controller
     {
         $exit = $this->model('LoginModel');
         if ($exit->processLogout()) {
+            // cách đầy data ra ngoài view hiển thị resultMessage bên ngoài view sẽ nhận dc là $data['resultMessage']
             $this->view('home/form-login', ['resultMessage' => $exit->result]);
         }
     }

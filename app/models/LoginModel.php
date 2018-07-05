@@ -9,7 +9,7 @@ class LoginModel extends Controller
     public $result;
 
     public function saveUserInfo($username, $fullName)
-    { // viết bên này ntn thì bên kia truyền đúng như thết username trước fullname sau
+    { 
         // Set session variables
         $_SESSION['user']["username"] = $username;
         $_SESSION['user']["fullName"] = $fullName;
@@ -27,7 +27,9 @@ class LoginModel extends Controller
         }
 //        $this->password = md5($this->password);
         $sql = "SELECT * FROM `login` WHERE `user`='{$this->user_name}' and `password`='{$this->password}'";
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
 
         if (!$result) {

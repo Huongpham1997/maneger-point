@@ -16,7 +16,7 @@ require_once '../app/extend/header.php';
                     <br>
                     <br>
                     <p style="color: red">
-                        <?= $data['resultMessage']; ?>
+                        <?= $data['resultMessage']; // chỗ này là đẩy ra data dc truyen tu controller ?>
                     </p>
                     <br>
                 <?php } ?>
