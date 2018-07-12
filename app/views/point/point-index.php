@@ -1,8 +1,8 @@
 <?php
-// Import file import.php//
+// Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=students/addStudents" class="btn btn-success">Thêm mới học sinh</a>
+<a href="point/addPoint" class="btn btn-success">Thêm mới điểm</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -13,12 +13,9 @@ if (!empty($data['resultMessageAdd'])) {
 	<thead>
 		<tr>
 			<th>STT</th>
-			<th>Tên học sinh</th>
-			<th>Địa chỉ</th>
-			<th>Giới tính</th>
-			<th>Ngày sinh</th>
+			<th>Tên điểm</th>
+			<th>Mức nhân</th>
 			<th>Trạng thái</th>
-			<th>Phụ huynh</th>
 			<th>Hành động</th>
 		</tr>
 	</thead>
@@ -30,36 +27,32 @@ if (!empty($data['resultMessageAdd'])) {
 	        } // chỗ này là đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
-	<?php 
-	if (!empty($data['data'])) {
-        // echo "<pre>";print_r($data['data']);die();
-        $i = 1;
+	<?php
+	if(empty($data['data'])){ 
+		$i = 1;
         while ($row = $data['data']->fetch_assoc()) {
-            ?>
+        	?>
 				<tr>
 					<td><?= $i++ ?></td>
-					<td><?= $row['name_student'] ?></td>
-					<td><?= $row['address'] ?></td>
-					<td><?= $row['sex'] ?></td>
-					<td><?= $row['birthday'] ?></td>
-					<td><?= $row['status'] ?></td>
-					<td><?= $row['parents'] ?></td>
+					<td><?= $row['point_name'] ?></td>
+					<td><?= $row['level'] ?></td>
+					<td><?= $row['statust'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-trash"></i></a>
 					</td>
 				</tr>
 				<?php
+			}
 		}
-	}
 	?>
 </tbody>
 </table>
 <script>
     // function dưới đây để gọi xóa lớp
-    function deleteSelected(id,name_student) {
-        if (confirm('Bạn có chắc chắn xóa lớp ' + name_student + '?')) {
-            $.post("?url=students/deleteStudents", {
+    function deleteSelected(id,point_name) {
+        if (confirm('Bạn có chắc chắn xóa lớp ' + point_name + '?')) {
+            $.post("?url=point/deletePoint", {
                 'id': id
             }).done(function (data) {
                 alert(data['message']);
@@ -70,7 +63,7 @@ if (!empty($data['resultMessageAdd'])) {
 
     // function dưới đây để gọi sang update lại lớp
     function updateSelected(id) {
-        location.href="?url=students/update&id="+id;
+        location.href="?url=point/update&id="+id;
     }
 </script>
 </body>

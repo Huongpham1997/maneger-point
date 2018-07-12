@@ -1,11 +1,6 @@
-<?php if(empty($_SESSION['user']['username'])){
-            @ob_start();
-            session_start();            
-        } ?>
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Quản lý điểm học sinh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">

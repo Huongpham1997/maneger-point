@@ -10,10 +10,10 @@ class App
     {
 //        print($_GET['url']);
 
-        $url = $this->parseUrl();
+        $url = $this->parseUrl();//goi xuong ham duoi
         // var_dump($url);die();
         // get controller has in url
-        if (file_exists('../app/controllers/' . $url[0] . '.php')) {
+        if (file_exists('../app/controllers/' . $url[0] . '.php')) {//ton tai url trrrong file control thif gan bang url
             $this->controller = $url[0];
             unset($url[0]);
         }
@@ -36,9 +36,10 @@ class App
     // this function parse url to get controller, action or params
     public function parseUrl()
     {
-        if (isset($_GET['url'])) {
+        // var_dump($_GET['url']);die();
+        if (isset($_GET['url'])) {// lay ddc url locfilter la loc?
             $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-            return $url;
+            return $url; // cái này kiểu gì ? qua bien url dong tren thay. conf bien rtrim la sao 
         }
 
     }

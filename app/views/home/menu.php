@@ -1,4 +1,5 @@
-<?php require_once '../app/extend/header.php'; ?>
+<?php
+ require_once '../app/extend/header.php'; ?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,13 +17,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Giới thiệu <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Quản lý giáo viên</a></li>
-                <li><a href="#">Quản lý học sinh</a></li>
+                <li><a href="?url=students/index">Quản lý học sinh</a></li>
                 <li><a href="?url=classStudent/index">Quản lý các lớp</a></li>
+                <li><a href="#">Quản lý điểm</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Quản lý điểm <span class="caret"></span></a>
+                       aria-expanded="false">Quản lý khối <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php
                         // cách gọi sql từ file view Chỗ này sửa thành theo MVC đi nhé không viết truy vấn ngoài file thế này 

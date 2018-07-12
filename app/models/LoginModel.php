@@ -1,5 +1,5 @@
 <?php
-
+//
 class LoginModel extends Controller
 {
     public $id;
@@ -10,6 +10,7 @@ class LoginModel extends Controller
 
     public function saveUserInfo($username, $fullName)
     { 
+        session_start();
         // Set session variables
         $_SESSION['user']["username"] = $username;
         $_SESSION['user']["fullName"] = $fullName;

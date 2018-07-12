@@ -1,5 +1,5 @@
 <?php
-
+//
 class Connect extends Controller
 {
     public function getConnect($sql)
@@ -9,8 +9,11 @@ class Connect extends Controller
         mysqli_query($con, 'SET NAMES"UTF8"');
 
         if($sql){
-            $result = $con->query($sql);
-            return $result;
+            if($result = $con->query($sql)){
+                return $result;
+            }else{
+                echo "Error: " . $sql . "<br>" . $con->error;die();
+            }
         }
         return null;
     }
