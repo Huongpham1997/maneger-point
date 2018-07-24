@@ -7,6 +7,7 @@ class StudentModel extends Controller {
     public $birthday;
     public $status;
     public $parents;
+    public $result;
     public function getListStudents(){
     	$sql = "SELECT * FROM `student`";
         // cách gọi vào model connect từ model

@@ -2,7 +2,7 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=students/addStudents" class="btn btn-success">Thêm mới học sinh</a>
+<a href="?url=teacher/addTeacher" class="btn btn-success">Thêm mới giáo viên</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -13,12 +13,10 @@ if (!empty($data['resultMessageAdd'])) {
 	<thead>
 		<tr>
 			<th>STT</th>
-			<th>Tên học sinh</th>
-			<th>Địa chỉ</th>
+			<th>Tên giáo viên</th>
+			<th>Trình độ chuyên môn</th>
+			<th>Chủ nhiệm lớp</th>
 			<th>Giới tính</th>
-			<th>Ngày sinh</th>
-			<th>Trạng thái</th>
-			<th>Phụ huynh</th>
 			<th>Hành động</th>
 		</tr>
 	</thead>
@@ -38,15 +36,13 @@ if (!empty($data['resultMessageAdd'])) {
             ?>
 				<tr>
 					<td><?= $i++ ?></td>
-					<td><?= $row['name_student'] ?></td>
-					<td><?= $row['address'] ?></td>
+					<td><?= $row['nameteacher'] ?></td>
+					<td><?= $row['position'] ?></td>
+					<td><?= $row['class_teacher'] ?></td>
 					<td><?= $row['sex'] ?></td>
-					<td><?= $row['birthday'] ?></td>
-					<td><?= $row['status'] ?></td>
-					<td><?= $row['parents'] ?></td>
 					<td>
 						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['nameteacher']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
 					</td>
 				</tr>
 				<?php
@@ -57,9 +53,9 @@ if (!empty($data['resultMessageAdd'])) {
 </table>
 <script>
     // function dưới đây để gọi xóa lớp
-    function deleteSelected(id,name_student) {
-        if (confirm('Bạn có chắc chắn xóa học sinh ' + name_student + '?')) {
-            $.post("?url=students/deleteStudents", {
+    function deleteSelected(id,nameteacher) {
+        if (confirm('Bạn có chắc chắn xóa giáo viên ' + nameteacher + '?')) {
+            $.post("?url=teacher/deleteTeacher", {
                 'id': id
             }).done(function (data) {
                 alert(data['message']);
@@ -70,7 +66,7 @@ if (!empty($data['resultMessageAdd'])) {
 
     // function dưới đây để gọi sang update lại lớp
     function updateSelected(id) {
-        location.href="?url=students/update&id="+id;
+        location.href="?url=teacher/update&id="+id;
     }
 </script>
 </body>

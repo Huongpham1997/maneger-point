@@ -1,5 +1,4 @@
 <?php
-//
 
 class point extends Controller // dat ten file the nao thi phai dat class nhu the 
 {

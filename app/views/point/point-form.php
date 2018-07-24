@@ -1,5 +1,4 @@
 <?php
-//
 // Import file import.php//
 require_once '../app/extend/header.php';
 require_once '../app/views/home/menu.php';

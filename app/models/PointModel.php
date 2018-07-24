@@ -4,6 +4,7 @@ class PointModel extends Controller {
     public $point_name;
     public $level;
     public $status;
+    public $result;
     public function getListPoint(){
     	$sql = "SELECT * FROM `point`";
         // cách gọi vào model connect từ model

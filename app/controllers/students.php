@@ -60,9 +60,15 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 				$modelStudents->parents = $_POST['parents'];
 				$resultStudents = $modelStudents->editStudents();
 				if($resultStudents['success']){
-					$this->view('students/students-index', ['resultMessageAdd' => $resultStudents['message']]);
+					$resultList = $modelStudents->getListStudents();
+					if($resultList['success']){
+						$this->view('students/students-index', ['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
+					}
+					else
+						// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+						$this->view('students/students-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
-					$this->view('students/students-form',['resultMessageAdd' => $resultStudents['message']]);
+						$this->view('students/students-form', ['resultMessageAdd' => $resultStudents['message']]);
 				}
 			}else{
 				// lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -77,29 +83,29 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 			// không có id thì báo lỗi
 			$this->view('students/students-index', ['resultMessageAdd' => 'Không tìm thấy học sinh']);
 		}
-		
+			
 	}
-	public function deleteStudents(){
-		session_start();
-		$modelStudents =  $this->model('StudentModel');
-		if(!empty($_POST['id'])){
-			$modelStudents->id = $_POST['id'];
-			$resultDelete = $modelStudents->deleteStudents();
-			if($resultDelete['success']){
+		public function deleteStudents(){
+			session_start();
+			$modelStudents =  $this->model('StudentModel');
+			if(!empty($_POST['id'])){
+				$modelStudents->id = $_POST['id'];
+				$resultDelete = $modelStudents->deleteStudents();
+				if($resultDelete['success']){
 			// trả về theo kiểu json 
-				$data = ['success' => true, 'message' => $resultDelete['message']];
-				header('Content-Type: application/json');
-				echo json_encode($data);
-			}else {
-				$data =  ['success' => false, 'message' => $resultDelete['message']];
-				header('Content-Type: application/json');
-				echo json_encode($data);
-			}
-		}else{
+					$data = ['success' => true, 'message' => $resultDelete['message']];
+					header('Content-Type: application/json');
+					echo json_encode($data);
+				}else {
+					$data =  ['success' => false, 'message' => $resultDelete['message']];
+					header('Content-Type: application/json');
+					echo json_encode($data);
+				}
+			}else{
 				$data =  ['success' => false, 'message' => 'Không tìm thấy học sinh!'];
 				header('Content-Type: application/json');
 				echo json_encode($data);
+			}
 		}
 	}
-}
-?>
+	?>
