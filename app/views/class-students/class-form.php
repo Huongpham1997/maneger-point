@@ -33,5 +33,4 @@ require_once '../app/views/home/menu.php';
             <input class="btn btn-success" type="submit" name="submit_class" value="Thêm mới lớp">
         </form>
     <?php } ?>
-    
 </div>

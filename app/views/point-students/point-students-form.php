@@ -11,25 +11,89 @@ require_once '../app/views/home/menu.php';
         } // chỗ này là đẩy ra data dc truyen tu controller
         ?>
     </p>
-    <?php if(!empty($data['data'])){ 
-        while ($row = $data['data']->fetch_assoc()) {
-        ?>
-        <form action="?url=studentsPointAsm/update&id=<?= $row['id'] ?>" method="post">
-            <input type="hidden" name="id" value="<?= $row['id'] ?>">
-            <input class="form-control" required name="point_name" type="text" placeholder="Tên điểm" value="<?= $row['point_name']?$row['point_name']:'' ?>"><br>
-            <input class="form-control" required name="name_student" type="text" placeholder="Tên học sinh" value="<?= $row['name_student']?$row['name_student']:'' ?>"><br>
-            <input class="form-control" required name="point" type="text" placeholder="Điểm" value="<?= $row['point']?$row['point']:'' ?>" ><br>
-            <input class="form-control" required name="test_time" type="text" placeholder="Thời gian kiểm tra" value="<?= $row['test_time']?$row['test_time']:'' ?>" ><br>
-            <input class="form-control" required name="frequency" type="text" placeholder="Số bài kiểm tra" value="<?= $row['frequency']?$row['frequency']:'' ?>" ><br>
-            <input class="btn btn-success" type="submit" name="submit_point_students" value="Cập nhật điểm cho học sinh">
-        </form>
-    <?php }}else{ ?>
-        <form action="?url=studentsPointAsm/addPointStudents" method="post">
-            <input class="form-control" required name="point_name" type="text" placeholder="Tên điểm" value=""><br>
-            <input class="form-control" required name="name_student" type="text" placeholder="Tên học sinh"><br>
-            <input class="form-control" required name="point" type="text" placeholder="Điểm"><br><input class="form-control" required name="test_time" type="text" placeholder="Thời gian kiểm tra"><br>
-            <input class="form-control" required name="frequency" type="text" placeholder="Số bài kiểm tra"><br>
-            <input class="btn btn-success" type="submit" name="submit_point_students" value="Thêm mới điểm cho học sinh">
-        </form>
-    <?php } ?>
+    <form method="post" action="?url=managerPoint/addPointStudents&class_id=<?= $_GET['class_id'] ?>">
+        <div class="col-md-3">
+            <select class="form-control" name="point_id">
+                <?php
+                if(!empty($data['dataPoint'])){ 
+                    $i = 1;
+                    while ($row = $data['dataPoint']->fetch_assoc()) {
+                        ?>
+                        <option value="<?= $row['id'] ?>">Điểm <?=$row['point_name'] ?> </option>
+                    <?php } 
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control" name="subject_id">
+                <?php
+                if(!empty($data['dataSubject'])){ 
+                    $i = 1;
+                    while ($row = $data['dataSubject']->fetch_assoc()) {
+                        ?>
+                        <option value="<?= $row['id'] ?>">Môn <?=$row['subject_title'] ?> </option>
+                    <?php } 
+                }
+                ?>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
+                <input name="date_test" class="form-control" size="16" type="text" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="text" placeholder="Số lần kiểm tra" name="frequency" class="form-control" required="true">
+        </div>
+        <table  class="table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên học sinh</th>
+                    <th>Địa chỉ</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
+                    <th>Nhập điểm</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                if (!empty($data['data'])) {
+        // echo "<pre>";print_r($data['data']);die();
+                    $i = 1;
+                    while ($row = $data['data']->fetch_assoc()) {
+                        ?>
+                        <tr>
+                            <td><?= $i++ ?></td>
+                            <td><?= $row['name_student'] ?></td>
+                            <td><?= $row['address'] ?></td>
+                            <td><?= $row['sex'] ?></td>
+                            <td><?= $row['birthday'] ?></td>
+                            <td>
+                                <input required="true" class="form-control" type="text" name="point_<?= $row['id'] ?>" placeholder="Nhập điểm tại đây">
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+        <input type="submit" name="insert_point" class="btn btn-success" value="Thêm điểm">
+    </form>
 </div>
+<script>
+    $('.form_date').datetimepicker({
+        language:  'vi',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>    

@@ -4,8 +4,6 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 {
 	public function index(){
 		session_start();
-		// session
-		// die($_SESSION['user']);
 		$modelClass =  $this->model('ClassStudentModel');
 		$result = $modelClass->getListClass();
 		if($result['success']){

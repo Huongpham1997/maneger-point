@@ -56,6 +56,18 @@ class PointModel extends Controller {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
+    public function getPointDropdownlist(){
+        $sql = "SELECT `id`,`point_name` FROM `point`";
+        // cách gọi vào model connect từ model
+        $conModel = $this->model('Connect');
+        // thực hiện câu lệnh 
+        $result = $conModel->getConnect($sql);
+        if ($result->num_rows > 0) {
+            return ['success' => true, 'data' => $result];
+        } else {
+            return ['success' => false, 'message' => 'Lỗi hệ thống !'];
+        }
+    }
     public function deletePoint()
     {
         $sql = "DELETE FROM  `point` WHERE  `id` = ".$this->id;

@@ -18,7 +18,7 @@ class teacher extends Controller // dat ten file the nao thi phai dat class nhu 
 		session_start();
 		$modelTeacher =  $this->model('TeacherModel');
 		if (!empty($_POST['submit_teacher'])) {
-			$modelTeacher->nameteacher = $_POST['nameteacher'];
+			$modelTeacher->name_teacher = $_POST['name_teacher'];
 			$modelTeacher->position = $_POST['position'];
 			$modelTeacher->class_teacher = $_POST['class_teacher'];
 			$modelTeacher->sex = $_POST['sex'];
@@ -50,7 +50,7 @@ class teacher extends Controller // dat ten file the nao thi phai dat class nhu 
 			$modelTeacher->id = $_GET['id'];
 			if (!empty($_POST['submit_teacher'])) {
 				// nếu có post thì xử lý update lại thông tin
-				$modelTeacher->nameteacher = $_POST['nameteacher'];
+				$modelTeacher->name_teacher = $_POST['name_teacher'];
 				$modelTeacher->position = $_POST['position'];
 				$modelTeacher->class_teacher = $_POST['class_teacher'];
 				$modelTeacher->sex = $_POST['sex'];

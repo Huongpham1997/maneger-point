@@ -36,13 +36,13 @@ if (!empty($data['resultMessageAdd'])) {
             ?>
 				<tr>
 					<td><?= $i++ ?></td>
-					<td><?= $row['nameteacher'] ?></td>
+					<td><?= $row['name_teacher'] ?></td>
 					<td><?= $row['position'] ?></td>
 					<td><?= $row['class_teacher'] ?></td>
 					<td><?= $row['sex'] ?></td>
 					<td>
 						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['nameteacher']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_teacher']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
 					</td>
 				</tr>
 				<?php
@@ -52,9 +52,9 @@ if (!empty($data['resultMessageAdd'])) {
 </tbody>
 </table>
 <script>
-    // function dưới đây để gọi xóa lớp
-    function deleteSelected(id,nameteacher) {
-        if (confirm('Bạn có chắc chắn xóa giáo viên ' + nameteacher + '?')) {
+    // function dưới đây để gọi xóa giáo viên
+    function deleteSelected(id,name_teacher) {
+        if (confirm('Bạn có chắc chắn xóa giáo viên ' + name_teacher + '?')) {
             $.post("?url=teacher/deleteTeacher", {
                 'id': id
             }).done(function (data) {
@@ -64,7 +64,7 @@ if (!empty($data['resultMessageAdd'])) {
         }
     }
 
-    // function dưới đây để gọi sang update lại lớp
+    // function dưới đây để gọi sang update lại giáo viên
     function updateSelected(id) {
         location.href="?url=teacher/update&id="+id;
     }

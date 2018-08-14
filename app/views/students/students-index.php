@@ -2,7 +2,7 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=students/addStudents" class="btn btn-success">Thêm mới học sinh</a>
+<a target="_blank" href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -45,7 +45,7 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['status'] ?></td>
 					<td><?= $row['parents'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
 					</td>
 				</tr>
@@ -56,6 +56,16 @@ if (!empty($data['resultMessageAdd'])) {
 </tbody>
 </table>
 <script>
+	$('.form_date').datetimepicker({
+		language:  'vi',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+	});
     // function dưới đây để gọi xóa lớp
     function deleteSelected(id,name_student) {
         if (confirm('Bạn có chắc chắn xóa học sinh ' + name_student + '?')) {
@@ -69,8 +79,8 @@ if (!empty($data['resultMessageAdd'])) {
     }
 
     // function dưới đây để gọi sang update lại lớp
-    function updateSelected(id) {
-        location.href="?url=students/update&id="+id;
+    function updateSelected(id,class_id) {
+        location.href="?url=students/update&id="+id+"&class_id="+class_id;
     }
 </script>
 </body>

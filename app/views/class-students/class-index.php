@@ -3,7 +3,7 @@
 //
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=classStudent/addClass" class="btn btn-success">Thêm lớp mới</a>
+<a href="?url=classStudent/addClass" class="btn btn-success">Thêm mới lớp</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -42,8 +42,11 @@ if (!empty($data['resultMessageAdd'])) {
                 <td><?= $row['year'] ?></td>
                 <td><?= $row['name_teacher'] ?></td>
                 <td>
-                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="?url=students/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="?url=managerPoint/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-list-alt"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                   
                 </td>
             </tr>
             <?php

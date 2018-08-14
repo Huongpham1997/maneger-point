@@ -1,7 +1,7 @@
 <?php
 class TeacherModel extends Controller {
     public $id;
-    public $nameteacher;
+    public $name_teacher;
     public $position;
     public $class_teacher;
     public $sex;
@@ -21,7 +21,7 @@ class TeacherModel extends Controller {
       }	
     }
     public function addTeacher(){
-        $sql = "INSERT INTO `teacher` (`nameteacher`, `position`,,`class_teacher;` `sex`) VALUES ('{$this->nameteacher}','{$this->position}','{$this->class_teacher}','{$this->sex}')";
+        $sql = "INSERT INTO `teacher` (`name_teacher`, `position`,`class_teacher`,`sex`) VALUES ('{$this->name_teacher}','{$this->position}','{$this->class_teacher}','{$this->sex}')";
             // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
             // thực hiện câu lệnh 
@@ -34,7 +34,7 @@ class TeacherModel extends Controller {
     }
     public function editTeacher()
     {
-        $sql = "UPDATE `teacher` SET `nameteacher`='{$this->nameteacher}',`position`='{$this->position}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
+        $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`position`='{$this->position}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 

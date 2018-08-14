@@ -38,8 +38,8 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['level'] ?></td>
 					<td><?= $row['statust'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['point_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
 					</td>
 				</tr>
 				<?php
@@ -51,7 +51,7 @@ if (!empty($data['resultMessageAdd'])) {
 <script>
     // function dưới đây để gọi xóa lớp
     function deleteSelected(id,point_name) {
-        if (confirm('Bạn có chắc chắn xóa lớp ' + point_name + '?')) {
+        if (confirm('Bạn có chắc chắn xóa loại điểm ' + point_name + '?')) {
             $.post("?url=point/deletePoint", {
                 'id': id
             }).done(function (data) {

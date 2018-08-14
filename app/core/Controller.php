@@ -9,7 +9,7 @@ class Controller
         return new $model;
     }
 
-    public function view($view, $data = []) // nhin 
+    public function view($view, $data = [])
     {
         // call to file model
         require_once '../app/views/' . $view . '.php';
