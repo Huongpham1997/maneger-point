@@ -12,7 +12,6 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 		$modelStudents->class_id =  $class_id;
 		$result = $modelStudents->getListStudents();
 		if($result['success']){
-			// $modelStudents->birthday = $_POST['birthday_test'];
 			// neu co du lieu tra ve
 			$this->view('students/students-index',[
 				'data' => $result['data'],
@@ -48,7 +47,6 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 				if($resultList['success']){
 					$this->view('students/students-index', 
 						['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
-
 				}
 				else{
 					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 

@@ -90,7 +90,6 @@ if (!empty($data['data'])) {
 	    			<td>
 	    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 	    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-	    				 <a href="#"> <i class="glyphicon glyphicon-book"></i></a>
 	    			</td>
 	    		</tr>
 	    		<?php

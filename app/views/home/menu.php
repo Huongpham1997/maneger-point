@@ -19,13 +19,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="?url=teacher/index">Quản lý giáo viên</a></li>
                 <li><a href="?url=classStudent/index">Quản lý các lớp</a></li>
-                <li><a href="?url=subject/index">Quản lý các môn</a></li>
+                <!-- <li><a href="?url=subject/index">Quản lý các môn</a></li> -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Quản lý khối <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php
-                        // cách gọi sql từ file view Chỗ này sửa thành theo MVC đi nhé không viết truy vấn ngoài file thế này 
                         $con = new Controller();
                         $con = $con->model('Connect');
                         $sql = "SELECT * FROM `class`"; // Tạo bảng class có các trường dữ liệu id, class_name, total_student, year, name_teacher
@@ -34,7 +33,7 @@
                             $i = 1;
                             while ($row = $result->fetch_assoc()) {
                                 ?>
-                                <li><a href="#"><?= $row['class_name'] ?></a></li>
+                                <li><a href="?url=students/index&class_id=<?= $row['id'] ?>"><?= $row['class_name'] ?></a></li>
                                 <?php
                             }
                         } else {

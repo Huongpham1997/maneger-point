@@ -42,6 +42,9 @@ class StudentPointAsmModel extends Controller {
       }	
     }
     public function addPointStudent(){
+        if (!is_int($this->point)) {
+            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
+        }
         $sql = "INSERT INTO `student_point_asm` (`point_id`, `subject_id`, `student_id`, `point`, `test_time`, `frequency`) VALUES ('{$this->point_id}','{$this->subject_id}','{$this->student_id}','{$this->point}','{$this->test_time}','{$this->frequency}')";
             // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -55,6 +58,9 @@ class StudentPointAsmModel extends Controller {
     }
     public function editPointStudents()
     {
+        if (!is_int($this->point)) {
+            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
+        }
         $sql = "UPDATE `student_point_asm` SET `point_id`='{$this->point_id}',`subject_id`='{$this->subject_id}',`student_id`='{$this->student_id}',`point`= '{$this->point}',`test_time`= '{$this->test_time}',`frequency`= '{$this->frequency}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -68,6 +74,9 @@ class StudentPointAsmModel extends Controller {
     }
     public function edit()
     {
+        if (!is_int($this->point)) {
+            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
+        }
         $sql = "UPDATE `student_point_asm` SET `point`= '{$this->point}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');

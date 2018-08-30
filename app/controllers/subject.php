@@ -4,20 +4,36 @@ class subject extends Controller // dat ten file the nao thi phai dat class nhu 
 {
 	public function index(){
 		session_start();
+		$class_id = $_GET['class_id'];
+		if(empty($class_id)){
+			$this->view('subject/subject-index',['resultMessage' => 'Không tìm thấy lớp']);
+		}
 		$modelSubject =  $this->model('subjectModel');
+		$modelSubject->class_id =  $class_id;
 		$result = $modelSubject->getListSubject();
 		if($result['success']){
 			
 			// neu co du lieu tra ve
-			$this->view('subject/subject-index',['data' => $result['data']]);
+			$this->view('subject/subject-index',
+				['data' => $result['data'],
+				'class_id' => $class_id,
+			]);
 		}else{
 			// Neu khong co du lieu tra ve 
-			$this->view('subject/subject-form',['resultMessage' => $result['message']]); 
+			$this->view('subject/subject-form',
+				['resultMessage' => $result['message'],
+				'class_id' => $class_id,
+			]); 
 		}
 	}
 
 	public function add(){
 		session_start();
+		$class_id = $_GET['class_id'];
+		// var_dump($class_id);die();
+		if(empty($class_id)){
+			$this->view('subject/subject-index',['resultMessage' => 'Không tìm thấy lớp']);
+		}
 		$processSubject = $this->model('subjectModel');
 		if (!empty($_POST['submit_add_subject'])) {
 			$processSubject->subject_title = $_POST['subject_title'];
@@ -31,18 +47,25 @@ class subject extends Controller // dat ten file the nao thi phai dat class nhu 
 				}
 				else{
 					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
-					$this->view('subject/subject-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
+					$this->view('subject/subject-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!',
+						'class_id' => $class_id]);
 				}
 			}else{
-				$this->view('subject/subject-form',['resultMessageAdd' => $resultSubject['message']]);
+				$this->view('subject/subject-form',['resultMessageAdd' => $resultSubject['message'],
+					'class_id' => $class_id]);
 			}
 		}
 		else{ 
-			$this->view('subject/subject-form');
+			$this->view('subject/subject-form',['class_id' => $class_id]);
 		}
 	}
 	public function update(){
 		session_start();
+		$class_id = $_GET['class_id'];
+		// var_dump($class_id);die();
+		if(empty($class_id)){
+			$this->view('subject/subject-index',['resultMessage' => 'Không tìm thấy lớp']);
+		}
 		// kiểm tra link gọi có id ko 	
 		if(!empty($_GET['id'])){
 			$processSubject = $this->model('subjectModel');
@@ -68,12 +91,12 @@ class subject extends Controller // dat ten file the nao thi phai dat class nhu 
 				if($subjectById['success']){
 					$this->view('subject/subject-form',['data' => $subjectById['data']]);
 				}else{
-					$this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy lớp']);
+					$this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy môn']);
 				}
 			}
 		}else{
 			// không có id thì báo lỗi
-			$this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy lớp']);
+			$this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy môn']);
 		}
 		
 	}

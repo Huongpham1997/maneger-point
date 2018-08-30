@@ -55,11 +55,16 @@ html,body{
 }
 
 .avatar{
-    width: 100px;height: 100px;
+    width: 100px;
+    height: 100px;
     margin: 10px auto 30px;
     border-radius: 100%;
     border: 2px solid #aaa;
     background-size: cover;
+}
+
+#avatar {
+  width: 100%;
 }
 
 .form-box input{

@@ -2,7 +2,7 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
-<a target="_blank" href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
+<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
