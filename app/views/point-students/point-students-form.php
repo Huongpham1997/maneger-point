@@ -11,7 +11,7 @@ require_once '../app/views/home/menu.php';
         } // chỗ này là đẩy ra data dc truyen tu controller
         ?>
     </p>
-    <form method="post" action="?url=managerPoint/addPointStudents&class_id=<?= $_GET['class_id'] ?>">
+    <form method="post" id="form_input_point" action="?url=managerPoint/addPointStudents&class_id=<?= $_GET['class_id'] ?>">
         <div class="col-md-3">
             <select class="form-control" name="point_id">
                 <?php
@@ -73,7 +73,7 @@ require_once '../app/views/home/menu.php';
                             <td><?= $row['sex'] ?></td>
                             <td><?= $row['birthday'] ?></td>
                             <td>
-                                <input required="true" class="form-control" type="text" name="point_<?= $row['id'] ?>" placeholder="Nhập điểm tại đây">
+                                <input required="true" id="id_input_point" class="form-control" type="text" name="point_<?= $row['id'] ?>" placeholder="Nhập điểm tại đây">
                             </td>
                         </tr>
                         <?php
@@ -96,4 +96,19 @@ require_once '../app/views/home/menu.php';
         minView: 2,
         forceParse: 0
     });
+    $('#form_input_point').submit(
+        function ()
+        {
+            if (CheckIsNumeric($('#id_input_point').val()) == true ) {
+                return true; // return false to cancel form action
+            }else{
+                alert('Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!');
+                return false;
+            }
+            return false;
+    });
+    function CheckIsNumeric(input)
+    {
+        return (input - 0) == input && (''+input).trim().length > 0;
+    }
 </script>    

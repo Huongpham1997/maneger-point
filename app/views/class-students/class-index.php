@@ -46,7 +46,7 @@ if (!empty($data['resultMessageAdd'])) {
                     <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="?url=students/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="?url=managerPoint/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-list-alt"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="?url=subject/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-book"></i></a>
+                    <a href="?url=subjectClass/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-book"></i></a>
                 </td>
             </tr>
             <?php

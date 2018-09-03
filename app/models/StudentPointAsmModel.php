@@ -42,9 +42,6 @@ class StudentPointAsmModel extends Controller {
       }	
     }
     public function addPointStudent(){
-        if (!is_int($this->point)) {
-            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
-        }
         $sql = "INSERT INTO `student_point_asm` (`point_id`, `subject_id`, `student_id`, `point`, `test_time`, `frequency`) VALUES ('{$this->point_id}','{$this->subject_id}','{$this->student_id}','{$this->point}','{$this->test_time}','{$this->frequency}')";
             // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -56,42 +53,21 @@ class StudentPointAsmModel extends Controller {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
-    public function editPointStudents()
-    {
-        if (!is_int($this->point)) {
-            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
-        }
-        $sql = "UPDATE `student_point_asm` SET `point_id`='{$this->point_id}',`subject_id`='{$this->subject_id}',`student_id`='{$this->student_id}',`point`= '{$this->point}',`test_time`= '{$this->test_time}',`frequency`= '{$this->frequency}' WHERE id='{$this->id}'";
-        // cách gọi vào model connect từ model
-        $conModel = $this->model('Connect');
-        // thực hiện câu lệnh 
-        $result = $conModel->getConnect($sql);
-        if ($result === true) {
-            return ['success' => true, 'message' => 'Cập nhật điểm cho học sinh thành công!'];
-        } else {
-            return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
-        }
-    }
+    
     public function edit()
     {
-        if (!is_int($this->point)) {
-            return ['success' => false, 'message' => 'Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!'];
-        }
         $sql = "UPDATE `student_point_asm` SET `point`= '{$this->point}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
+        
         if ($result === true) {
             return ['success' => true, 'message' => 'Cập nhật điểm cho học sinh thành công!'];
         } else {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
-    // tính điểm trung bình
-    // public function average(){
-    //     $sql = "SELECT  "
-    // }
     public function getPointStudentById(){
         $sql = "SELECT * FROM `student_point_asm` WHERE `id`=".$this->id;
         // cách gọi vào model connect từ model

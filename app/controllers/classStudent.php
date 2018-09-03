@@ -21,7 +21,7 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 		$processClass = $this->model('ClassStudentModel');
 		if (!empty($_POST['submit_class'])) {
 			$processClass->class_name = $_POST['class_name'];
-			$processClass->total_student = (int)$_POST['total_student'];
+			$processClass->total_student = $_POST['total_student'];
 			$processClass->year = $_POST['year'];
 			$processClass->name_teacher = $_POST['name_teacher'];
 			$resultClass = $processClass->addClassStudent();
@@ -53,7 +53,8 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 			if (!empty($_POST['submit_edit_class'])) {
 				// nếu có post thì xử lý update lại thông tin
 				$processClass->class_name = $_POST['class_name'];
-				$processClass->total_student = (int)$_POST['total_student'];
+				$processClass->total_student = $_POST['total_student'];
+				// var_dump($_POST['total_student']);die();
 				$processClass->year = $_POST['year'];
 				$processClass->name_teacher = $_POST['name_teacher'];
 				$resultClass = $processClass->editClassStudent();

@@ -3,7 +3,7 @@
 //
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=subject/add&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới môn học</a>
+<a href="?url=managerSubject/addSubject" class="btn btn-success">Thêm mới môn học</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -36,7 +36,7 @@ if (!empty($data['resultMessageAdd'])) {
                 <td><?= $i++ ?></td>
                 <td><?= $row['subject_title'] ?></td>
                 <td>
-                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>) "> <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['subject_title']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>
@@ -50,7 +50,7 @@ if (!empty($data['resultMessageAdd'])) {
     // function dưới đây để gọi xóa lớp
     function deleteSelected(id,subject_title) {
         if (confirm('Bạn có chắc chắn xóa môn học ' + subject_title + '?')) {
-            $.post("?url=subject/delete", {
+            $.post("?url=managerSubject/deleteSubject", {
                 'id': id
             }).done(function (data) {
                 alert(data['message']);
@@ -61,7 +61,7 @@ if (!empty($data['resultMessageAdd'])) {
 
     // function dưới đây để gọi sang update lại lớp
     function updateSelected(id,class_id) {
-        location.href="?url=subject/update&id="+id+"&class_id="+class_id;
+        location.href="?url=managerSubject/update&id="+id;
     }
 </script>
 </body>

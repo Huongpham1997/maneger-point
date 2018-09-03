@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="?url=teacher/index">Quản lý giáo viên</a></li>
                 <li><a href="?url=classStudent/index">Quản lý các lớp</a></li>
-                <!-- <li><a href="?url=subject/index">Quản lý các môn</a></li> -->
+                <li><a href="?url=managersubject/index">Quản lý các môn</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Quản lý khối <span class="caret"></span></a>

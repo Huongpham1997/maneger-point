@@ -178,9 +178,14 @@ if (!empty($data['data'])) {
     }
 
     function updatePointModal(){
+
     	var pointStudent = $("#display_point_student").val();
     	var id = $("#id_asm").val();
 
+    	if (CheckIsNumeric(pointStudent) == false ) {
+    		alert('Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!');
+    		return false;
+    	}
     	// gui len controller de xu ly thay doi diem 
     	$.post("?url=managerPoint/updatePointById",{
     		'id':id,
@@ -190,13 +195,9 @@ if (!empty($data['data'])) {
     		location.reload();
     	});
     }
-    function averagePoint(){
-    	$.post("?url=managerPoint/averagePointStudents", {
-    			'id': id
-    		}).done(function (data) {
-    			alert(data['message']);
-    			location.reload();
-    		});
+    function CheckIsNumeric(input)
+    {
+        return (input - 0) == input && (''+input).trim().length > 0;
     }
 </script>
 </body>

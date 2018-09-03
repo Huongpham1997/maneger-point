@@ -58,6 +58,18 @@ class TeacherModel extends Controller {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
+    public function getTeacherDropdownlist(){
+        $sql = "SELECT `id`,`name_teacher` FROM `teacher`";
+            // cách gọi vào model connect từ model
+        $conModel = $this->model('Connect');
+            // thực hiện câu lệnh 
+        $result = $conModel->getConnect($sql);
+        if ($result->num_rows > 0) {
+            return ['success' => true, 'data' => $result];
+        } else {
+            return ['success' => false, 'message' => 'Lỗi hệ thống !'];
+        }
+    }
     public function deleteTeacher()
     {
         $sql = "DELETE FROM  `teacher` WHERE  `id` = ".$this->id;

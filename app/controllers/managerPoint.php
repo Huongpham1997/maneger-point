@@ -12,7 +12,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
 		//lấy loại môn
-		$modelSubject = $this->model('subjectModel');
+		$modelSubject = $this->model('subjectClassAsm');
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
 		// lay diem cua hs theo lop
 		$modelPointStudents = $this->model('StudentPointAsmModel');	
@@ -58,14 +58,17 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		// lay loai diem 
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
+		
 		//lấy loại môn
-		$modelSubject = $this->model('subjectModel');
+		$modelSubject = $this->model('subjectClassAsm');
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
+
 		if($resultPoint['success']){
 			// lay danh sach hoc sinh 
 			$modelStudents = $this->model('StudentModel');
 			$modelStudents->class_id = $class_id;
 			$resultStudents = $modelStudents->getListStudents();
+			// var_dump($resultStudents);die();
 			if($resultStudents['success']){
 				if(!empty($_POST['insert_point'])){
 					$modelPointStudents =  $this->model('StudentPointAsmModel');
@@ -83,17 +86,17 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 						}
 						$i++;
 					}
-
+					// var_dump($resultStudents); die();
 					$this->view('point-students/point-students-index',['resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh',
 						'data' => $resultStudents['data'],
 						'dataPoint' => $resultPoint['data'],
-						'dataSubject' => $resultSubject['data']
+						'dataSubject' => $resultSubject['data'],
 					]);
 				}else{
 					$this->view('point-students/point-students-form',[
 						'data' => $resultStudents['data'],
 						'dataPoint' => $resultPoint['data'],
-						'dataSubject' => $resultSubject['data']
+						'dataSubject' => $resultSubject['data'],
 					]);
 				}
 				
@@ -106,17 +109,6 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 	}
 	public function update(){
 		session_start();
-		// $class_id = $_GET['class_id'];
-		// if(empty($class_id)){
-		// 	$this->view('home/error',['message' => 'Không tìm thấy lớp']);
-		// }
-		// lay loai diem 
-		// $modelPoint = $this->model('PointModel');
-		// $resultPoint = $modelPoint->getPointDropdownlist();
-		// lấy học sinh theo lớp
-		// $modelStudents = $this->model('StudentModel');
-		// $modelStudents->class_id = $class_id;
-		// $resultStudents = $modelStudents->getListStudents();
 		// kiểm tra link gọi có id ko 	
 		if(!empty($_GET['id'])){
 			$modelPointStudents =  $this->model('StudentPointAsmModel');
@@ -172,13 +164,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 			echo 'Không tìm thấy thông tin';
 		}
 	}
-	//tính điểm trung bình
-	// public function averagePointStudents(){
-	// 	session_start();
-	// 	if () {
-
-	// 	}
-	// }
+	
 	public function deletePointStudents(){
 		session_start();
 		$modelPointStudents =  $this->model('StudentPointAsmModel');
