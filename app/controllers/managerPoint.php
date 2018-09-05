@@ -1,6 +1,6 @@
 <?php
 
-class managerPoint extends Controller // dat ten file the nao thi phai dat class nhu the 
+class managerPoint extends Controller 
 {
 	public function index(){
 		session_start();
@@ -8,15 +8,16 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		if(empty($class_id)){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
-		// lay loai diem 
+		// lấy loại điểm
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
 		//lấy loại môn
 		$modelSubject = $this->model('subjectClassAsm');
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
-		// lay diem cua hs theo lop
+		// lấy điểm của học sinh theo lớp
 		$modelPointStudents = $this->model('StudentPointAsmModel');	
 		$modelPointStudents->class_id = $class_id;
+
 		$modelPointStudents->point_id = 0;
 		$modelPointStudents->subject_id = 0;
 		if(!empty($_POST['submit_search'])){
@@ -27,7 +28,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		$result = $modelPointStudents->getListPointStudents();
 		if($resultPoint['success']){
 			if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 				$this->view('point-students/point-students-index',[
 					'data' => $result['data'],
 					'dataPoint' => $resultPoint['data'],
@@ -36,7 +37,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 				]);
 			}
 			else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về
 				$this->view('point-students/point-students-index',[
 					'resultMessage' => $result['message'],
 					'dataPoint' => $resultPoint['data'],
@@ -55,7 +56,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		if(empty($class_id)){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
-		// lay loai diem 
+		// lấy loại điểm
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
 		
@@ -64,7 +65,7 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
 
 		if($resultPoint['success']){
-			// lay danh sach hoc sinh 
+			// lấy danh sách học sinh
 			$modelStudents = $this->model('StudentModel');
 			$modelStudents->class_id = $class_id;
 			$resultStudents = $modelStudents->getListStudents();
@@ -124,12 +125,13 @@ class managerPoint extends Controller // dat ten file the nao thi phai dat class
 				$modelPointStudents->frequency = $_POST['frequency'];
 				$resultPointStudents = $modelPointStudents->editPointStudents();
 				if($resultPointStudents['success']){
+					// gọi lấy list thành công thì đẩy ra list 
 					$resultList = $modelPointStudents->getListPointStudents();
 					if($resultList['success']){
 						$this->view('point-students/point-students-index', ['resultMessageAdd' => $resultPointStudents['message'], 'data' => $resultList['data']]);
 					}
 					else
-						// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+						// không lấy list thành công thì vẫn báo thêm thành công  
 						$this->view('point-students/point-students-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
 					$this->view('point-students/point-students-form', ['resultMessageAdd' => $resultPointStudents['message']]);

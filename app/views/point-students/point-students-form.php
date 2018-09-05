@@ -8,7 +8,7 @@ require_once '../app/views/home/menu.php';
         <?php
         if (!empty($data['resultMessageAdd'])) {
             echo $data['resultMessageAdd'];
-        } // chỗ này là đẩy ra data dc truyen tu controller
+        } // đẩy ra data dc truyen tu controller
         ?>
     </p>
     <form method="post" id="form_input_point" action="?url=managerPoint/addPointStudents&class_id=<?= $_GET['class_id'] ?>">

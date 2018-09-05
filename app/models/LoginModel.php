@@ -18,7 +18,7 @@ class LoginModel extends Controller
 
     public function login()
     {
-        // chuyen ten dang nhap thanh chu thuong
+        // chuyển tên đăng nhập thành chữ thường
         $this->user_name = strtolower($this->user_name);
         if ($this->user_name == '') {
             return $this->result = "chua nhap tai khoan";

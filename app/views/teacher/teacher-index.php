@@ -7,16 +7,18 @@ require_once '../app/views/home/menu.php';
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
-} // chỗ này là đẩy ra data dc truyen tu controller
+} // đẩy ra data dc truyen tu controller
 ?>
 <table class="table">
 	<thead>
 		<tr>
 			<th>STT</th>
 			<th>Tên giáo viên</th>
+			<th>Địa chỉ</th>
+			<th>Ngày sinh</th>
+			<th>Giới tính</th>
 			<th>Trình độ chuyên môn</th>
 			<th>Chủ nhiệm lớp</th>
-			<th>Giới tính</th>
 			<th>Hành động</th>
 		</tr>
 	</thead>
@@ -25,7 +27,7 @@ if (!empty($data['resultMessageAdd'])) {
 	        <?php
 	        if (!empty($data['resultMessage'])) {
 	            echo $data['resultMessage'];
-	        } // chỗ này là đẩy ra data dc truyen tu controller
+	        } // đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
 	<?php 
@@ -37,9 +39,11 @@ if (!empty($data['resultMessageAdd'])) {
 				<tr>
 					<td><?= $i++ ?></td>
 					<td><?= $row['name_teacher'] ?></td>
-					<td><?= $row['position'] ?></td>
-					<td><?= $row['class_teacher'] ?></td>
+					<td><?= $row['address'] ?></td>
+					<td><?= $row['date_of_birth'] ?></td>
 					<td><?= $row['sex'] ?></td>
+					<td><?= $row['ability'] ?></td>
+					<td><?= $row['class_teacher'] ?></td>
 					<td>
 						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_teacher']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
@@ -52,6 +56,16 @@ if (!empty($data['resultMessageAdd'])) {
 </tbody>
 </table>
 <script>
+	$('.form_date').datetimepicker({
+		language:  'vi',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+	});
     // function dưới đây để gọi xóa giáo viên
     function deleteSelected(id,name_teacher) {
         if (confirm('Bạn có chắc chắn xóa giáo viên ' + name_teacher + '?')) {

@@ -7,10 +7,10 @@ class managerSubject extends Controller
 		$modelSubject =  $this->model('subjectModel');
 		$result = $modelSubject->getListSubject();
 		if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 			$this->view('subject/subject-index',['data' => $result['data']]);
 		}else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về 
 			$this->view('subject/subject-index',['resultMessage' => $result['message']]);
 		}
 	}
@@ -28,7 +28,7 @@ class managerSubject extends Controller
 						['resultMessageAdd' => $resultSubject['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('subject/subject-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}
 			}else{
@@ -51,11 +51,12 @@ class managerSubject extends Controller
 				$resultSubject = $modelSubject->editSubject();
 				if($resultSubject['success']){
 					$resultList = $modelSubject->getListSubject();
+					// gọi lấy list thành công thì đẩy ra list 
 					if($resultSubject['success']){
 						$this->view('subject/subject-index', ['resultMessageAdd' => $resultSubject['message'], 'data' => $resultList['data']]);
 					}
 					else
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('subject/subject-form',['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
 					$this->view('subject/subject-form',['resultMessageAdd' => $resultSubject['message']]);

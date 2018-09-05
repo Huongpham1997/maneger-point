@@ -28,9 +28,6 @@ class ClassStudentModel extends Controller
 
     public function addClassStudent()
     {
-        // if (!is_int($this->total_student)) {
-        //     return ['success' => false, 'message' => 'Tổng số học sinh phải là kiểu số, Vui lòng nhập lại!'];
-        // }
         $sql = "INSERT INTO `class` (`class_name`, `total_student`, `year`, `name_teacher`) VALUES ('{$this->class_name}','{$this->total_student}','{$this->year}','{$this->name_teacher}')";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -45,9 +42,6 @@ class ClassStudentModel extends Controller
 
     public function editClassStudent()
     {
-        // if (!is_int($this->total_student)) {
-        //     return ['success' => false, 'message' => 'Tổng số học sinh phải là kiểu số, Vui lòng nhập lại!'];
-        // }
         $sql = "UPDATE `class` SET `class_name`='{$this->class_name}',`total_student`='{$this->total_student}',`year`='{$this->year}',`name_teacher`= '{$this->name_teacher}' WHERE id='{$this->id}'";
 
         // cách gọi vào model connect từ model
@@ -64,7 +58,6 @@ class ClassStudentModel extends Controller
 
     public function getClassById(){
         $sql = "SELECT * FROM `class` WHERE `id`=".$this->id;
-        // echo "<prev>";print_r("$sql");die();
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 

@@ -2,7 +2,9 @@
 class TeacherModel extends Controller {
     public $id;
     public $name_teacher;
-    public $position;
+    public $ability;
+    public $address;
+    public $date_of_birth;
     public $class_teacher;
     public $sex;
     public $result;
@@ -14,17 +16,18 @@ class TeacherModel extends Controller {
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             // trả kết quả cho controller
-          return ['success' => true,'data' => $result];
-      }
-      else{
-          return ['success'=>false, 'message' => "Chưa có dữ liệu"];
+            return ['success' => true,'data' => $result];
+        }
+        else{
+            return ['success'=>false, 'message' => "Chưa có dữ liệu"];
       }	
     }
+
     public function addTeacher(){
-        $sql = "INSERT INTO `teacher` (`name_teacher`, `position`,`class_teacher`,`sex`) VALUES ('{$this->name_teacher}','{$this->position}','{$this->class_teacher}','{$this->sex}')";
-            // cách gọi vào model connect từ model
+        $sql = "INSERT INTO `teacher` (`name_teacher`,`address`,`date_of_birth`, `ability`,`class_teacher`,`sex`) VALUES ('{$this->name_teacher}','{$this->address}','{$this->date_of_birth}','{$this->ability}','{$this->class_teacher}','{$this->sex}')";
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Thêm mới giáo viên thành công!'];
@@ -34,7 +37,7 @@ class TeacherModel extends Controller {
     }
     public function editTeacher()
     {
-        $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`position`='{$this->position}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
+        $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`address`='{$this->address}',`date_of_birth`='{$this->date_of_birth}',`ability`='{$this->ability}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
@@ -60,9 +63,9 @@ class TeacherModel extends Controller {
     }
     public function getTeacherDropdownlist(){
         $sql = "SELECT `id`,`name_teacher` FROM `teacher`";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];

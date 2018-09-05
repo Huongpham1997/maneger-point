@@ -7,7 +7,7 @@ require_once '../app/views/home/menu.php';
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
-} // chỗ này là đẩy ra data dc truyen tu controller
+} // đẩy ra data dc truyen tu controller
 ?>
 <table class="table">
 	<thead>
@@ -27,7 +27,7 @@ if (!empty($data['resultMessageAdd'])) {
 	        <?php
 	        if (!empty($data['resultMessage'])) {
 	            echo $data['resultMessage'];
-	        } // chỗ này là đẩy ra data dc truyen tu controller
+	        } // đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
 	<?php 
@@ -66,7 +66,7 @@ if (!empty($data['resultMessageAdd'])) {
 		minView: 2,
 		forceParse: 0
 	});
-    // function dưới đây để gọi xóa lớp
+    // function dưới đây để gọi xóa học sinh 
     function deleteSelected(id,name_student) {
         if (confirm('Bạn có chắc chắn xóa học sinh ' + name_student + '?')) {
             $.post("?url=students/deleteStudents", {
@@ -78,7 +78,7 @@ if (!empty($data['resultMessageAdd'])) {
         }
     }
 
-    // function dưới đây để gọi sang update lại lớp
+    // function dưới đây để gọi sang update lại học sinh
     function updateSelected(id,class_id) {
         location.href="?url=students/update&id="+id+"&class_id="+class_id;
     }

@@ -49,7 +49,7 @@ require_once '../app/views/home/menu.php';
 	<?php
 	if (!empty($data['resultMessageAdd'])) {
 		echo $data['resultMessageAdd'].'<br>';
-} // chỗ này là đẩy ra data dc truyen tu controller
+} // đẩy ra data dc truyen tu controller
 if (!empty($data['data'])) {
 	?>
 </p>
@@ -63,7 +63,6 @@ if (!empty($data['data'])) {
 			<th>Điểm</th>
 			<th>Thời gian kiểm tra</th>
 			<th>Số bài kiểm tra</th>
-			<!-- <th>Điểm trung bình trung học kì</th> -->
 		</tr>
 	</thead>
 	<tbody>
@@ -71,7 +70,7 @@ if (!empty($data['data'])) {
 			<?php
 			if (!empty($data['resultMessage'])) {
 				echo $data['resultMessage'];
-	        } // chỗ này là đẩy ra data dc truyen tu controller
+	        } // đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
 	    <?php
@@ -150,7 +149,7 @@ if (!empty($data['data'])) {
 		minView: 2,
 		forceParse: 0
 	});
-    // function dưới đây để gọi xóa lớp
+    // function dưới đây để gọi xóa điểm
     function deleteSelectedPointStudent(id,name_student) {
     	if (confirm('Bạn có chắc chắn xóa điểm của học sinh '  + name_student + '?')) {
     		$.post("?url=managerPoint/deletePointStudents", {
@@ -162,7 +161,7 @@ if (!empty($data['data'])) {
     	}
     }
 
-    // function dưới đây để gọi sang update lại lớp
+    // function dưới đây để gọi sang update lại điểm
     function updateSelectedByModal(id,class_id) {
     	var nameStudent  =  $("#name_student_"+id).text();
     	var pointStudent = $("#point_"+id).text();
@@ -186,7 +185,7 @@ if (!empty($data['data'])) {
     		alert('Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!');
     		return false;
     	}
-    	// gui len controller de xu ly thay doi diem 
+    	// gửi lên control để xử lí thay đổi điểm
     	$.post("?url=managerPoint/updatePointById",{
     		'id':id,
     		'point' : pointStudent

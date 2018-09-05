@@ -1,6 +1,6 @@
 <?php
 
-class students extends Controller // dat ten file the nao thi phai dat class nhu the 
+class students extends Controller 
 {
 	public function index(){
 		session_start();
@@ -12,13 +12,13 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 		$modelStudents->class_id =  $class_id;
 		$result = $modelStudents->getListStudents();
 		if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 			$this->view('students/students-index',[
 				'data' => $result['data'],
 				'class_id' => $class_id,
 			]);
 		}else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về
 			$this->view('students/students-index',[
 				'resultMessage' => $result['message'],
 				'class_id' => $class_id,
@@ -41,15 +41,15 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 			$modelStudents->class_id = $class_id;
 			$modelStudents->parents = $_POST['parents'];
 			$resultStudents = $modelStudents->addStudent();
-			if($resultStudents['success']){ // đã vào đến đây là thêm thành công 
-				// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+			if($resultStudents['success']){ 
+				 // gọi lấy list thành công thì đẩy ra list 
 				$resultList = $modelStudents->getListStudents();
 				if($resultList['success']){
 					$this->view('students/students-index', 
 						['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('students/students-form',[
 						'resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!',
 						'class_id' => $class_id
@@ -92,7 +92,7 @@ class students extends Controller // dat ten file the nao thi phai dat class nhu
 						$this->view('students/students-index', ['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
 					}
 					else{
-						// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+						// không lấy list thành công thì vẫn báo thêm thành công
 						// die('khong lay dc data');
 						$this->view('students/students-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 					}

@@ -12,7 +12,7 @@ class PointModel extends Controller {
         // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
-            // trả kết quả cho controller
+        // trả kết quả cho controller
           return ['success' => true,'data' => $result];
         }
       else{
@@ -22,9 +22,9 @@ class PointModel extends Controller {
     public function addPoint(){
         
         $sql = "INSERT INTO `point` (`point_name`, `level`, `statust`) VALUES ('{$this->point_name}','{$this->level}','{$this->statust}')";
-                // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-                    // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Thêm mới loại điểm thành công!'];
@@ -35,9 +35,9 @@ class PointModel extends Controller {
     public function editPoint()
     {
         $sql = "UPDATE `point` SET `point_name`='{$this->point_name}',`level`='{$this->level}',`statust`= '{$this->statust}' WHERE id='{$this->id}'";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Cập nhật loại điểm thành công!'];
@@ -47,9 +47,9 @@ class PointModel extends Controller {
     }
     public function getPoinById(){
         $sql = "SELECT * FROM `point` WHERE `id`=".$this->id;
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];
@@ -59,9 +59,9 @@ class PointModel extends Controller {
     }
     public function getPointDropdownlist(){
         $sql = "SELECT `id`,`point_name` FROM `point`";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];
@@ -72,9 +72,9 @@ class PointModel extends Controller {
     public function deletePoint()
     {
         $sql = "DELETE FROM  `point` WHERE  `id` = ".$this->id;
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Xóa loại điểm thành công!'];

@@ -118,8 +118,6 @@ class subjectClass extends Controller
 			$resultTeacher = $modelTeacher->getTeacherDropdownlist();
 
 			if (!empty($_POST['submit_edit_subject'])) {
-				// var_dump($_POST['submit_edit_subject']);die();
-				// die('a');
 				// nếu có post thì xử lý update lại thông tin
 				$processSubjectClass->class_id = $class_id;
 				$processSubjectClass->subject_id = $_POST['subject_id'];
@@ -140,8 +138,7 @@ class subjectClass extends Controller
 							'dataSubject' => $resultSubjectClassAsm['data']
 						]);
 					}else
-						// die('ko lay dc data');
-						// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list  
+						// không lấy list thành công thì vẫn báo thêm thành công
 						$this->view('subject-class-asm/subject-class-asm-form',[
 							// 'resultMessageAdd' => $resultSubject['message'],
 							'dataTeacher' => $resultTeacher['data'],
@@ -150,17 +147,12 @@ class subjectClass extends Controller
 				}else{
 					$this->view('subject-class-asm/subject-class-asm-form',[
 						'resultMessageAdd' => $resultSubject['message']
-						// 'data' => $resultList['data'],
-						// 'dataTeacher' => $resultTeacher['data'],
-						// 'dataSubject' => $resultSubjectClassAsm['data']
 					]);
 				}
 			}else{
 				// lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
 				$subjectById = $processSubjectClass->getSubjectClassById();				
 				if($subjectById['success']){
-					// var_dump($subjectById);die();
-					// die('a');
 					$this->view('subject-class-asm/subject-class-asm-form',[
 						'data' => $subjectById['data'],
 						'dataTeacher' => $resultTeacher['data'],

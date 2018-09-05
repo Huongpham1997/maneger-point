@@ -7,7 +7,7 @@ require_once '../app/views/home/menu.php';
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
-} // chỗ này là đẩy ra data dc truyen tu controller
+} // đẩy ra data dc truyen tu controller
 ?>
 <table class="table">
 	<thead>
@@ -24,7 +24,7 @@ if (!empty($data['resultMessageAdd'])) {
 	        <?php
 	        if (!empty($data['resultMessage'])) {
 	            echo $data['resultMessage'];
-	        } // chỗ này là đẩy ra data dc truyen tu controller
+	        } // đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
 	<?php
@@ -49,7 +49,7 @@ if (!empty($data['resultMessageAdd'])) {
 </tbody>
 </table>
 <script>
-    // function dưới đây để gọi xóa lớp
+    // function dưới đây để gọi xóa điểm
     function deleteSelected(id,point_name) {
         if (confirm('Bạn có chắc chắn xóa loại điểm ' + point_name + '?')) {
             $.post("?url=point/deletePoint", {
@@ -61,7 +61,7 @@ if (!empty($data['resultMessageAdd'])) {
         }
     }
 
-    // function dưới đây để gọi sang update lại lớp
+    // function dưới đây để gọi sang update lại điểm
     function updateSelected(id) {
         location.href="?url=point/update&id="+id;
     }

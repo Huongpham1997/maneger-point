@@ -8,12 +8,12 @@ class App
     
     public function __construct()
     {
-//        print($_GET['url']);
-
-        $url = $this->parseUrl();//goi xuong ham duoi
+        // print($_GET['url']);
+        $url = $this->parseUrl();
         // var_dump($url);die();
         // get controller has in url
-        if (file_exists('../app/controllers/' . $url[0] . '.php')) {//ton tai url trrrong file control thif gan bang url
+        // tồn tại url trong file control thì gán bằng url
+        if (file_exists('../app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
         }
@@ -39,7 +39,7 @@ class App
         // var_dump($_GET['url']);die();
         if (isset($_GET['url'])) {// lay ddc url locfilter la loc?
             $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-            return $url; // cái này kiểu gì ? qua bien url dong tren thay. conf bien rtrim la sao 
+            return $url;
         }
 
     }

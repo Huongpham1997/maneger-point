@@ -11,19 +11,20 @@ class subjectModel extends Controller {
         // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
-            // trả kết quả cho controller
-          return ['success' => true,'data' => $result];
-      }
-      else{
-          return ['success'=>false, 'message' => "Chưa có dữ liệu"];
-      }	
+        // trả kết quả cho controller
+            return ['success' => true,'data' => $result];
+        }
+        else{
+            return ['success'=>false, 'message' => "Chưa có dữ liệu"];
+        }	
     }
+
     public function addSubject(){
         $sql = "INSERT INTO `subject` (`subject_title`) VALUES ('{$this->subject_title}')
         ";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Thêm mới môn học thành công!'];

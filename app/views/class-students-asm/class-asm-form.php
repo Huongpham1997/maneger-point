@@ -8,7 +8,7 @@ require_once '../app/views/home/menu.php';
         <?php
         if (!empty($data['resultMessageAdd'])) {
             echo $data['resultMessageAdd'];
-        } // chỗ này là đẩy ra data dc truyen tu controller
+        } // đẩy ra data dc truyen tu controller
         ?>
     </p>
     <?php if(!empty($data['data'])){ 

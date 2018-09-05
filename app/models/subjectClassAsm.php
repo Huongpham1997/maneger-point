@@ -83,9 +83,9 @@ class subjectClassAsm extends Controller
     }
     public function getSubjecEditDropdownlist(){
         $sql = "SELECT `id`,`subject_title` FROM `subject`";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];
@@ -95,10 +95,10 @@ class subjectClassAsm extends Controller
     }
     public function getSubjectClassById(){
         $sql = "SELECT * FROM `subject_class_asm` WHERE `id`=".$this->id;
-            // echo "<prev>";print_r("$sql");die();
-            // cách gọi vào model connect từ model
+        // echo "<prev>";print_r("$sql");die();
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];
@@ -110,9 +110,9 @@ class subjectClassAsm extends Controller
     public function deleteSubjectClass()
     {
         $sql = "DELETE FROM  `subject_class_asm` WHERE  `id` = ".$this->id;
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result === true) {
             return ['success' => true, 'message' => 'Xóa môn học thành công!'];

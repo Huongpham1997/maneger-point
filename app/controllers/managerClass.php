@@ -1,6 +1,6 @@
 <?php
 
-class managerClass extends Controller // dat ten file the nao thi phai dat class nhu the 
+class managerClass extends Controller
 {
 	public function index(){
 		session_start();
@@ -17,14 +17,14 @@ class managerClass extends Controller // dat ten file the nao thi phai dat class
 				]);
 		}else{
 			if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 				$this->view('point-students/point-students-index',[
 					'data' => $result['data'],
 					'dataPoint' => $resultPoint['data']
 				]);
 			}
 			else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về
 				$this->view('point-students/point-students-index',[
 					'resultMessage' => $result['message'],
 					'dataPoint' => $resultPoint['data'],
@@ -40,15 +40,15 @@ class managerClass extends Controller // dat ten file the nao thi phai dat class
 			$modelClassStudents->point_id = $_POST['point_id'];
 			$modelClassStudents->student_id = $_POST['student_id'];
 			$resultClassStudents = $modelClassStudents->addClassStudents();
-			if($resultClassStudents['success']){ // đã vào đến đây là thêm thành công 
-				// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+			if($resultClassStudents['success']){
+				// gọi lấy list thành công thì đẩy ra list 
 				$resultList = $modelClassStudents->getListClassStudents();
 				if($resultList['success']){
 					$this->view('point-students/point-students-index', 
 						['resultMessageAdd' => $resultClassStudents['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('point-students/point-students-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}
 			}else{

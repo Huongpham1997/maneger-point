@@ -1,16 +1,16 @@
 <?php
 
-class teacher extends Controller // dat ten file the nao thi phai dat class nhu the 
+class teacher extends Controller 
 {
 	public function index(){
 		session_start();
 		$modelTeacher =  $this->model('TeacherModel');
 		$result = $modelTeacher->getListTeacher();
 		if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 			$this->view('teacher/teacher-index',['data' => $result['data']]);
 		}else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về
 			$this->view('teacher/teacher-index',['resultMessage' => $result['message']]);
 		}
 	}
@@ -19,19 +19,21 @@ class teacher extends Controller // dat ten file the nao thi phai dat class nhu 
 		$modelTeacher =  $this->model('TeacherModel');
 		if (!empty($_POST['submit_teacher'])) {
 			$modelTeacher->name_teacher = $_POST['name_teacher'];
-			$modelTeacher->position = $_POST['position'];
+			$modelTeacher->address = $_POST['address'];
+			$modelTeacher->date_of_birth = $_POST['date_of_birth'];
+			$modelTeacher->ability = $_POST['ability'];
 			$modelTeacher->class_teacher = $_POST['class_teacher'];
 			$modelTeacher->sex = $_POST['sex'];
 			$resultTeacher = $modelTeacher->addTeacher();
-			if($resultTeacher['success']){ // đã vào đến đây là thêm thành công 
-				// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+			if($resultTeacher['success']){ 
+				// gọi lại lấy list thành công thì đẩy ra list 
 				$resultList = $modelTeacher->getListTeacher();
 				if($resultList['success']){
 					$this->view('teacher/teacher-index', 
 						['resultMessageAdd' => $resultTeacher['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('teacher/teacher-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}
 			}else{
@@ -51,7 +53,9 @@ class teacher extends Controller // dat ten file the nao thi phai dat class nhu 
 			if (!empty($_POST['submit_teacher'])) {
 				// nếu có post thì xử lý update lại thông tin
 				$modelTeacher->name_teacher = $_POST['name_teacher'];
-				$modelTeacher->position = $_POST['position'];
+				$modelTeacher->address = $_POST['address'];
+				$modelTeacher->date_of_birth = $_POST['date_of_birth'];
+				$modelTeacher->ability = $_POST['ability'];
 				$modelTeacher->class_teacher = $_POST['class_teacher'];
 				$modelTeacher->sex = $_POST['sex'];
 				$resultTeacher = $modelTeacher->editTeacher();
@@ -61,7 +65,7 @@ class teacher extends Controller // dat ten file the nao thi phai dat class nhu 
 						$this->view('teacher/teacher-index', ['resultMessageAdd' => $resultTeacher['message'], 'data' => $resultList['data']]);
 					}
 					else
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('class-students/class-form',['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
 					$this->view('teacher/teacher-form',['resultMessageAdd' => $resultTeacher['message']]);

@@ -7,7 +7,7 @@ require_once '../app/views/home/menu.php';
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
-} // chỗ này là đẩy ra data dc truyen tu controller
+} // đẩy ra data dc truyen tu controller
 ?>
 <table class="table">
     <thead>
@@ -23,7 +23,7 @@ if (!empty($data['resultMessageAdd'])) {
             <?php
             if (!empty($data['resultMessage'])) {
                 echo $data['resultMessage'];
-            } // chỗ này là đẩy ra data dc truyen tu controller
+            } // đẩy ra data dc truyen tu controller
             ?>
         </p>
         <?php
@@ -48,7 +48,7 @@ if (!empty($data['resultMessageAdd'])) {
     </tbody>
 </table>
 <script>
-    // function dưới đây để gọi xóa môn
+    // function dưới đây để gọi xóa môn học 
     function deleteSelected(id,subject_title) {
         if (confirm('Bạn có chắc chắn xóa môn học ' + subject_title + '?')) {
             $.post("?url=subjectClass/delete", {
@@ -60,7 +60,7 @@ if (!empty($data['resultMessageAdd'])) {
         }
     }
 
-    // function dưới đây để gọi sang update lại môn
+    // function dưới đây để gọi sang update lại môn học
     function updateSelected(id,class_id) {
         location.href="?url=subjectClass/update&id="+id+"&class_id="+class_id;
     }

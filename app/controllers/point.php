@@ -1,16 +1,16 @@
 <?php
 
-class point extends Controller // dat ten file the nao thi phai dat class nhu the 
+class point extends Controller 
 {
 	public function index(){
 		session_start();
 		$modelPoint =  $this->model('PointModel');
 		$result = $modelPoint->getListPoint();
 		if($result['success']){
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 			$this->view('poitn/point-index',['data' => $result['data']]);
 		}else{
-			// Neu khong co du lieu tra ve 
+			// nếu không có dữ liệu trả về
 			$this->view('poitn/point-index',['resultMessage' => $result['message']]);
 		}
 	}
@@ -22,15 +22,15 @@ class point extends Controller // dat ten file the nao thi phai dat class nhu th
 			$modelPoint->level = $_POST['level'];
 			$modelPoint->statust = $_POST['statust'];
 			$resultPoint = $modelPoint->addPoint();
-			if($resultPoint['success']){ // đã vào đến đây là thêm thành công 
-				// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+			if($resultPoint['success']){
+				// gọi lấy list thành công thì đẩy ra list 
 				$resultList = $modelPoint->getListPoint();
 				if($resultList['success']){
 					$this->view('poitn/point-index', 
 						['resultMessageAdd' => $resultPoint['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('poitn/point-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}
 			}else{

@@ -1,18 +1,16 @@
 <?php
 
-class classStudent extends Controller // dat ten file the nao thi phai dat class nhu the 
-{
+class classStudent extends Controller
 	public function index(){
 		session_start();
 		$modelClass =  $this->model('ClassStudentModel');
 		$result = $modelClass->getListClass();
 		if($result['success']){
-			
-			// neu co du lieu tra ve
+			// nếu có dữ liệu trả về
 			$this->view('class-students/class-index',['data' => $result['data']]);
 		}else{
-			// Neu khong co du lieu tra ve 
-			$this->view('class-students/class-form',['resultMessage' => $result['message']]); // truyền đúng đây này 
+			// nếu không có dữ liệu trả về
+			$this->view('class-students/class-form',['resultMessage' => $result['message']]);
 		}
 	}
 
@@ -25,15 +23,15 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 			$processClass->year = $_POST['year'];
 			$processClass->name_teacher = $_POST['name_teacher'];
 			$resultClass = $processClass->addClassStudent();
-			if($resultClass['success']){ // đã vào đến đây là thêm thành công 
-				// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+			if($resultClass['success']){
+				// gọi lấy list thành công thì đẩy ra list 
 				$resultList = $processClass->getListClass();
 				if($resultList['success']){
 					$this->view('class-students/class-index', 
 						['resultMessageAdd' => $resultClass['message'], 'data' => $resultList['data']]);
 				}
 				else{
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('class-students/class-form',['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}
 			}else{
@@ -59,12 +57,12 @@ class classStudent extends Controller // dat ten file the nao thi phai dat class
 				$processClass->name_teacher = $_POST['name_teacher'];
 				$resultClass = $processClass->editClassStudent();
 				if($resultClass['success']){
-					// đây này gọi lại lấy list từ đây lấy list thành công thì đẩy ra list 
+					// gọi lấy list thành công thì đẩy ra list 
 					$resultList = $processClass->getListClass();
 					if($resultClass['success']){
 						$this->view('class-students/class-index', ['resultMessageAdd' => $resultClass['message'], 'data' => $resultList['data']]);
 					}else
-					// không lấy list thành công thì vẫn báo thêm thành công nhưng không lấy dc list thế thôi 
+					// không lấy list thành công thì vẫn báo thêm thành công
 					$this->view('class-students/class-form',['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
 					$this->view('class-students/class-form',['resultMessageAdd' => $resultClass['message']]);

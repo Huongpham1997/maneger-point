@@ -27,7 +27,7 @@
                         <?php
                         $con = new Controller();
                         $con = $con->model('Connect');
-                        $sql = "SELECT * FROM `class`"; // Tạo bảng class có các trường dữ liệu id, class_name, total_student, year, name_teacher
+                        $sql = "SELECT * FROM `class`"; 
                         $result = $con->getConnect($sql); // thực hiện truy vấn
                         if ($result->num_rows > 0) { // có dữ liệu trả về
                             $i = 1;

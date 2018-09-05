@@ -11,8 +11,6 @@ class StudentModel extends Controller {
     public $class_id;
     public $result;
     public function getListStudents(){
-        // $birthday_start = strtotime($this->birthday. '00:00:00');
-        // $birthday_end = strtotime($this->birthday.' 23:59:59');
     	$sql = "SELECT `student`.* FROM `student` 
             INNER JOIN `class_students` 
             ON `student`.`id` = `class_students`.`student_id` 
@@ -32,9 +30,9 @@ class StudentModel extends Controller {
     }
     public function addStudent(){
         $sql = "INSERT INTO `student` (`name_student`, `address`, `sex`, `birthday`, `status`, `parents`) VALUES ('{$this->name_student}','{$this->address}','{$this->sex}','{$this->birthday}','{$this->status}','{$this->parents}')";
-            // cách gọi vào model connect từ model
+        // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh 
         $class_id_inserted = $conModel->getConnect($sql, true);
 
         if ($class_id_inserted) {
