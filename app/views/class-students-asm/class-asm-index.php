@@ -3,6 +3,7 @@
 require_once '../app/views/home/menu.php';
 ?>
 <br>
+<div class="col-md-12">
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
@@ -50,8 +51,8 @@ if (!empty($data['resultMessageAdd'])) {
                 <td><?= $row['year'] ?></td>
                 <td><?= $row['name_teacher'] ?></td>
                 <td>
-                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
                 </td>
             </tr>
             <?php
@@ -60,6 +61,7 @@ if (!empty($data['resultMessageAdd'])) {
     ?>
 </tbody>
 </table>
+</div>
 <script>
     // function dưới đây để gọi xóa lớp
     function deleteSelected(id,class_name) {

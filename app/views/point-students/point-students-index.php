@@ -2,7 +2,8 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
-<form action="?url=managerPoint/index&class_id=<?= $_GET['class_id'] ?>" method="post">
+<div class="col-md-12">
+	<form action="?url=managerPoint/index&class_id=<?= $_GET['class_id'] ?>" method="post">
 	<div class="row">
 		<div class="col-md-3">
 			<select class="form-control" name="point_id">
@@ -87,8 +88,8 @@ if (!empty($data['data'])) {
 	    			<td id ="test_time_<?= $row['id'] ?>"><?= date('d/m/Y',$row['test_time']) ?></td>
 	    			<td><?= $row['frequency'] ?></td>
 	    			<td>
-	    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-	    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	    			</td>
 	    		</tr>
 	    		<?php
@@ -199,5 +200,6 @@ if (!empty($data['data'])) {
         return (input - 0) == input && (''+input).trim().length > 0;
     }
 </script>
+</div>
 </body>
 </html>

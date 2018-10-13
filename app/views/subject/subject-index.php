@@ -3,14 +3,16 @@
 //
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=managerSubject/addSubject" class="btn btn-success">Thêm mới môn học</a>
+
+<div class="col-md-12">
+    <a href="?url=managerSubject/addSubject" class="btn btn-success">Thêm mới môn học</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
 } // đẩy ra data dc truyen tu controller
 ?>
-<table class="table">
+    <table class="table">
     <thead>
         <tr>
             <th>STT</th>
@@ -36,8 +38,8 @@ if (!empty($data['resultMessageAdd'])) {
                 <td><?= $i++ ?></td>
                 <td><?= $row['subject_title'] ?></td>
                 <td>
-                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>) "> <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['subject_title']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>) "> <i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['subject_title']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i> Xóa</a>
                 </td>
             </tr>
             <?php
@@ -64,5 +66,6 @@ if (!empty($data['resultMessageAdd'])) {
         location.href="?url=managerSubject/update&id="+id;
     }
 </script>
+</div>
 </body>
 </html>

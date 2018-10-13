@@ -3,7 +3,8 @@
 require_once '../app/extend/header.php';
 require_once '../app/views/home/menu.php';
 ?>
-<div class="container">
+<div class="col-md-12">
+    <div class="container">
     <p style="color: red;text-align: center">
         <?php
         if (!empty($data['resultMessageAdd'])) {
@@ -53,3 +54,4 @@ require_once '../app/views/home/menu.php';
         return (input - 0) == input && (''+input).trim().length > 0;
     }
 </script>
+</div>

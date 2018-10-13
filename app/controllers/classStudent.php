@@ -1,6 +1,6 @@
 <?php
 
-class classStudent extends Controller
+class classStudent extends Controller{
 	public function index(){
 		session_start();
 		$modelClass =  $this->model('ClassStudentModel');

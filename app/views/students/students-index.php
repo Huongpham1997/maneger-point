@@ -2,14 +2,16 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
-<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
+
+<div class="col-md-12">
+	<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
 } // đẩy ra data dc truyen tu controller
 ?>
-<table class="table">
+	<table class="table">
 	<thead>
 		<tr>
 			<th>STT</th>
@@ -45,8 +47,8 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['status'] ?></td>
 					<td><?= $row['parents'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
 					</td>
 				</tr>
 				<?php
@@ -83,5 +85,6 @@ if (!empty($data['resultMessageAdd'])) {
         location.href="?url=students/update&id="+id+"&class_id="+class_id;
     }
 </script>
+</div>
 </body>
 </html>

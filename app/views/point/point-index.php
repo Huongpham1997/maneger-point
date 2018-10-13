@@ -2,7 +2,8 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
-<a href="point/addPoint" class="btn btn-success">Thêm mới điểm</a>
+<div class="col-md-12">
+	<a href="point/addPoint" class="btn btn-success">Thêm mới điểm</a>
 <br>
 <?php
 if (!empty($data['resultMessageAdd'])) {
@@ -38,8 +39,8 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['level'] ?></td>
 					<td><?= $row['statust'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['point_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i></a>
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['point_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
 					</td>
 				</tr>
 				<?php
@@ -48,6 +49,7 @@ if (!empty($data['resultMessageAdd'])) {
 	?>
 </tbody>
 </table>
+</div>
 <script>
     // function dưới đây để gọi xóa điểm
     function deleteSelected(id,point_name) {

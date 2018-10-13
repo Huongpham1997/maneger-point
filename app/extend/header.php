@@ -12,5 +12,6 @@
     <script type="text/javascript" src="../app/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../app/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
     <script src="../app/js/myjs.js"></script>
+    <div class="banner"><img src="/manager-point/images/banner1.jpg" id="banner" ></div>
 </head>
 <body>

@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Trang chủ</a>
+            <a class="navbar-brand" href="<?php require_once '../app/views/home/index.php'; ?>">Trang chủ</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
