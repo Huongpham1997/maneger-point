@@ -14,7 +14,7 @@ if (!empty($data['resultMessageAdd'])) {
 	<table class="table">
 	<thead>
 		<tr>
-			<th>STT</th>
+			<th>Mã học sinh</th>
 			<th>Tên học sinh</th>
 			<th>Địa chỉ</th>
 			<th>Giới tính</th>

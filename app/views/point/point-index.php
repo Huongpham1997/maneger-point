@@ -13,7 +13,7 @@ if (!empty($data['resultMessageAdd'])) {
 <table class="table">
 	<thead>
 		<tr>
-			<th>STT</th>
+			<th>Mã loại điểm</th>
 			<th>Tên điểm</th>
 			<th>Mức nhân</th>
 			<th>Trạng thái</th>

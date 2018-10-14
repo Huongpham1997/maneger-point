@@ -12,7 +12,7 @@ if (!empty($data['resultMessageAdd'])) {
 <table class="table">
     <thead>
         <tr>
-            <th>STT</th>
+            <th>Mã lớp học</th>
             <div>
                 <select class="form-control" name="point_id">
                     <?php

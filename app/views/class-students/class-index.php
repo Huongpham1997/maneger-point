@@ -15,8 +15,8 @@ require_once '../app/views/home/menu.php';
     <table class="table">
         <thead>
             <tr>
-                <th>STT</th>
-                <th>Tên lớp</th>
+                <th>Mã lớp học</th>
+                <th>Tên lớp học</th>
                 <th>Số học sinh</th>
                 <th>Niên khóa</th>
                 <th>Thầy/Cô chủ nhiệm</th>

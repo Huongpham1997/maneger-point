@@ -25,7 +25,7 @@ require_once '../app/views/home/menu.php';
 					$i = 1;
 					while ($row = $data['dataSubject']->fetch_assoc()) {
 						?>
-						<option value="<?= $row['id'] ?>">Môn <?=$row['subject_title'] ?> </option>
+						<option value="<?= $row['id'] ?>">Môn học <?=$row['subject_title'] ?> </option>
 					<?php } 
 				}
 				?>
@@ -57,7 +57,7 @@ if (!empty($data['data'])) {
 <table class="table">
 	<thead>
 		<tr>
-			<th>STT</th>
+			<th>Mã điểm</th>
 			<th>Tên điểm</th>
 			<th>Tên môn học</th>
 			<th>Tên học sinh</th>
