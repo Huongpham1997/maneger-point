@@ -23,22 +23,23 @@ require_once '../app/views/home/menu.php';
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div><br>
-            <input class="form-control" required name="ability" type="text" placeholder="Trình độ chuyên môn" value="<?= $row['ability']?$row['ability']:'' ?>"><br>
+            <input class="form-control" required name="ability" type="text" placeholder="Lĩnh vực chuyên môn" value="<?= $row['ability']?$row['ability']:'' ?>"><br>
             <input class="form-control" required name="class_teacher" type="text" placeholder="Chủ nhiệm lớp" value="<?= $row['class_teacher']?$row['class_teacher']:'' ?>" ><br>
-            <input class="form-control" required name="sex" type="text" placeholder="Giới tính" value="<?= $row['sex']?$row['sex']:'' ?>" ><br>
+            <input  class="form-control" type="text" placeholder="Giới tính" value="<?= $row['sex']?$row['sex']:'' ?>" ><br>
             <input class="btn btn-success" type="submit" name="submit_teacher" value="Cập nhật giáo viên">
         </form>
     <?php }}else{ ?>
         <form action="?url=teacher/addTeacher" method="post">
+             <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <input class="form-control" required name="name_teacher" type="text" placeholder="Tên giáo viên" value=""><br><input class="form-control" required name="address" type="text" placeholder="Địa chỉ" value=""><br>
             <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
                 <input name="date_of_birth" class="form-control" size="16" type="text" readonly>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div><br>
-            <input class="form-control" required name="ability" type="text" placeholder="Trình độ chuyên môn"><br>
+            <input class="form-control" required name="ability" type="text" placeholder="Lĩnh vực chuyên môn"><br>
             <input class="form-control" required name="class_teacher" type="text" placeholder="Chủ nhiệm lớp"><br>
-            <input class="form-control" required name="sex" type="text" placeholder="Giới tính"><br>
+            <input class="form-control" required name="sex" type="text" placeholder="Giới tính" value="<?= $row['sex']?$row['sex']:'' ?>" ><br>
             <input class="btn btn-success" type="submit" name="submit_teacher" value="Thêm mới giáo viên">
         </form>
     <?php } ?>
@@ -54,4 +55,8 @@ require_once '../app/views/home/menu.php';
         minView: 2,
         forceParse: 0
     });
+
+        function goBack() {
+            window.history.go(-1);
+        }
 </script> 

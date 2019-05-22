@@ -2,7 +2,13 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+   <li class="breadcrumb-item"><a href="?url=classStudent/index">Quản lý lớp</a></li>
+    <li class="breadcrumb-item action"><a href="#"> Học Sinh</a></li>
+  </ol>
+</nav>
 <div class="col-md-12">
 	<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
 <br>
@@ -11,6 +17,12 @@ if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
 } // đẩy ra data dc truyen tu controller
 ?>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
 	<table class="table">
 	<thead>
 		<tr>
@@ -21,7 +33,7 @@ if (!empty($data['resultMessageAdd'])) {
 			<th>Ngày sinh</th>
 			<th>Trạng thái</th>
 			<th>Phụ huynh</th>
-			<th>Hành động</th>
+			<th colspan="3" style="text-align:center;">Hành động</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -47,8 +59,13 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['status'] ?></td>
 					<td><?= $row['parents'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>
+					</td>
+					<td>
 						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
+					</td>
+					<td>
+						<a href="?url=viewPoint/index&class_id=<?= $row['id'] ?>&student_id=<?= $row['id'] ?>" class="btn btn-success">Xem điểm</a>
 					</td>
 				</tr>
 				<?php
@@ -84,7 +101,9 @@ if (!empty($data['resultMessageAdd'])) {
     function updateSelected(id,class_id) {
         location.href="?url=students/update&id="+id+"&class_id="+class_id;
     }
+
 </script>
+
 </div>
 </body>
 </html>

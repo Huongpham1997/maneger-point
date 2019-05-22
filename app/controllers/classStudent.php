@@ -1,6 +1,7 @@
 <?php
 
 class classStudent extends Controller{
+	//index của các lớp
 	public function index(){
 		session_start();
 		$modelClass =  $this->model('ClassStudentModel');
@@ -13,7 +14,151 @@ class classStudent extends Controller{
 			$this->view('class-students/class-form',['resultMessage' => $result['message']]);
 		}
 	}
+	//index của tính điểm trung bình môn theo lớp
+	public function index1(){
+		session_start();
+		// die("aa");
+		$class_id = $_GET['class_id'];
+		// print_r($class_id);die();
+		if(empty($class_id)){
+			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
+		}	
+		$subject_id = 1;
+		if (!empty($_POST['PointByClassStudent'])){
+			$subject_id = $_POST['subject_id'];
+		}
+		$modelviewPonit =  $this->model('ClassStudentModel');
+		$resultviewPonit = $modelviewPonit->getPointByClass();
+		// print_r($resultviewPonit);die();
+		// echo "<pre>";print_r($resultviewPonit);die();
+		$modelviewPonit->subject_id = $subject_id;
+		$modelviewPonit->class_id = $class_id;
+		// print_r($modelviewPonit);die();
+		$modelSubject = $this->model('subjectClassAsm');
+		$resultSubject = $modelSubject->getSubjectDropdownlist();
+		if ($resultviewPonit['success']) {
+			$this->view('class-students-asm/sum-point-index',[
+				'data' => $resultviewPonit['data'],
+				'class_id' => $class_id,
+				'dataSubject' => $resultSubject['data']]);
+				// 'student_id' => $student_id
+		}
+	}
 
+	//index của tính điểm trung bình học kì theo lớp
+	public function index2(){
+		session_start();
+		// die("aa");
+		$class_id = $_GET['class_id'];
+		// print_r($class_id);die();
+		if(empty($class_id)){
+			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
+		}	
+		$subject_id = 1;
+		if (!empty($_POST['PointByClassStudentOfSubject'])){
+			$subject_id = $_POST['subject_id'];
+		}
+		$modelviewPonit =  $this->model('ClassStudentModel');
+		$resultviewPonit = $modelviewPonit->getPointByClass();
+		// print_r($resultviewPonit);die();
+		// echo "<pre>";print_r($resultviewPonit);die();
+		$modelviewPonit->subject_id = $subject_id;
+		$modelviewPonit->class_id = $class_id;
+		// print_r($modelviewPonit);die();
+		$modelSubject = $this->model('subjectClassAsm');
+		$resultSubject = $modelSubject->getSubjectDropdownlist();
+		if ($resultviewPonit['success']) {
+			$this->view('class-students-asm/average-point-index',[
+				'data' => $resultviewPonit['data'],
+				'class_id' => $class_id,
+				'dataSubject' => $resultSubject['data']]);
+				// 'student_id' => $student_id
+		}
+	}
+
+	//hàm tính điểm trung bình môn của các học sinh trong lớp
+	public function AvegareOfSubjectByStudent()
+	{
+		session_start();
+		// die("a");
+		$modelviewPonit =  $this->model('ClassStudentModel');
+		$modelPoint = $this->model('PointModel');
+		$resultPoint = $modelPoint->getPointDropdownlist();
+		
+		//lấy loại môn
+		$subject_id = 1;
+		$modelSubject = $this->model('subjectClassAsm');
+		$resultSubject = $modelSubject->getSubjectDropdownlist();
+		// die("a");
+		// print_r($_POST);die();
+
+		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
+			// die("a");
+			$modelviewPonit->subject_id = $_POST['subject_id'];
+			// die("a");
+			$modelviewPonit->class_id = $_GET['class_id'];
+			$resultviewPonit = $modelviewPonit->checkPointOfSubject();
+			// print_r($resultviewPonit);die();
+			
+			if($resultviewPonit['success']){
+				$this->view('point-students/point-students-index', 
+						['resultMessageAdd' => $resultviewPonit['message'],
+						'dataPoint' => $resultPoint['data'],
+						'dataSubject' => $resultSubject['data']
+						]);
+				
+			}else {
+				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
+			}
+		}
+		else{
+			// die("a");
+			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
+			
+		}
+	}
+
+	//tính điểm trung bình học kì  của các học sinh trong lớp
+	public function AvegareOfClassByStudent()
+	{
+		session_start();
+		// die("a");
+		$modelviewPonit =  $this->model('ClassStudentModel');
+		$modelPoint = $this->model('PointModel');
+		$resultPoint = $modelPoint->getPointDropdownlist();
+		
+		//lấy loại môn
+		$modelSubject = $this->model('subjectClassAsm');
+		$resultSubject = $modelSubject->getSubjectDropdownlist();
+		// die("a");
+		// print_r($_POST);die();
+
+		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
+			// die("a");
+			$modelviewPonit->subject_id = $_POST['subject_id'];
+			// die("a");
+			$modelviewPonit->class_id = $_GET['class_id'];
+			$resultviewPonit = $modelviewPonit->checkPoint();
+			// print_r($resultviewPonit);die();
+			
+			if($resultviewPonit['success']){
+				$this->view('point-students/point-students-index', 
+						['resultMessageAdd' => $resultviewPonit['message']
+						]);
+				
+			}else {
+				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
+				
+			}
+		}
+		else{
+			// die("a");
+			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
+			
+		}
+	}
+
+	//hàm thêm mới lớp học
 	public function addClass(){
 		session_start();
 		$processClass = $this->model('ClassStudentModel');

@@ -5,12 +5,14 @@ class subjectClass extends Controller
 	public function index(){
 		session_start();
 		$class_id = $_GET['class_id'];
+		// print_r($class_id);die();
 		if(empty($class_id)){
 			$this->view('subject-class-asm/subject-class-asm-index',['resultMessage' => 'Không tìm thấy lớp']);
 		}
 		$modelSubjectClass =  $this->model('subjectClassAsm');
 		$modelSubjectClass->class_id =  $class_id;
 		$result = $modelSubjectClass->getListSubjectClass();
+		// print_r($result);die();
 		if($result['success']){
 			// nếu có dữ liệu trả về
 			$this->view('subject-class-asm/subject-class-asm-index',

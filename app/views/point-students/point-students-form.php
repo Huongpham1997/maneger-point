@@ -109,6 +109,6 @@ require_once '../app/views/home/menu.php';
     });
     function CheckIsNumeric(input)
     {
-        return (input - 0) == input && (''+input).trim().length > 0;
+        return (input - 0) == input && (''+input).trim().length > 0  ;
     }
 </script>    

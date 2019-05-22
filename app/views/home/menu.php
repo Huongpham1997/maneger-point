@@ -17,6 +17,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="#"><i class="glyphicon glyphicon-home"></i> Trang chủ</a>
+                </li>
                 <li><a href="?url=teacher/index"><i class="glyphicon glyphicon-list-alt"></i> Quản lý giáo viên</a></li>
                 <li><a href="?url=classStudent/index"><i class="glyphicon glyphicon-education"></i> Quản lý các lớp</a></li>
                 <li><a href="?url=managersubject/index"><i class="glyphicon glyphicon-th-list"></i> Quản lý các môn</a></li>
@@ -43,25 +46,21 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm">
-                </div>
-                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Tìm kiếm</button>
-            </form>
+           
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Xin chào <?= !empty($_SESSION['user']['fullName'])?$_SESSION['user']['fullName']:'' ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Xem thông tin</a></li>
+                        <li><a href="#"> Xem thông tin</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Thay đổi mật khẩu</a></li>
+                        <li><a href="#"> Thay đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="?url=home/logout">Thoát</a></li>
+                        <li><a href="?url=home/logout"> Thoát</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+    
 </nav>

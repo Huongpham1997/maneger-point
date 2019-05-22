@@ -67,16 +67,14 @@ html,body{
   width: 100%;
 }
 
-.banner{
-    width: 100px;
-    height: 100px;
-    margin: 10px auto 30px;
-    border-radius: 100%;
-    border: 2px solid #aaa;
-}
-
 #banner {
  width: 100%;
+ height: auto;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
 }
 
 .form-box input{
@@ -151,3 +149,11 @@ html,body{
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+
+<style>
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+</style>
+

@@ -46,6 +46,7 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php } else { ?>
        <form action="?url=subjectClass/addSubjectClass&class_id=<?= $_GET['class_id'] ?>" method="post">
+             <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <div class="col-md-4">
                 <select class="form-control" name="subject_id">
                     <?php
@@ -76,4 +77,10 @@ require_once '../app/views/home/menu.php';
             <input class="btn btn-success" type="submit" name="submit_add_subject" value="Thêm môn học">
         </form>
     <?php } ?>
+
+    <script type="text/javascript">
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
 </div>

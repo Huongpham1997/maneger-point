@@ -15,6 +15,7 @@ require_once '../app/views/home/menu.php';
         while ($row = $data['data']->fetch_assoc()) {
         ?>
         <form action="?url=managerClass/addClassStudents" method="post">
+            <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <input class="form-control" required name="class_name" type="text" placeholder="Tên lớp" value=""><br>
             <div>
                 <select class="form-control" name="point_id" >
@@ -36,4 +37,10 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php } ?>
     
+    <script type="text/javascript">
+        
+        function goBack() {
+          window.history.back();
+        }
+    </script>
 </div>

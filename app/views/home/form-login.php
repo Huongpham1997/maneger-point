@@ -4,15 +4,14 @@ require_once '../app/extend/header.php';
 ?>
 
 <div class="container">
-
     <div class="login-container">
         <div id="output"></div>
-        <div class="avatar"><img src="/manager-point/images/avatar.png" id="avatar" style="
+        <div class="avatar" class="responsive"><img src="/manager-point/images/avatar.png" id="avatar" style="
     width:  100%;"></div>
         <div class="form-box">
             <form action="?url=home/login" method="post">
-                <input name="user" type="text" placeholder="username">
-                <input name="pass" type="password" placeholder="password">
+                <input name="user" type="text" placeholder="Nhập tên đăng nhập">
+                <input name="pass" type="password" placeholder="Nhập mật khẩu">
                 <?php if (!empty ($data['resultMessage'])) { ?>
                     <br>
                     <br>

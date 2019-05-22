@@ -31,6 +31,7 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php }}else{ ?>
         <form action="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" method="post">
+            <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <input class="form-control" required name="name_student" type="text" placeholder="Tên học sinh" value=""><br>
             <input class="form-control" required name="address" type="text" placeholder="Địa chỉ"><br>
             <input class="form-control" required name="sex" type="text" placeholder="Giới tính"><br>
@@ -58,4 +59,8 @@ require_once '../app/views/home/menu.php';
         minView: 2,
         forceParse: 0
     });
+
+    function goBack() {
+            window.history.go(-1);
+        }
 </script>  

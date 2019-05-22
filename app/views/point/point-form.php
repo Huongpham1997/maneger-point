@@ -23,6 +23,7 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php }}else{ ?>
         <form action="?url=point/addPoint" method="post">
+            <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <input class="form-control" required name="point_name" type="text" placeholder="Tên loại điểm" value=""><br>
             <input class="form-control" required name="level" type="text" placeholder="Mức nhân"><br>
             <input class="form-control" required name="statust" type="text" placeholder="Trạng thái"><br>
@@ -30,4 +31,10 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php } ?>
     
+    <script type="text/javascript">
+                
+        function goBack() {
+          window.history.back();
+        }
+    </script>
 </div>

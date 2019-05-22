@@ -2,6 +2,12 @@
 // Import file import.php//
 require_once '../app/views/home/menu.php';
 ?>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="#">Quản lý giáo viên</a></li>
+  </ol>
+</nav>
 <div class="col-md-12">
 	<a href="?url=teacher/addTeacher" class="btn btn-success">Thêm mới giáo viên</a>
 <br>
@@ -10,6 +16,12 @@ if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
 } // đẩy ra data dc truyen tu controller
 ?>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
 	<table class="table">
 	<thead>
 		<tr>
@@ -18,9 +30,9 @@ if (!empty($data['resultMessageAdd'])) {
 			<th>Địa chỉ</th>
 			<th>Ngày sinh</th>
 			<th>Giới tính</th>
-			<th>Trình độ chuyên môn</th>
+			<th>Lĩnh vực chuyên môn</th>
 			<th>Chủ nhiệm lớp</th>
-			<th>Hành động</th>
+			<th colspan="2" style="text-align:center;">Hành động</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,6 +43,7 @@ if (!empty($data['resultMessageAdd'])) {
 	        } // đẩy ra data dc truyen tu controller
 	        ?>
 	    </p>
+
 	<?php 
 	if (!empty($data['data'])) {
         // echo "<pre>";print_r($data['data']);die();
@@ -46,7 +59,9 @@ if (!empty($data['resultMessageAdd'])) {
 					<td><?= $row['ability'] ?></td>
 					<td><?= $row['class_teacher'] ?></td>
 					<td>
-						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>
+					</td>
+					<td>
 						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_teacher']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
 					</td>
 				</tr>
@@ -54,8 +69,10 @@ if (!empty($data['resultMessageAdd'])) {
 		}
 	}
 	?>
+	
 </tbody>
 </table>
+
 <script>
 	$('.form_date').datetimepicker({
 		language:  'vi',

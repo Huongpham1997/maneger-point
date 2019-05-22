@@ -7,7 +7,7 @@ class home extends Controller
     {
         if (!empty($_SESSION['user'])) { 
         // Trường hợp đã đăng nhập
-            $this->view('home/menu');
+            $this->view('home/login');
         } else { 
         // chưa đăng nhập
             $this->view('home/form-login');
@@ -22,7 +22,7 @@ class home extends Controller
             $processLogin->password = $_POST['pass'];
             $resultLogin = $processLogin->login();
             if ($resultLogin['success']) {
-                $this->view('home/menu', ['resultMessage' => $resultLogin['message']]);
+                $this->view('home/index', ['resultMessage' => $resultLogin['message']]);
             } else {
                 $this->view('home/form-login', ['resultMessage' => $resultLogin['message']]);
             }
@@ -40,4 +40,15 @@ class home extends Controller
             $this->view('home/form-login', ['resultMessage' => $exit->result]);
         }
     }
+    public function signUp()
+    {
+        $processSignUp = $this->model('LoginModel');
+        $resultSignUp = $processSignUp->processSignUp();
+        if ($resultSignUp['success']) {
+            $this->view('home/form-login', ['resultMessage' => $resultSignUp['message']]);
+        } else {
+            $this->view('home/sign-up', ['resultMessage' => $resultSignUp['message']]);
+        }
+    }
 }
+?>

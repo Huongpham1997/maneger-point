@@ -2,6 +2,13 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="?url=classStudent/index">Quản lý lớp</a></li>
+    <li class="breadcrumb-item action"><a href="#"> Điểm</a></li>
+  </ol>
+</nav>
 <div class="col-md-12">
 	<form action="?url=managerPoint/index&class_id=<?= $_GET['class_id'] ?>" method="post">
 	<div class="row">
@@ -54,16 +61,23 @@ require_once '../app/views/home/menu.php';
 if (!empty($data['data'])) {
 	?>
 </p>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
 <table class="table">
 	<thead>
 		<tr>
-			<th>Mã điểm</th>
+			<th>STT</th>
 			<th>Tên điểm</th>
 			<th>Tên môn học</th>
 			<th>Tên học sinh</th>
 			<th>Điểm</th>
 			<th>Thời gian kiểm tra</th>
 			<th>Số bài kiểm tra</th>
+			<th colspan="2" style="text-align:center;">Hành động</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -76,6 +90,7 @@ if (!empty($data['data'])) {
 	    </p>
 	    <?php
 	    if(!empty($data['data'])){ 
+	    	// die("a");
 	    	$i = 1;
 	    	while ($row = $data['data']->fetch_assoc()) {
 	    		?>
@@ -88,8 +103,10 @@ if (!empty($data['data'])) {
 	    			<td id ="test_time_<?= $row['id'] ?>"><?= date('d/m/Y',$row['test_time']) ?></td>
 	    			<td><?= $row['frequency'] ?></td>
 	    			<td>
-	    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>
+	    			</td>
+	    			<td>
+	    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
 	    			</td>
 	    		</tr>
 	    		<?php
@@ -168,6 +185,7 @@ if (!empty($data['data'])) {
     	var pointStudent = $("#point_"+id).text();
     	var namePoint  = $("#point_name_"+id).text();
     	var subject = $("#subject_title_"+id).text();
+    	
 
     	$("#display_name_student").text(nameStudent);
     	$("#display_point_student").val(pointStudent);
@@ -181,9 +199,11 @@ if (!empty($data['data'])) {
 
     	var pointStudent = $("#display_point_student").val();
     	var id = $("#id_asm").val();
+    	// var x = $("#display_point_student").value;
+    	// var id = $("#id_asm").value;
 
-    	if (CheckIsNumeric(pointStudent) == false ) {
-    		alert('Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!');
+    	if ( (CheckIsNumbericAndCheracter(pointStudent) == false )) {
+    		alert('Điểm của học sinh phải là kiểu số và nhỏ hơn hoặc bằng 10 điểm, Vui lòng nhập lại!');
     		return false;
     	}
     	// gửi lên control để xử lí thay đổi điểm
@@ -195,10 +215,19 @@ if (!empty($data['data'])) {
     		location.reload();
     	});
     }
-    function CheckIsNumeric(input)
-    {
-        return (input - 0) == input && (''+input).trim().length > 0;
-    }
+
+    // kiểm tra điểm nằm trong khoảng 1 đến 10 và khác kí tự 
+    function CheckIsNumbericAndCheracter() {
+	  var x, text;
+
+	  x = document.getElementById("display_point_student").value;
+
+	  if (isNaN(x) || x < 1 || x > 10) {
+	    return false;
+	  } else {
+	    return true;
+	  }
+	}
 </script>
 </div>
 </body>

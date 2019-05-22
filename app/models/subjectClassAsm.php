@@ -18,7 +18,6 @@ class subjectClassAsm extends Controller
         INNER JOIN `teacher`
         ON `teacher`.`id` = `subject_class_asm`.`teacher_id`
         WHERE `subject_class_asm`.`class_id` = $this->class_id
-
         ";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -37,6 +36,7 @@ class subjectClassAsm extends Controller
         $conModel = $this->model('Connect');
         $sql1 = "INSERT INTO `subject_class_asm` (`subject_id`, `teacher_id`, `class_id`) VALUES ('{$this->subject_id}', '{$this->teacher_id}','{$this->class_id}')";
         $result = $conModel->getConnect($sql1); 
+
         if ($result === true) {
            return ['success' => true, 'message' => 'Thêm mới môn học thành công!'];
        } else {
@@ -87,6 +87,7 @@ class subjectClassAsm extends Controller
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
+        //print_r($result);die();
         if ($result->num_rows > 0) {
             return ['success' => true, 'data' => $result];
         } else {

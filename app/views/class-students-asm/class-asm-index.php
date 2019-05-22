@@ -9,6 +9,12 @@ if (!empty($data['resultMessageAdd'])) {
     echo $data['resultMessageAdd'];
 } // đẩy ra data dc truyen tu controller
 ?>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+    </style>
 <table class="table">
     <thead>
         <tr>
@@ -51,7 +57,9 @@ if (!empty($data['resultMessageAdd'])) {
                 <td><?= $row['year'] ?></td>
                 <td><?= $row['name_teacher'] ?></td>
                 <td>
-                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>
+                </td>
+                <td>
                     <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['class_name']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
                 </td>
             </tr>

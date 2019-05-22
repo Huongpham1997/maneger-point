@@ -7,7 +7,6 @@ class Connect extends Controller
         $con = mysqli_connect("localhost", "root", "");
         mysqli_select_db($con, "quanlidiem");
         mysqli_query($con, 'SET NAMES"UTF8"');
-
         if($sql){
             if($result = $con->query($sql)){
                 if($getid){
@@ -15,9 +14,11 @@ class Connect extends Controller
                     return $last_id;
                 }
                 return $result;
+
             }else{
                 echo "Error: " . $sql . "<br>" . $con->error;die();
             }
+
         }
         return null;
     }

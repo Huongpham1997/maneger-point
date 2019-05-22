@@ -21,9 +21,15 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php }}else{ ?>
         <form action="?url=managerSubject/addSubject" method="post">
+            <!-- <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br> -->
             <input class="form-control" required name="subject_title" type="text" placeholder="Tên môn học"><br>
             <input class="btn btn-success" type="submit" name="submit_subject" value="Thêm mới môn học">
         </form>
     <?php } ?>
     
+    <script type="text/javascript">
+        function goBack() {
+            window.history.Back();
+        }
+    </script>
 </div>

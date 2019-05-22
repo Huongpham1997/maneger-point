@@ -26,6 +26,7 @@ require_once '../app/views/home/menu.php';
         </form>
     <?php }}else{ ?>
         <form action="?url=classStudent/addClass" method="post" id="form_input_class">
+            <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
             <input class="form-control" required name="class_name" type="text" placeholder="Tên lớp" value=""><br>
             <input class="form-control" required name="total_student" type="text" id="id_total_student" placeholder="Tổng số học sinh">
             <br>
@@ -52,6 +53,12 @@ require_once '../app/views/home/menu.php';
     function CheckIsNumeric(input)
     {
         return (input - 0) == input && (''+input).trim().length > 0;
+    }
+
+
+
+    function goBack() {
+      window.history.back();
     }
 </script>
 </div>

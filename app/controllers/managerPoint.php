@@ -17,10 +17,10 @@ class managerPoint extends Controller
 		// lấy điểm của học sinh theo lớp
 		$modelPointStudents = $this->model('StudentPointAsmModel');	
 		$modelPointStudents->class_id = $class_id;
-
 		$modelPointStudents->point_id = 0;
 		$modelPointStudents->subject_id = 0;
 		if(!empty($_POST['submit_search'])){
+			// echo "<pre>";print_r($_POST);die;
 			$modelPointStudents->point_id = $_POST['point_id'];
 			$modelPointStudents->subject_id = $_POST['subject_id'];
 			$modelPointStudents->test_time = $_POST['date_test'];
@@ -69,9 +69,10 @@ class managerPoint extends Controller
 			$modelStudents = $this->model('StudentModel');
 			$modelStudents->class_id = $class_id;
 			$resultStudents = $modelStudents->getListStudents();
-			// var_dump($resultStudents);die();
+			//print_r($resultStudents);die();
 			if($resultStudents['success']){
 				if(!empty($_POST['insert_point'])){
+
 					$modelPointStudents =  $this->model('StudentPointAsmModel');
 					$modelPointStudents->point_id = $_POST['point_id'];
 					$modelPointStudents->subject_id = $_POST['subject_id'];
@@ -79,6 +80,7 @@ class managerPoint extends Controller
 					$modelPointStudents->frequency = $_POST['frequency'];
 					$i = 0;
 					while ($row = $resultStudents['data']->fetch_assoc()) {
+						// die("a");
 						$modelPointStudents->student_id = $row['id'];
 						$modelPointStudents->point = $_POST['point_'.$row['id']];
 						$resultInputPoint = $modelPointStudents->addPointStudent();
@@ -87,17 +89,32 @@ class managerPoint extends Controller
 						}
 						$i++;
 					}
-					// var_dump($resultStudents); die();
-					$this->view('point-students/point-students-index',['resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh',
-						'data' => $resultStudents['data'],
+					// lấy lại data học sinh và điểm ở đây 
+					$modelAfterAdd = $this->model('StudentPointAsmModel');
+					$modelAfterAdd->point_id = $_POST['point_id'];
+					$modelAfterAdd->subject_id = $_POST['subject_id'];
+					$modelAfterAdd->class_id = $class_id;
+					$modelAfterAdd->test_time = $_POST['date_test'];
+					$dataStudenAfterAdd = $modelAfterAdd->getListPointStudents();
+					if($dataStudenAfterAdd['success']){
+						$this->view('point-students/point-students-index',[
+						'resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh',
+						'data' => $dataStudenAfterAdd['data'],
 						'dataPoint' => $resultPoint['data'],
-						'dataSubject' => $resultSubject['data'],
-					]);
+						'dataSubject' => $resultSubject['data']
+						]);
+					}else{
+						$this->view('home/error',[
+							'resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh vui lòng kiểm tra lại ở xem điểm(Lỗi lấy data)'
+						]);
+					}
+					
+					// var_dump($this);die();
 				}else{
 					$this->view('point-students/point-students-form',[
 						'data' => $resultStudents['data'],
 						'dataPoint' => $resultPoint['data'],
-						'dataSubject' => $resultSubject['data'],
+						'dataSubject' => $resultSubject['data']
 					]);
 				}
 				
@@ -119,6 +136,7 @@ class managerPoint extends Controller
 				$modelStudents->class_id = $class_id;
 				// nếu có post thì xử lý update lại thông tin
 				$modelPointStudents->point_id = $_POST['point_id'];
+				// print_r($_POST['point_id']);die();
 				$modelPointStudents->student_id = $_POST['student_id'];
 				$modelPointStudents->point = $_POST['point'];
 				$modelPointStudents->test_time = $_POST['test_time'];
