@@ -56,6 +56,7 @@ class managerPoint extends Controller
 		if(empty($class_id)){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
+
 		// lấy loại điểm
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
@@ -85,17 +86,18 @@ class managerPoint extends Controller
 						$modelPointStudents->point = $_POST['point_'.$row['id']];
 						$resultInputPoint = $modelPointStudents->addPointStudent();
 						if(!$resultInputPoint['success']){
-							$this->view('home/error',['message' => 'Lỗi! Không thêm được học sinh ']);
+							$this->view('home/error',["message" => $resultInputPoint['message']]);
 						}
 						$i++;
 					}
 					// lấy lại data học sinh và điểm ở đây 
-					$modelAfterAdd = $this->model('StudentPointAsmModel');
-					$modelAfterAdd->point_id = $_POST['point_id'];
-					$modelAfterAdd->subject_id = $_POST['subject_id'];
-					$modelAfterAdd->class_id = $class_id;
-					$modelAfterAdd->test_time = $_POST['date_test'];
-					$dataStudenAfterAdd = $modelAfterAdd->getListPointStudents();
+					$studentPointAsmModel = $this->model('StudentPointAsmModel');
+					$studentPointAsmModel->point_id = $_POST['point_id'];
+					$studentPointAsmModel->subject_id = $_POST['subject_id'];
+					$studentPointAsmModel->class_id = $class_id;
+					$studentPointAsmModel->test_time = $_POST['date_test'];
+
+					$dataStudenAfterAdd = $studentPointAsmModel->getListPointStudents();
 					if($dataStudenAfterAdd['success']){
 						$this->view('point-students/point-students-index',[
 						'resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh',
@@ -104,8 +106,7 @@ class managerPoint extends Controller
 						'dataSubject' => $resultSubject['data']
 						]);
 					}else{
-						$this->view('home/error',[
-							'resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh vui lòng kiểm tra lại ở xem điểm(Lỗi lấy data)'
+						$this->view('home/error',['message' => 'Thêm điểm thành công cho '.$i.' học sinh vui lòng kiểm tra lại ở xem điểm(Lỗi lấy data)'
 						]);
 					}
 					
@@ -205,6 +206,57 @@ class managerPoint extends Controller
 			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
 			header('Content-Type: application/json');
 			echo json_encode($data);
+		}
+	}
+
+	//tính điểm trung bình học kì  của các học sinh trong lớp  // cái này phải đặt vào trong managerPoint chứ 
+	public function avegareOfClassByStudent()
+	{
+		session_start();
+		// die("a");
+		$modelviewPonit =  $this->model('ClassStudentModel');
+		$modelPoint = $this->model('PointModel');
+		$resultPoint = $modelPoint->getPointDropdownlist();
+		
+		//lấy loại môn
+		$modelSubject = $this->model('subjectClassAsm');
+		$resultSubject = $modelSubject->getSubjectDropdownlist();
+		// print_r($_POST);die();
+
+		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
+			$modelviewPonit->subject_id = $_POST['subject_id'];
+			$modelviewPonit->class_id = $_GET['class_id'];
+			$resultviewPonit = $modelviewPonit->processPoint();
+			// print_r($resultviewPonit);die();
+			
+			if($resultviewPonit['success']){
+				// call back to get list avegare's students 
+				$modelPointStudents = $this->model('StudentPointAsmModel');	
+				$modelPointStudents->class_id = $_GET['class_id'];
+				$modelPointStudents->point_id = 6;
+				$modelPointStudents->test_time = date("yyyy/mm/dd", now())
+				$modelPointStudents->subject_id = $_POST['subject_id'];
+				$result = $modelPointStudents->getListPointStudents();
+				if($result['success']){
+				// nếu có dữ liệu trả về
+					$this->view('point-students/point-students-index',[
+						'data' => $result['data'],
+						'dataPoint' => $resultPoint['data'],
+						'dataSubject' => $resultSubject['data'],
+						'test_time' => $modelPointStudents->test_time,
+						'resultMessageAdd' => $resultviewPonit['message']
+					]);
+				}
+				
+			}else {
+				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
+				
+			}
+		}
+		else{
+			// die("a");
+			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
+			
 		}
 	}
 }

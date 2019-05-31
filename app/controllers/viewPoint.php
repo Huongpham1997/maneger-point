@@ -32,7 +32,7 @@ class viewPoint extends Controller
 		
 		if($result['success']){
 			// nếu có dữ liệu trả về
-			$this->view('view-point-student/views-point-index',[
+			$this->view('point-students/views-point-index',[
 				'data' => $result['data'],
 				'class_id' => $class_id,
 				'dataSubject' => $resultSubject['data'],
@@ -40,7 +40,7 @@ class viewPoint extends Controller
 			]);
 		}else{
 			// nếu không có dữ liệu trả về
-			$this->view('view-point-student/views-point-index',[
+			$this->view('point-students/views-point-index',[
 				'resultMessage' => $result['message'],
 				 'class_id' => $class_id,
 				 'dataSubject' => $resultSubject['data'],

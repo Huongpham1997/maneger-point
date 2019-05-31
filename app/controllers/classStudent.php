@@ -77,11 +77,11 @@ class classStudent extends Controller{
 	}
 
 	//hàm tính điểm trung bình môn của các học sinh trong lớp
-	public function AvegareOfSubjectByStudent()
+	public function avegareOfSubjectByStudent()
 	{
 		session_start();
 		// die("a");
-		$modelviewPonit =  $this->model('ClassStudentModel');
+		$modelViewPoint =  $this->model('ClassStudentModel');
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
 		
@@ -94,61 +94,21 @@ class classStudent extends Controller{
 
 		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
 			// die("a");
-			$modelviewPonit->subject_id = $_POST['subject_id'];
+			$modelViewPoint->subject_id = $_POST['subject_id'];
 			// die("a");
-			$modelviewPonit->class_id = $_GET['class_id'];
-			$resultviewPonit = $modelviewPonit->checkPointOfSubject();
+			$modelViewPoint->class_id = $_GET['class_id'];
+			$resultViewPoint = $modelViewPoint->checkPointOfSubject();
 			// print_r($resultviewPonit);die();
 			
-			if($resultviewPonit['success']){
+			if($resultViewPoint['success']){
 				$this->view('point-students/point-students-index', 
-						['resultMessageAdd' => $resultviewPonit['message'],
+						['resultMessageAdd' => $resultViewPoint['message'],
 						'dataPoint' => $resultPoint['data'],
 						'dataSubject' => $resultSubject['data']
 						]);
 				
 			}else {
-				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
-			}
-		}
-		else{
-			// die("a");
-			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
-			
-		}
-	}
-
-	//tính điểm trung bình học kì  của các học sinh trong lớp
-	public function AvegareOfClassByStudent()
-	{
-		session_start();
-		// die("a");
-		$modelviewPonit =  $this->model('ClassStudentModel');
-		$modelPoint = $this->model('PointModel');
-		$resultPoint = $modelPoint->getPointDropdownlist();
-		
-		//lấy loại môn
-		$modelSubject = $this->model('subjectClassAsm');
-		$resultSubject = $modelSubject->getSubjectDropdownlist();
-		// die("a");
-		// print_r($_POST);die();
-
-		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
-			// die("a");
-			$modelviewPonit->subject_id = $_POST['subject_id'];
-			// die("a");
-			$modelviewPonit->class_id = $_GET['class_id'];
-			$resultviewPonit = $modelviewPonit->checkPoint();
-			// print_r($resultviewPonit);die();
-			
-			if($resultviewPonit['success']){
-				$this->view('point-students/point-students-index', 
-						['resultMessageAdd' => $resultviewPonit['message']
-						]);
-				
-			}else {
-				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
-				
+				$data =  ['success' => false, 'message' => $resultViewPoint['message']];
 			}
 		}
 		else{

@@ -192,8 +192,6 @@ class ClassStudentModel extends Controller
                 return ['success'=>false, 'message' => "Học sinh chưa đủ điểm để tính điểm"];
             }
         }
-        // tính điểm 
-        // die("a");
         return $this->getIdStudentOfClassPoint();
     }
 
@@ -206,10 +204,10 @@ class ClassStudentModel extends Controller
         // print_r($result);die();     
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                // print_r($row);
+                // lấy điểm của từng học sinh 
                 $this->getListPointByStudent($row['student_id']);
             }
-            return ['success'=>true, 'message' => "Tính điểm trung bình môn thành công! Vui lòng tải lại trang "];
+            return ['success'=>true, 'message' => "Tính điểm trung bình môn thành công! Vui lòng tải lại trang"];
         }
         return ['success'=>false, 'message' => "Không tìm thấy học sinh tại lớp"];
     }
@@ -236,12 +234,11 @@ class ClassStudentModel extends Controller
                 $lv=$lv+$row['level'];
             }
             $average = $tb/$lv;
-            // $average = round($average,1, PHP_ROUND_HALF_DOWN);
+            $average = round($average,1, PHP_ROUND_HALF_DOWN);
+            $this->frequency = 1;
 
             //sql insert
-            $subject_id = 1;
-            $frequency = 1;
-            $sql = "INSERT  INTO `student_point_asm` (`point_id`,`subject_id`, `student_id` , `point`, `test_time`,`frequency`) VALUES (".$this::ID_EXPAMLE." ,".$subject_id.", ".$studentId." , '".$average."', ".time().", ".$frequency.")";
+            $sql = "INSERT  INTO `student_point_asm` (`point_id`,`subject_id`, `student_id` , `point`, `test_time`,`frequency`) VALUES (".$this::ID_EXPAMLE." ,".$this->subject_id.", ".$studentId." , '".$average."', ".time().", ".$this->frequency.")";
             // print_r($sql);die();
             $conModel = $this->model('Connect');
             // thực hiện câu lệnh 
@@ -250,7 +247,7 @@ class ClassStudentModel extends Controller
         }
     }
     // hàm kiểm tra nếu học sinh đủ điểm thì sẽ tính điểm trung bình học kì
-    public function checkPoint()
+    public function processPoint()
     {
         // die("a");
         $idStudent = $this->getIdStudent();
@@ -291,7 +288,7 @@ class ClassStudentModel extends Controller
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // print_r($row);
-                $this->getListPointByStudentOfClass($row['student_id']);
+                $this->getListPointByStudentOfClassAndAverage($row['student_id']);
             }
             return ['success'=>true, 'message' => "Tính điểm trung bình học kì thành công"];
         }
@@ -299,7 +296,7 @@ class ClassStudentModel extends Controller
     }
 
     //hàm lấy ra mức nhân và điểm sau đó tiến hành tính điểm trung bình học kì cho học sinh
-    function getListPointByStudentOfClass($studentId){
+    function getListPointByStudentOfClassAndAverage($studentId){
         // die("a");
         // print_r($this->subject_id);die();
         $arrPoint = [];

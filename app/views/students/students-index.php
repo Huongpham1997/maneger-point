@@ -65,7 +65,7 @@ if (!empty($data['resultMessageAdd'])) {
 						<a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
 					</td>
 					<td>
-						<a href="?url=viewPoint/index&class_id=<?= $row['id'] ?>&student_id=<?= $row['id'] ?>" class="btn btn-success">Xem điểm</a>
+						<a href="?url=viewPoint/index&class_id=<?= $_GET['class_id'] ?>&student_id=<?= $row['id'] ?>" class="btn btn-success">Xem điểm</a> 
 					</td>
 				</tr>
 				<?php

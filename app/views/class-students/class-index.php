@@ -118,3 +118,6 @@ require_once '../app/views/home/menu.php';
 </div>
 </body>
 </html>
+<!-- <?php
+ // include '../app/extend/footer.php'; 
+ ?> -->

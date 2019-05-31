@@ -40,7 +40,7 @@ require_once '../app/views/home/menu.php';
         </div>
         <div class="col-md-3">
             <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
-                <input name="date_test" class="form-control" size="16" type="text" readonly>
+                <input id="date_test" name="date_test" class="form-control" size="16" type="text" readonly required="true">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
@@ -99,13 +99,15 @@ require_once '../app/views/home/menu.php';
     $('#form_input_point').submit(
         function ()
         {
-            if (CheckIsNumeric($('#id_input_point').val()) == true ) {
-                return true; // return false to cancel form action
-            }else{
+            if (CheckIsNumeric($('#id_input_point').val()) == false ) {
                 alert('Điểm của học sinh phải là kiểu số, Vui lòng nhập lại!');
+                return false; // return false to cancel form action
+            }
+            if($('#date_test').val() == ""){
+                alert('Vui lòng nhập ngày kiểm tra');
                 return false;
             }
-            return false;
+            return true;
     });
     function CheckIsNumeric(input)
     {
