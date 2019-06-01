@@ -6,7 +6,7 @@ require_once '../app/extend/header.php';
 <div class="container">
     <div class="login-container">
         <div id="output"></div>
-        <div class="avatar" class="responsive"><img src="/manager-point/app/statics/images/avatar.png" id="avatar" style="
+        <div class="avatar" class="responsive"><img src="/statics/images/avatar.png" id="avatar" style="
     width:  100%;"></div>
         <div class="form-box">
             <form action="?url=home/login" method="post">
