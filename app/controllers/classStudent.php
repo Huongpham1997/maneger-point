@@ -76,48 +76,6 @@ class classStudent extends Controller{
 		}
 	}
 
-	//hàm tính điểm trung bình môn của các học sinh trong lớp
-	public function avegareOfSubjectByStudent()
-	{
-		session_start();
-		// die("a");
-		$modelViewPoint =  $this->model('ClassStudentModel');
-		$modelPoint = $this->model('PointModel');
-		$resultPoint = $modelPoint->getPointDropdownlist();
-		
-		//lấy loại môn
-		$subject_id = 1;
-		$modelSubject = $this->model('subjectClassAsm');
-		$resultSubject = $modelSubject->getSubjectDropdownlist();
-		// die("a");
-		// print_r($_POST);die();
-
-		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
-			// die("a");
-			$modelViewPoint->subject_id = $_POST['subject_id'];
-			// die("a");
-			$modelViewPoint->class_id = $_GET['class_id'];
-			$resultViewPoint = $modelViewPoint->checkPointOfSubject();
-			// print_r($resultviewPonit);die();
-			
-			if($resultViewPoint['success']){
-				$this->view('point-students/point-students-index', 
-						['resultMessageAdd' => $resultViewPoint['message'],
-						'dataPoint' => $resultPoint['data'],
-						'dataSubject' => $resultSubject['data']
-						]);
-				
-			}else {
-				$data =  ['success' => false, 'message' => $resultViewPoint['message']];
-			}
-		}
-		else{
-			// die("a");
-			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
-			
-		}
-	}
-
 	//hàm thêm mới lớp học
 	public function addClass(){
 		session_start();

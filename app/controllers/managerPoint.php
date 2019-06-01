@@ -209,11 +209,10 @@ class managerPoint extends Controller
 		}
 	}
 
-	//tính điểm trung bình học kì  của các học sinh trong lớp  // cái này phải đặt vào trong managerPoint chứ 
-	public function avegareOfClassByStudent()
+	//tính điểm trung bình học kì  của các học sinh trong lớp
+	public function averageOfClassByStudent()
 	{
 		session_start();
-		// die("a");
 		$modelviewPonit =  $this->model('ClassStudentModel');
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
@@ -221,16 +220,14 @@ class managerPoint extends Controller
 		//lấy loại môn
 		$modelSubject = $this->model('subjectClassAsm');
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
-		// print_r($_POST);die();
 
 		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
 			$modelviewPonit->subject_id = $_POST['subject_id'];
 			$modelviewPonit->class_id = $_GET['class_id'];
 			$resultviewPonit = $modelviewPonit->processPoint();
-			// print_r($resultviewPonit);die();
-			
+
 			if($resultviewPonit['success']){
-				// call back to get list avegare's students 
+				// call back to get list average's students
 				$modelPointStudents = $this->model('StudentPointAsmModel');	
 				$modelPointStudents->class_id = $_GET['class_id'];
 				$modelPointStudents->point_id = 6;
@@ -247,16 +244,12 @@ class managerPoint extends Controller
 						'resultMessageAdd' => $resultviewPonit['message']
 					]);
 				}
-				
 			}else {
 				$data =  ['success' => false, 'message' => $resultviewPonit['message']];
-				
 			}
 		}
 		else{
-			// die("a");
 			$data =  ['success' => false, 'message' => 'Không tìm thấy điểm của học sinh!'];
-			
 		}
 	}
 }

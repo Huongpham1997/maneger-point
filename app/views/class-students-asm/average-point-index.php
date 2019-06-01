@@ -12,7 +12,7 @@ require_once '../app/views/home/menu.php';
 </nav>
 <div class="col-md-12">
 	<div class="col-md-6">
-		<form  action="?url=classStudent/avegareOfClassByStudent&class_id=<?= $_GET['class_id'] ?>" method="post">
+		<form  action="?url=classStudent/averageOfClassByStudent&class_id=<?= $_GET['class_id'] ?>" method="post">
 			<div class="col-md-8"> 
 				<select id="subjectId" class="form-control" name="subject_id">
 					<?php
