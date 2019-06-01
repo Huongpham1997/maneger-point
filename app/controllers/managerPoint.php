@@ -134,7 +134,7 @@ class managerPoint extends Controller
 			$modelPointStudents->id = $_GET['id'];
 			if (!empty($_POST['insert_point'])) {
 				$modelStudents = $this->model('StudentModel');
-				$modelStudents->class_id = $class_id;
+				$modelStudents->class_id = $_GET['class_id'];
 				// nếu có post thì xử lý update lại thông tin
 				$modelPointStudents->point_id = $_POST['point_id'];
 				// print_r($_POST['point_id']);die();
@@ -234,7 +234,7 @@ class managerPoint extends Controller
 				$modelPointStudents = $this->model('StudentPointAsmModel');	
 				$modelPointStudents->class_id = $_GET['class_id'];
 				$modelPointStudents->point_id = 6;
-				$modelPointStudents->test_time = date("yyyy/mm/dd", now())
+				$modelPointStudents->test_time = date("yyyy/mm/dd", time());
 				$modelPointStudents->subject_id = $_POST['subject_id'];
 				$result = $modelPointStudents->getListPointStudents();
 				if($result['success']){
