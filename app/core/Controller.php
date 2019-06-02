@@ -3,6 +3,7 @@ class Controller
 {
     function __construct()
     {
+        session_start();
         if (empty($_SESSION['user'])) {
             $this->view('home/form-login');
         }
