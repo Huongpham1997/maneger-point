@@ -13,7 +13,7 @@ class home extends Controller
 
     public function login()
     {
-        $processLogin = $this->model('LoginModel');
+        $processLogin = $this->model('Users');
         if (!empty($_POST['submit']) && !empty($_POST['user']) && !empty($_POST['pass'])) {
             $processLogin->user_name = $_POST['user'];
             $processLogin->password = $_POST['pass'];
@@ -28,7 +28,7 @@ class home extends Controller
 
     public function logout()
     {
-        $exit = $this->model('LoginModel');
+        $exit = $this->model('Users');
         if ($exit->processLogout()) {
             // cách đầy data ra ngoài view hiển thị resultMessage bên ngoài view sẽ nhận dc là $data['resultMessage']
             $this->view('home/form-login', ['resultMessage' => $exit->result]);
@@ -36,7 +36,7 @@ class home extends Controller
     }
     public function signUp()
     {
-        $processSignUp = $this->model('LoginModel');
+        $processSignUp = $this->model('Users');
         $resultSignUp = $processSignUp->processSignUp();
         if ($resultSignUp['success']) {
             $this->view('home/form-login', ['resultMessage' => $resultSignUp['message']]);

@@ -12,8 +12,8 @@ require_once '../app/views/home/menu.php';
 	<a href="?url=teacher/addTeacher" class="btn btn-success">Thêm mới giáo viên</a>
 <br>
 <?php
-if (!empty($data['resultMessageAdd'])) {
-    echo $data['resultMessageAdd'];
+if (!empty($data['resultMessageProcess'])) {
+    echo $data['resultMessageProcess'];
 } // đẩy ra data dc truyen tu controller
 ?>
     <style>

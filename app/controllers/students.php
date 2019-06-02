@@ -47,7 +47,7 @@ class students extends AuthController
                 $resultList = $modelStudents->getListStudents();
                 if ($resultList['success']) {
                     $this->view('students/students-index',
-                        ['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
+                        ['resultMessageProcess' => $resultStudents['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
                     $this->view('students/students-form', [
@@ -57,7 +57,7 @@ class students extends AuthController
                 }
             } else {
                 $this->view('students/students-form', [
-                    'resultMessageAdd' => $resultStudents['message'],
+                    'resultMessageProcess' => $resultStudents['message'],
                     'class_id' => $class_id
                 ]);
             }
@@ -88,14 +88,14 @@ class students extends AuthController
                     $modelStudents->class_id = $class_id;
                     $resultList = $modelStudents->getListStudents();
                     if ($resultList['success']) {
-                        $this->view('students/students-index', ['resultMessageAdd' => $resultStudents['message'], 'data' => $resultList['data']]);
+                        $this->view('students/students-index', ['resultMessageProcess' => $resultStudents['message'], 'data' => $resultList['data']]);
                     } else {
                         // không lấy list thành công thì vẫn báo thêm thành công
                         // die('khong lay dc data');
                         $this->view('students/students-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                     }
                 } else {
-                    $this->view('students/students-form', ['resultMessageAdd' => $resultStudents['message']]);
+                    $this->view('students/students-form', ['resultMessageProcess' => $resultStudents['message']]);
                 }
             } else {
                 // lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -103,12 +103,12 @@ class students extends AuthController
                 if ($StudentById['success']) {
                     $this->view('students/students-form', ['data' => $StudentById['data']]);
                 } else {
-                    $this->view('students/students-index', ['resultMessageAdd' => 'Không tìm thấy học sinh']);
+                    $this->view('students/students-index', ['resultMessageProcess' => 'Không tìm thấy học sinh']);
                 }
             }
         } else {
             // không có id thì báo lỗi
-            $this->view('students/students-index', ['resultMessageAdd' => 'Không tìm thấy học sinh']);
+            $this->view('students/students-index', ['resultMessageProcess' => 'Không tìm thấy học sinh']);
         }
 
     }

@@ -45,13 +45,13 @@ class managerClass extends AuthController
                 $resultList = $modelClassStudents->getListClassStudents();
                 if ($resultList['success']) {
                     $this->view('point-students/point-students-index',
-                        ['resultMessageAdd' => $resultClassStudents['message'], 'data' => $resultList['data']]);
+                        ['resultMessageProcess' => $resultClassStudents['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
                     $this->view('point-students/point-students-form', ['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 }
             } else {
-                $this->view('point-students/point-students-form', ['resultMessageAdd' => $resultClassStudents['message']]);
+                $this->view('point-students/point-students-form', ['resultMessageProcess' => $resultClassStudents['message']]);
             }
         } else {
             $this->view('point-students/point-students-form');

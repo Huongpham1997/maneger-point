@@ -31,13 +31,13 @@ class teacher extends AuthController
                 $resultList = $modelTeacher->getListTeacher();
                 if ($resultList['success']) {
                     $this->view('teacher/teacher-index',
-                        ['resultMessageAdd' => $resultTeacher['message'], 'data' => $resultList['data']]);
+                        ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
                     $this->view('teacher/teacher-form', ['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 }
             } else {
-                $this->view('teacher/teacher-form', ['resultMessageAdd' => $resultTeacher['message']]);
+                $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);
             }
         } else {
             $this->view('teacher/teacher-form');
@@ -62,12 +62,12 @@ class teacher extends AuthController
                 if ($resultTeacher['success']) {
                     $resultList = $modelTeacher->getListTeacher();
                     if ($resultTeacher['success']) {
-                        $this->view('teacher/teacher-index', ['resultMessageAdd' => $resultTeacher['message'], 'data' => $resultList['data']]);
+                        $this->view('teacher/teacher-index', ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
                     } else
                         // không lấy list thành công thì vẫn báo thêm thành công
                         $this->view('class-students/class-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 } else {
-                    $this->view('teacher/teacher-form', ['resultMessageAdd' => $resultTeacher['message']]);
+                    $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);
                 }
             } else {
                 // lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -75,12 +75,12 @@ class teacher extends AuthController
                 if ($TeacherById['success']) {
                     $this->view('teacher/teacher-form', ['data' => $TeacherById['data']]);
                 } else {
-                    $this->view('teacher/teacher-index', ['resultMessageAdd' => 'Không tìm thấy giáo viên']);
+                    $this->view('teacher/teacher-index', ['resultMessageProcess' => 'Không tìm thấy giáo viên']);
                 }
             }
         } else {
             // không có id thì báo lỗi
-            $this->view('teacher/teacher-index', ['resultMessageAdd' => 'Không tìm thấy giáo viên']);
+            $this->view('teacher/teacher-index', ['resultMessageProcess' => 'Không tìm thấy giáo viên']);
         }
 
     }
@@ -105,6 +105,19 @@ class teacher extends AuthController
             $data = ['success' => false, 'message' => 'Không tìm thấy giáo viên!'];
             header('Content-Type: application/json');
             echo json_encode($data);
+        }
+    }
+
+    public function detailTeacher(){
+        $model = $this->model('TeacherModel');
+        $model->id = $_GET['id'];
+        $result = $model->getTeacherById();
+        if ($result['success']) {
+            // nếu có dữ liệu trả về
+            $this->view('teacher/detail', ['data' => $result['data']]);
+        } else {
+            // nếu không có dữ liệu trả về
+            $this->view('home/error', ['resultMessage' => $result['message']]);
         }
     }
 }

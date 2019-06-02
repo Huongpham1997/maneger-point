@@ -6,8 +6,8 @@ require_once '../app/views/home/menu.php';
 <div class="container">
     <p style="color: red;text-align: center">
         <?php
-        if (!empty($data['resultMessageAdd'])) {
-            echo $data['resultMessageAdd'];
+        if (!empty($data['resultMessageProcess'])) {
+            echo $data['resultMessageProcess'];
         } // đẩy ra data dc truyen tu controller
         ?>
     </p>

@@ -52,9 +52,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Xin chào <?= !empty($_SESSION['user']['fullName'])?$_SESSION['user']['fullName']:'' ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"> Xem thông tin</a></li>
+                        <li><a href="?url=user/detail"> Xem thông tin</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"> Thay đổi mật khẩu</a></li>
+                        <li><a href="?url=user/changePass"> Thay đổi mật khẩu</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="?url=home/logout"> Thoát</a></li>
                     </ul>

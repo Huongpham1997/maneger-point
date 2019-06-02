@@ -28,13 +28,13 @@ class point extends AuthController
                 $resultList = $modelPoint->getListPoint();
                 if ($resultList['success']) {
                     $this->view('poitn/point-index',
-                        ['resultMessageAdd' => $resultPoint['message'], 'data' => $resultList['data']]);
+                        ['resultMessageProcess' => $resultPoint['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
                     $this->view('poitn/point-form', ['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 }
             } else {
-                $this->view('poitn/point-form', ['resultMessageAdd' => $resultPoint['message']]);
+                $this->view('poitn/point-form', ['resultMessageProcess' => $resultPoint['message']]);
             }
         } else {
             $this->view('poitn/point-form');
@@ -54,9 +54,9 @@ class point extends AuthController
                 $modelPoint->statust = $_POST['statust'];
                 $resultPoint = $modelPoint->editPoint();
                 if ($resultPoint['success']) {
-                    $this->view('poitn/point-index', ['resultMessageAdd' => $resultPoint['message']]);
+                    $this->view('poitn/point-index', ['resultMessageProcess' => $resultPoint['message']]);
                 } else {
-                    $this->view('poitn/point-form', ['resultMessageAdd' => $resultPoint['message']]);
+                    $this->view('poitn/point-form', ['resultMessageProcess' => $resultPoint['message']]);
                 }
             } else {
                 // lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -64,12 +64,12 @@ class point extends AuthController
                 if ($PointById['success']) {
                     $this->view('poitn/point-form', ['data' => $PointById['data']]);
                 } else {
-                    $this->view('poitn/point-index', ['resultMessageAdd' => 'Không tìm thấy loại điểm']);
+                    $this->view('poitn/point-index', ['resultMessageProcess' => 'Không tìm thấy loại điểm']);
                 }
             }
         } else {
             // không có id thì báo lỗi
-            $this->view('poitn/point-index', ['resultMessageAdd' => 'Không tìm thấy loại điểm']);
+            $this->view('poitn/point-index', ['resultMessageProcess' => 'Không tìm thấy loại điểm']);
         }
 
     }

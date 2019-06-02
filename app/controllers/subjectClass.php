@@ -63,7 +63,7 @@ class subjectClass extends AuthController
                                 [
                                     'data' => $result['data'],
                                     'class_id' => $class_id,
-                                    'resultMessageAdd' => $resultSubject['message'],
+                                    'resultMessageProcess' => $resultSubject['message'],
                                 ]);
                         } else {
                             $this->view('home/error', ['message' => 'Đã thêm thành công môn học']);
@@ -72,7 +72,7 @@ class subjectClass extends AuthController
                         $this->view('subject-class-asm/subject-class-asm-form', [
                             'dataTeacher' => $resultTeacher['data'],
                             'dataSubject' => $resultSubjectClassAsm['data'],
-                            'resultMessageAdd' => $resultSubject['message']
+                            'resultMessageProcess' => $resultSubject['message']
                         ]);
                     }
                 } else {
@@ -127,7 +127,7 @@ class subjectClass extends AuthController
                     // var_dump($resultList);die();
                     if ($resultSubject['success']) {
                         $this->view('subject-class-asm/subject-class-asm-index', [
-                            'resultMessageAdd' => $resultSubject['message'],
+                            'resultMessageProcess' => $resultSubject['message'],
                             'data' => $resultList['data'],
                             'class_id' => $class_id,
                             'dataTeacher' => $resultTeacher['data'],
@@ -136,13 +136,13 @@ class subjectClass extends AuthController
                     } else
                         // không lấy list thành công thì vẫn báo thêm thành công
                         $this->view('subject-class-asm/subject-class-asm-form', [
-                            // 'resultMessageAdd' => $resultSubject['message'],
+                            // 'resultMessageProcess' => $resultSubject['message'],
                             'dataTeacher' => $resultTeacher['data'],
                             'dataSubject' => $resultSubjectClassAsm['data']
                         ]);
                 } else {
                     $this->view('subject-class-asm/subject-class-asm-form', [
-                        'resultMessageAdd' => $resultSubject['message']
+                        'resultMessageProcess' => $resultSubject['message']
                     ]);
                 }
             } else {
@@ -156,13 +156,13 @@ class subjectClass extends AuthController
                     ]);
                 } else {
                     $this->view('subject-class-asm/subject-class-asm-index', [
-                        'resultMessageAdd' => 'Không tìm thấy môn học!'
+                        'resultMessageProcess' => 'Không tìm thấy môn học!'
                     ]);
                 }
             }
         } else {
             // không có id thì báo lỗi
-            $this->view('subject-class-asm/subject-class-asm-index', ['resultMessageAdd' => 'Không tìm thấy môn học !!!']);
+            $this->view('subject-class-asm/subject-class-asm-index', ['resultMessageProcess' => 'Không tìm thấy môn học !!!']);
         }
 
     }

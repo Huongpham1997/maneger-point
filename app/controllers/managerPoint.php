@@ -98,7 +98,7 @@ class managerPoint extends AuthController
 					$dataStudenAfterAdd = $studentPointAsmModel->getListPointStudents();
 					if($dataStudenAfterAdd['success']){
 						$this->view('point-students/point-students-index',[
-						'resultMessageAdd' => 'Thêm điểm thành công cho '.$i.' học sinh',
+						'resultMessageProcess' => 'Thêm điểm thành công cho '.$i.' học sinh',
 						'data' => $dataStudenAfterAdd['data'],
 						'dataPoint' => $resultPoint['data'],
 						'dataSubject' => $resultSubject['data']
@@ -143,13 +143,13 @@ class managerPoint extends AuthController
 					// gọi lấy list thành công thì đẩy ra list 
 					$resultList = $modelPointStudents->getListPointStudents();
 					if($resultList['success']){
-						$this->view('point-students/point-students-index', ['resultMessageAdd' => $resultPointStudents['message'], 'data' => $resultList['data']]);
+						$this->view('point-students/point-students-index', ['resultMessageProcess' => $resultPointStudents['message'], 'data' => $resultList['data']]);
 					}
 					else
 						// không lấy list thành công thì vẫn báo thêm thành công  
 						$this->view('point-students/point-students-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
 				}else{
-					$this->view('point-students/point-students-form', ['resultMessageAdd' => $resultPointStudents['message']]);
+					$this->view('point-students/point-students-form', ['resultMessageProcess' => $resultPointStudents['message']]);
 				}
 			}else{
 				// lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -157,12 +157,12 @@ class managerPoint extends AuthController
 				if($pointStudentById['success']){
 					$this->view('point-students/point-students-form',['data' => $pointStudentById['data']]);
 				}else{
-					$this->view('point-students/point-students-index', ['resultMessageAdd' => 'Không tìm thấy điểm của học sinh']);
+					$this->view('point-students/point-students-index', ['resultMessageProcess' => 'Không tìm thấy điểm của học sinh']);
 				}
 			}
 		}else{
 			// không có id thì báo lỗi
-			$this->view('point-students/point-students-index', ['resultMessageAdd' => 'Không tìm thấy điểm của học sinh']);
+			$this->view('point-students/point-students-index', ['resultMessageProcess' => 'Không tìm thấy điểm của học sinh']);
 		}
 	}
 	public function updatePointById(){
@@ -235,7 +235,7 @@ class managerPoint extends AuthController
 						'dataPoint' => $resultPoint['data'],
 						'dataSubject' => $resultSubject['data'],
 						'test_time' => $modelPointStudents->test_time,
-						'resultMessageAdd' => $resultviewPonit['message']
+						'resultMessageProcess' => $resultviewPonit['message']
 					]);
 				}
 			}else {

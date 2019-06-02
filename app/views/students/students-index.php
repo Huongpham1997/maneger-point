@@ -13,8 +13,8 @@ require_once '../app/views/home/menu.php';
 	<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
 <br>
 <?php
-if (!empty($data['resultMessageAdd'])) {
-    echo $data['resultMessageAdd'];
+if (!empty($data['resultMessageProcess'])) {
+    echo $data['resultMessageProcess'];
 } // đẩy ra data dc truyen tu controller
 ?>
     <style>

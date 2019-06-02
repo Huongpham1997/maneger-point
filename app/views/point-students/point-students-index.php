@@ -55,8 +55,8 @@ require_once '../app/views/home/menu.php';
 <br>
 <p style="color:red">
 	<?php
-	if (!empty($data['resultMessageAdd'])) {
-		echo $data['resultMessageAdd'].'<br>';
+	if (!empty($data['resultMessageProcess'])) {
+		echo $data['resultMessageProcess'].'<br>';
 } // đẩy ra data dc truyen tu controller
 if (!empty($data['data'])) {
 	?>

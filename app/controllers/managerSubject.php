@@ -26,13 +26,13 @@ class managerSubject extends AuthController
                 $resultList = $modelSubject->getListSubject();
                 if ($resultList['success']) {
                     $this->view('subject/subject-index',
-                        ['resultMessageAdd' => $resultSubject['message'], 'data' => $resultList['data']]);
+                        ['resultMessageProcess' => $resultSubject['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
                     $this->view('subject/subject-form', ['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 }
             } else {
-                $this->view('subject/subject-form', ['resultMessageAdd' => $resultSubject['message']]);
+                $this->view('subject/subject-form', ['resultMessageProcess' => $resultSubject['message']]);
             }
         } else {
             $this->view('subject/subject-form');
@@ -53,12 +53,12 @@ class managerSubject extends AuthController
                     $resultList = $modelSubject->getListSubject();
                     // gọi lấy list thành công thì đẩy ra list
                     if ($resultSubject['success']) {
-                        $this->view('subject/subject-index', ['resultMessageAdd' => $resultSubject['message'], 'data' => $resultList['data']]);
+                        $this->view('subject/subject-index', ['resultMessageProcess' => $resultSubject['message'], 'data' => $resultList['data']]);
                     } else
                         // không lấy list thành công thì vẫn báo thêm thành công
                         $this->view('subject/subject-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 } else {
-                    $this->view('subject/subject-form', ['resultMessageAdd' => $resultSubject['message']]);
+                    $this->view('subject/subject-form', ['resultMessageProcess' => $resultSubject['message']]);
                 }
             } else {
                 // lấy record cần sửa rồi đẩy ra view nếu có truyền id nhưng chưa có post gì lên thì đẩy ra giá trị của record
@@ -66,12 +66,12 @@ class managerSubject extends AuthController
                 if ($SubjectById['success']) {
                     $this->view('subject/subject-form', ['data' => $SubjectById['data']]);
                 } else {
-                    $this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy môn học']);
+                    $this->view('subject/subject-index', ['resultMessageProcess' => 'Không tìm thấy môn học']);
                 }
             }
         } else {
             // không có id thì báo lỗi
-            $this->view('subject/subject-index', ['resultMessageAdd' => 'Không tìm thấy môn học']);
+            $this->view('subject/subject-index', ['resultMessageProcess' => 'Không tìm thấy môn học']);
         }
 
     }

@@ -6,8 +6,8 @@ require_once '../app/views/home/menu.php';
 	<a href="point/addPoint" class="btn btn-success">Thêm mới điểm</a>
 <br>
 <?php
-if (!empty($data['resultMessageAdd'])) {
-    echo $data['resultMessageAdd'];
+if (!empty($data['resultMessageProcess'])) {
+    echo $data['resultMessageProcess'];
 } // đẩy ra data dc truyen tu controller
 ?>
     <style>
