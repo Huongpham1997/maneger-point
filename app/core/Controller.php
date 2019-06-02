@@ -1,6 +1,17 @@
 <?php
 class Controller
 {
+    function __construct()
+    {
+        if (!empty($_SESSION['user'])) {
+            // Trường hợp đã đăng nhập
+            $this->view('home/login');
+        } else {
+            // chưa đăng nhập
+            $this->view('home/form-login');
+        }
+    }
+
     public function model($model)
     {
         // call to file model
