@@ -3,7 +3,6 @@
 class managerClass extends Controller
 {
 	public function index(){
-		session_start();
 		$modelClassStudents =  $this->model('ClassStudentsAsmModel');
 		$modelPoint =  $this->model('PointModel');
 		$modelClassStudents->point_id = 0;
@@ -34,7 +33,6 @@ class managerClass extends Controller
 		}
 	}
 	public function addClassStudents(){
-		session_start();
 		$modelClassStudents =  $this->model('ClassStudentsAsmModel');
 		if (!empty($_POST['submit_point_students'])) {
 			$modelClassStudents->point_id = $_POST['point_id'];
@@ -60,7 +58,6 @@ class managerClass extends Controller
 		}
 	}
 	public function deletePointStudents(){
-		session_start();
 		$modelClassStudents =  $this->model('ClassStudentsAsmModel');
 		if(!empty($_POST['id'])){
 			$modelClassStudents->id = $_POST['id'];
