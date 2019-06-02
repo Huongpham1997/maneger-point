@@ -15,7 +15,6 @@ class LoginModel extends Controller
 
     public function saveUserInfo($username, $fullName)
     { 
-        session_start();
         // Set session variables
         $_SESSION['user']["username"] = $username;
         $_SESSION['user']["fullName"] = $fullName;
@@ -56,7 +55,6 @@ class LoginModel extends Controller
 
     public function processLogout()
     {
-        session_start();
         unset($_SESSION['user']);
         session_destroy();
         $this->result = "Đăng xuất thành công ";
@@ -65,7 +63,6 @@ class LoginModel extends Controller
 
     public function processSignUp()
     {
-        session_start();
         $this->user= strtolower($this->user);
         $user = $_POST['user'];
         $pass = $_POST['pass'];
