@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#"><i class="glyphicon glyphicon-home"></i> Trang chủ</a>
+                    <a href="?url=home/index"><i class="glyphicon glyphicon-home"></i> Trang chủ</a>
                 </li>
                 <li><a href="?url=teacher/index"><i class="glyphicon glyphicon-list-alt"></i> Quản lý giáo viên</a></li>
                 <li><a href="?url=classStudent/index"><i class="glyphicon glyphicon-education"></i> Quản lý các lớp</a></li>

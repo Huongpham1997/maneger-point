@@ -4,7 +4,7 @@ require_once '../app/views/home/menu.php';
 ?>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="?url=home/index">Trang chủ</a></li>
     <li class="breadcrumb-item"><a href="#">Quản lý giáo viên</a></li>
   </ol>
 </nav>
