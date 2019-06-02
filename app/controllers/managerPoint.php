@@ -3,7 +3,6 @@
 class managerPoint extends Controller 
 {
 	public function index(){
-		session_start();
 		$class_id = $_GET['class_id'];
 		if(empty($class_id)){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
@@ -51,7 +50,6 @@ class managerPoint extends Controller
 	}
 
 	public function addPointStudents(){
-		session_start();
 		$class_id = $_GET['class_id'];
 		if(empty($class_id)){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
@@ -127,8 +125,6 @@ class managerPoint extends Controller
 		}
 	}
 	public function update(){
-		session_start();
-		// kiểm tra link gọi có id ko 	
 		if(!empty($_GET['id'])){
 			$modelPointStudents =  $this->model('StudentPointAsmModel');
 			$modelPointStudents->id = $_GET['id'];
@@ -187,7 +183,6 @@ class managerPoint extends Controller
 	}
 	
 	public function deletePointStudents(){
-		session_start();
 		$modelPointStudents =  $this->model('StudentPointAsmModel');
 		if(!empty($_POST['id'])){
 			$modelPointStudents->id = $_POST['id'];
@@ -212,7 +207,6 @@ class managerPoint extends Controller
 	//tính điểm trung bình học kì  của các học sinh trong lớp
 	public function averageOfClassByStudent()
 	{
-		session_start();
 		$modelviewPonit =  $this->model('ClassStudentModel');
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
