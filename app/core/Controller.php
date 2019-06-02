@@ -20,5 +20,6 @@ class Controller
     {
         // call to file model
         require_once '../app/views/' . $view . '.php';
+        return;
     }
 }
