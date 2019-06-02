@@ -1,4 +1,5 @@
 <?php
+
 //
 class LoginModel extends Controller
 {
@@ -13,9 +14,10 @@ class LoginModel extends Controller
     public $add;
     public $result;
 
-    public function saveUserInfo($username, $fullName)
-    { 
-        // Set session variables
+    public function saveUserInfo($id, $username, $fullName)
+    {
+        // Set session variableslogin
+        $_SESSION['user']["id"] = $id;
         $_SESSION['user']["username"] = $username;
         $_SESSION['user']["fullName"] = $fullName;
     }
@@ -30,8 +32,8 @@ class LoginModel extends Controller
         if ($this->password == '') {
             return $this->result = "Bạn chưa nhập mật khẩu";
         }
-//        $this->password = md5($this->password);
-        $sql = "SELECT * FROM `login` WHERE `user`='{$this->user_name}' and `password`='{$this->password}'";
+        $this->password = md5($this->password);
+        $sql = "SELECT * FROM `user` WHERE `username`='{$this->user_name}' and `password`='{$this->password}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
@@ -43,12 +45,12 @@ class LoginModel extends Controller
         }
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $this->saveUserInfo($row['user'], $row['fullName']);
+                $this->saveUserInfo($row['id'], $row['username'], $row['fullName']);
             }
-            $message =  $this->result = "Đăng nhập thành công";
+            $message = $this->result = "Đăng nhập thành công";
             return ['success' => true, 'message' => $message];
         } else {
-            $message =  $this->result = "Tài khoản hoặc mật khẩu bị sai";
+            $message = $this->result = "Tài khoản hoặc mật khẩu bị sai";
             return ['success' => false, 'message' => $message];
         }
     }
@@ -63,25 +65,24 @@ class LoginModel extends Controller
 
     public function processSignUp()
     {
-        $this->user= strtolower($this->user);
+        $this->user = strtolower($this->user);
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $name = $_POST['name'];
-        $sql = "SELECT * FROM `login` WHERE `user` = '$user'";
+        $sql = "SELECT * FROM `user` WHERE `username` = '$user'";
         $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+        // thực hiện câu lệnh
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             return ['success' => false, 'message' => 'Tài khoản đã tồn tại !'];
-        }
-        else{
-            $sql1 = "INSERT INTO `login` (`user`, `password`, `fullName`) VALUES ('$user', '$pass','$name')";
+        } else {
+            $sql1 = "INSERT INTO `user` (`username`, `password`, `fullName`) VALUES ('$user', '$pass','$name')";
             $conModel = $this->model('Connect');
             // thực hiện câu lệnh 
             $result = $conModel->getConnect($sql1);
             if ($result === true) {
                 return ['success' => true, 'message' => 'Đăng kí thành công! Vui lòng đăng nhập để tiếp tục'];
-                $this->saveUserInfo($row['user'], $row['fullName']);
+                $this->saveUserInfo($row['id'], $row['username'], $row['fullName']);
             } else {
                 return ['success' => false, 'message' => 'Tài khoản đã tồn tại'];
             }
