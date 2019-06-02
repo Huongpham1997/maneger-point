@@ -1,6 +1,6 @@
 <?php
 
-class viewPoint extends Controller
+class viewPoint extends AuthController
 {
     public function index()
     {

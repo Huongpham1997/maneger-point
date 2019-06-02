@@ -1,6 +1,6 @@
 <?php
 
-class managerPoint extends Controller 
+class managerPoint extends AuthController
 {
 	public function index(){
 		$class_id = $_GET['class_id'];

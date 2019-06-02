@@ -1,6 +1,6 @@
 <?php
 
-class students extends Controller
+class students extends AuthController
 {
     public function index()
     {

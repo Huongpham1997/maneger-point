@@ -3,9 +3,8 @@ class Controller
 {
     function __construct()
     {
-        session_start();
-        if (empty($_SESSION['user'])) {
-            $this->view('home/form-login');
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
         }
     }
 
@@ -21,5 +20,6 @@ class Controller
     {
         // call to file model
         require_once '../app/views/' . $view . '.php';
+        die;
     }
 }

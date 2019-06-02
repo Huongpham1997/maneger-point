@@ -1,6 +1,6 @@
 <?php
 
-class point extends Controller
+class point extends AuthController
 {
     public function index()
     {

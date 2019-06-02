@@ -1,6 +1,6 @@
 <?php
 
-class subjectClass extends Controller
+class subjectClass extends AuthController
 {
     public function index()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class classStudent extends Controller
+class classStudent extends AuthController
 {
     //index của các lớp
     public function index()

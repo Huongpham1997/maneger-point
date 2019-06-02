@@ -1,6 +1,6 @@
 <?php
 
-class managerSubject extends Controller
+class managerSubject extends AuthController
 {
     public function index()
     {
