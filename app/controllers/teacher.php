@@ -25,6 +25,8 @@ class teacher extends AuthController
             $modelTeacher->ability = $_POST['ability'];
             $modelTeacher->class_teacher = $_POST['class_teacher'];
             $modelTeacher->sex = $_POST['sex'];
+            $modelTeacher->username = $_POST['username'];
+            $modelTeacher->password = $_POST['password'];
             $resultTeacher = $modelTeacher->addTeacher();
             if ($resultTeacher['success']) {
                 // gọi lại lấy list thành công thì đẩy ra list
@@ -34,7 +36,7 @@ class teacher extends AuthController
                         ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
-                    $this->view('teacher/teacher-form', ['resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
+                    $this->view('teacher/teacher-form', ['resultMessageProcess' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 }
             } else {
                 $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);
@@ -65,7 +67,7 @@ class teacher extends AuthController
                         $this->view('teacher/teacher-index', ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
                     } else
                         // không lấy list thành công thì vẫn báo thêm thành công
-                        $this->view('class-students/class-form', ['resultMessaqugeAdd' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
+                        $this->view('class-students/class-form', ['resultMessageProcess' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
                 } else {
                     $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);
                 }

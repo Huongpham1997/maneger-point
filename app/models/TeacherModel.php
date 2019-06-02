@@ -1,5 +1,6 @@
 <?php
-class TeacherModel extends Controller {
+class TeacherModel extends Controller
+{
     public $id;
     public $name_teacher;
     public $ability;
@@ -7,34 +8,60 @@ class TeacherModel extends Controller {
     public $date_of_birth;
     public $class_teacher;
     public $sex;
+    public $username;
+    public $password;
     public $result;
-    public function getListTeacher(){
-    	$sql = "SELECT * FROM `teacher`";
+
+    public function getListTeacher()
+    {
+        $sql = "SELECT * FROM `teacher`";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
         $result = $conModel->getConnect($sql);
         if ($result->num_rows > 0) {
             // trả kết quả cho controller
-            return ['success' => true,'data' => $result];
+            return ['success' => true, 'data' => $result];
+        } else {
+            return ['success' => false, 'message' => "Chưa có dữ liệu"];
         }
-        else{
-            return ['success'=>false, 'message' => "Chưa có dữ liệu"];
-      }	
     }
 
-    public function addTeacher(){
+    public function addTeacher()
+    {
+        // validate username
+        if (empty($this->username)) {
+            return ['success' => false, 'message' => 'Tên đăng nhập không được để trông'];
+        }
+        $conModel = $this->model('Connect');
+
+        // check username đã tồn tại
+        $sqlCheckUserName = "SELECT * FROM `user` WHERE `username` = '{$this->username}'";
+
+        $rsCheck = $conModel->getConnect($sqlCheckUserName);
+        if ($rsCheck->num_rows > 0) {
+            return ['success' => false, 'message' => 'Tên đăng nhập đã tồn tại'];
+        }
+
         $sql = "INSERT INTO `teacher` (`name_teacher`,`address`,`date_of_birth`, `ability`,`class_teacher`,`sex`) VALUES ('{$this->name_teacher}','{$this->address}','{$this->date_of_birth}','{$this->ability}','{$this->class_teacher}','{$this->sex}')";
         // cách gọi vào model connect từ model
-        $conModel = $this->model('Connect');
-        // thực hiện câu lệnh 
-        $result = $conModel->getConnect($sql);
-        if ($result === true) {
-            return ['success' => true, 'message' => 'Thêm mới giáo viên thành công!'];
+        // thực hiện câu lệnh
+        $teacherId = $conModel->getConnect($sql, true);
+        if ($teacherId) {
+            // add vào bảng user để đăng nhập
+            $this->password = md5($this->password);
+            $sqlInsertToUser = "INSERT INTO `user` (`username`, `password`, `fullName`, `teacher_id`, `role`) VALUES ('{$this->username}', '{$this->password}','{$this->name_teacher}', '{$teacherId}', " . Constant::ROLE_TEACHER . ")";
+            $rs = $conModel->getConnect($sqlInsertToUser);
+            if ($rs) {
+                return ['success' => true, 'message' => 'Thêm mới giáo viên thành công!'];
+            } else {
+                return ['success' => false, 'message' => 'Lỗi hệ thống, Không tạo thành công tên đăng nhập!'];
+            }
         } else {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
+
     public function editTeacher()
     {
         $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`address`='{$this->address}',`date_of_birth`='{$this->date_of_birth}',`ability`='{$this->ability}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
@@ -49,8 +76,9 @@ class TeacherModel extends Controller {
         }
     }
 
-    public function getTeacherById(){
-        $sql = "SELECT * FROM `teacher` WHERE `id`=".$this->id;
+    public function getTeacherById()
+    {
+        $sql = "SELECT * FROM `teacher` WHERE `id`=" . $this->id;
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
@@ -61,7 +89,9 @@ class TeacherModel extends Controller {
             return ['success' => false, 'message' => 'Lỗi hệ thống, Vui lòng nhập lại!'];
         }
     }
-    public function getTeacherDropdownlist(){
+
+    public function getTeacherDropdownlist()
+    {
         $sql = "SELECT `id`,`name_teacher` FROM `teacher`";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
@@ -73,9 +103,10 @@ class TeacherModel extends Controller {
             return ['success' => false, 'message' => 'Lỗi hệ thống !'];
         }
     }
+
     public function deleteTeacher()
     {
-        $sql = "DELETE FROM  `teacher` WHERE  `id` = ".$this->id;
+        $sql = "DELETE FROM  `teacher` WHERE  `id` = " . $this->id;
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
@@ -87,4 +118,5 @@ class TeacherModel extends Controller {
         }
     }
 }
+
 ?>
