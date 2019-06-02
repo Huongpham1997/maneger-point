@@ -17,13 +17,10 @@ class home extends Controller
             $resultLogin = $processLogin->login();
             if ($resultLogin['success']) {
                 $this->view('home/index', ['resultMessage' => $resultLogin['message']]);
-            } else {
-                $this->view('home/form-login', ['resultMessage' => $resultLogin['message']]);
             }
-        } else {
-            $this->view('home/form-login', ['resultMessage' => 'Vui lòng điền thông tin đăng nhập']);
+            $this->view('home/form-login', ['resultMessage' => $resultLogin['message']]);
         }
-
+        $this->view('home/form-login', ['resultMessage' => 'Vui lòng điền thông tin đăng nhập']);
     }
 
     public function logout()
@@ -40,9 +37,8 @@ class home extends Controller
         $resultSignUp = $processSignUp->processSignUp();
         if ($resultSignUp['success']) {
             $this->view('home/form-login', ['resultMessage' => $resultSignUp['message']]);
-        } else {
-            $this->view('home/sign-up', ['resultMessage' => $resultSignUp['message']]);
         }
+        $this->view('home/sign-up', ['resultMessage' => $resultSignUp['message']]);
     }
 }
 ?>
