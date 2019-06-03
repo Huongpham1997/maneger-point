@@ -1,92 +1,21 @@
-<?php
+<div class="footer-block content-center">
+    <div class="bottom-footer">
+        <div class="container">
 
-?>
-<div class="copyright">
-    <div class="container">
+            <div class="copy-right">
+                <h5>CHƯƠNG TRÌNH PHÁT TRIỂN BỀN VỮNG CÁC XÃ BIÊN GIỚI</h5>
+                Địa chỉ: 6B Hoàng Diệu, Ba Đình, Hà Nội<br> ĐT: 08043485; Phòng Hành chính - Văn phòng Bộ 04.38455298<br>
+                Fax: Phòng Hành chính - Văn phòng Bộ 04.38234453<br> Email: banbientap@mpi.gov.vn<br><br>
+                Bản quyền thuộc về Bộ Kế hoạch và Đầu tư
+            </div>
+            <div class="social">
+                <a href="" class="s-fb"><i class="fa fa-facebook"></i></a>
+                <a href="" class="s-tw"><i class="fa fa-twitter"></i></a>
+                <a href="" class="s-gg"><i class="fa fa-google"></i></a>
+            </div>
 
-        <div class="row text-center">
-            <p>Copyright © 2017 All rights reserved</p>
         </div>
-
     </div>
 </div>
-
-<a href="#" id="top" style="display: inline;">
-    <i class="fa fa-arrow-up" aria-hidden="true"></i>
-</a>
-
-<!-- Footer 2 -->
-<footer style="margin-top:10px;">
-
-    <div class="search-text">
-        <div class="container">
-            <div class="row text-center">
-
-                <div class="form">
-                    <h4>SIGN UP TO OUR NEWSLETTER</h4>
-                    <form id="search-form" class="form-search form-horizontal">
-                        <input type="text" class="input-search" placeholder="Email Address">
-                        <button type="submit" class="btn-search">SUBMIT</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-top2">
-        <div class="container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-facebook fa-2x"></i>Facebook</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-twitter fa-2x"></i>Twitter</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-flickr fa-2x"></i>Flickr</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-tumblr fa-2x"></i>Tumblr</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-github fa-2x"></i>Github</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-center">
-                <a href="#"><i class="fa fa-google-plus fa-2x"></i>Google</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" style="border-top:1px solid grey;">
-        <div class="row text-center">
-            <div class="col-lg-6 col-lg-offset-3">
-                <ul class="menu">
-
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Blog</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Gallery</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-
-</footer>
-</div>
-
+</body>
+</html>

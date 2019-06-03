@@ -20,7 +20,4 @@
     <script src="/statics/js/myjs.js"></script>
 
 </head>
-<div>
-    <img src="/statics/images/banner1.jpg" id="banner" class="responsive hidden-xs hidden-sm">
-</div>
 <body>

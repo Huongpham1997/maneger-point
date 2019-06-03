@@ -1,8 +1,4 @@
-<?php
-// Import file import.php//
-//
-require_once '../app/views/home/menu.php';
-?>
+<?php require_once '../app/views/home/menu.php'; ?>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="?url=home/index">Trang chủ</a></li>

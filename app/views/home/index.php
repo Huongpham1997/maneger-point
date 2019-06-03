@@ -1,4 +1,3 @@
-<?php require_once '../app/extend/header.php'; ?>
 <?php require_once '../app/views/home/menu.php'; ?>
 <div class="container">
     <!-- <h3 style="color:black;"> Chào mừng đến với trường THCS Dũng Tiến</h3> -->
@@ -74,5 +73,4 @@
       src="https://www.youtube.com/embed/tgbNymZ7vqY">
     </iframe> -->
 </div>
-</body>
-</html>
+<?php require_once '../app/extend/footer.php'; ?>
