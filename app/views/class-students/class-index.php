@@ -10,7 +10,7 @@
     <div class="container">
         <div class="main-cm-1">
             <div class="creat-cp">
-                <a href="?url=classStudent/addClass" class="btn btn-success">Thêm mới lớp</a>
+                <a href="?url=classStudent/addClass" class="btn btn-success">Thêm mới lớp học</a>
             </div>
             <div class="col-md-12">
                 <div class="col-md-12">
