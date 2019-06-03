@@ -19,7 +19,7 @@ require_once '../app/views/home/menu.php';
 				<div class="col-md-12">
 					<br>
 					<form  action="?url=classStudent/averageOfClassByStudent&class_id=<?= $_GET['class_id'] ?>" method="post">
-						<div class="col-md-8"> 
+						<div class="col-md-6"> 
 							<select id="subjectId" class="form-control" name="subject_id">
 								<?php
 								if(!empty($data['dataSubject'])){ 
@@ -37,7 +37,6 @@ require_once '../app/views/home/menu.php';
 				</div>
 				<div class="col-md-12">
                     <h3 class="cp-name">Danh sách các loại điểm</h3>
-					<br>
 					<style>
 						table, th, td {
 							border: 1px solid black;
@@ -45,7 +44,7 @@ require_once '../app/views/home/menu.php';
 						}
 					</style>
 					<div class="table-responsive">
-						<table>
+						<table class="table">
 							<thead>
 								<tr>
 									<th>STT</th>
@@ -78,17 +77,17 @@ require_once '../app/views/home/menu.php';
 							</tbody>
 						</table>
 					</div>
+					<script type="text/javascript">
+						$(document).ready(function(){
+							var subjectTitle = $('#subjectId option:selected').text();		
+						    $('#replace_subject_title').text(subjectTitle);
+						  	$("#subjectId").change(function(){
+								var subjectTitle = $('#subjectId option:selected').text();
+						    	$('#replace_subject_title').text(subjectTitle);
+						  	});
+						});
+					</script>
 				</div>
-				<script type="text/javascript">
-					$(document).ready(function(){
-						var subjectTitle = $('#subjectId option:selected').text();		
-					    $('#replace_subject_title').text(subjectTitle);
-					  	$("#subjectId").change(function(){
-							var subjectTitle = $('#subjectId option:selected').text();
-					    	$('#replace_subject_title').text(subjectTitle);
-					  	});
-					});
-				</script>
 			</div>
 		</div>
 	</div>

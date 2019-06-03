@@ -31,46 +31,48 @@ require_once '../app/views/home/menu.php';
                             border-collapse: collapse;
                             }
                         </style>
-                        <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Mã môn học</th>
-                                <th>Tên môn học</th>
-                                <th>Tên giáo viên</th>
-                                <th colspan="2" style="text-align:center;">Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <p style="color: red">
-                                <?php
-                                if (!empty($data['resultMessage'])) {
-                                    echo $data['resultMessage'];
-                                } // đẩy ra data dc truyen tu controller
-                                ?>
-                            </p>
-                            <?php
-                            if (!empty($data['data'])) {
-                            // echo "<pre>";print_r($data['data']);die();
-                                $i = 1;
-                                while ($row = $data['data']->fetch_assoc()) {
-                                    ?>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td><?= $row['subject_title'] ?></td>
-                                        <td><?= $row['name_teacher'] ?></td>
-                                        <td>
-                                            <a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>
-                                        </td>
-                                        <td>
-                                            <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['subject_title']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i> Xóa</a>
-                                        </td>
+                                        <th>Mã môn học</th>
+                                        <th>Tên môn học</th>
+                                        <th>Tên giáo viên</th>
+                                        <th colspan="2" style="text-align:center;">Hành động</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <p style="color: red">
+                                        <?php
+                                        if (!empty($data['resultMessage'])) {
+                                            echo $data['resultMessage'];
+                                        } // đẩy ra data dc truyen tu controller
+                                        ?>
+                                    </p>
                                     <?php
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                    if (!empty($data['data'])) {
+                                    // echo "<pre>";print_r($data['data']);die();
+                                        $i = 1;
+                                        while ($row = $data['data']->fetch_assoc()) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $i++ ?></td>
+                                                <td><?= $row['subject_title'] ?></td>
+                                                <td><?= $row['name_teacher'] ?></td>
+                                                <td>
+                                                    <a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" onclick="deleteSelected(<?= $row['id'] ?>,<?= "'".$row['subject_title']."'" ?>)"> <i class="glyphicon glyphicon-trash"></i> Xóa</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     <script>
                         // function dưới đây để gọi xóa môn học 
                         function deleteSelected(id,subject_title) {

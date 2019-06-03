@@ -78,54 +78,56 @@ require_once '../app/views/home/menu.php';
 								border-collapse: collapse;
 							}
 							</style>
-							<table class="table">
-								<thead>
-									<tr>
-										<th>STT</th>
-										<th>Tên điểm</th>
-										<th>Tên môn học</th>
-										<th>Tên học sinh</th>
-										<th>Điểm</th>
-										<th>Thời gian kiểm tra</th>
-										<th>Số bài kiểm tra</th>
-										<th colspan="2" style="text-align:center;">Hành động</th>
-									</tr>
-								</thead>
-								<tbody>
-									<p style="color: red">
-										<?php
-										if (!empty($data['resultMessage'])) {
-											echo $data['resultMessage'];
-								        } // đẩy ra data dc truyen tu controller
-								        ?>
-								    </p>
-								    <?php
-								    if(!empty($data['data'])){ 
-								    	// die("a");
-								    	$i = 1;
-								    	while ($row = $data['data']->fetch_assoc()) {
-								    		?>
-								    		<tr>
-								    			<td><?= $i++ ?></td>
-								    			<td id ="point_name_<?= $row['id'] ?>"><?= $row['point_name'] ?></td>
-								    			<td id ="subject_title_<?= $row['id'] ?>"><?= $row['subject_title'] ?></td>
-								    			<td id ="name_student_<?= $row['id'] ?>"><?= $row['name_student'] ?></td>
-								    			<td id ="point_<?= $row['id'] ?>"><?= $row['point'] ?></td>
-								    			<td id ="test_time_<?= $row['id'] ?>"><?= date('d/m/Y',$row['test_time']) ?></td>
-								    			<td><?= $row['frequency'] ?></td>
-								    			<td>
-								    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>
-								    			</td>
-								    			<td>
-								    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
-								    			</td>
-								    		</tr>
-								    		<?php
-								    	}
-								    }
-								    ?>
-								</tbody>
-							</table>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>STT</th>
+											<th>Tên điểm</th>
+											<th>Tên môn học</th>
+											<th>Tên học sinh</th>
+											<th>Điểm</th>
+											<th>Thời gian kiểm tra</th>
+											<th>Số bài kiểm tra</th>
+											<th colspan="2" style="text-align:center;">Hành động</th>
+										</tr>
+									</thead>
+									<tbody>
+										<p style="color: red">
+											<?php
+											if (!empty($data['resultMessage'])) {
+												echo $data['resultMessage'];
+									        } // đẩy ra data dc truyen tu controller
+									        ?>
+									    </p>
+									    <?php
+									    if(!empty($data['data'])){ 
+									    	// die("a");
+									    	$i = 1;
+									    	while ($row = $data['data']->fetch_assoc()) {
+									    		?>
+									    		<tr>
+									    			<td><?= $i++ ?></td>
+									    			<td id ="point_name_<?= $row['id'] ?>"><?= $row['point_name'] ?></td>
+									    			<td id ="subject_title_<?= $row['id'] ?>"><?= $row['subject_title'] ?></td>
+									    			<td id ="name_student_<?= $row['id'] ?>"><?= $row['name_student'] ?></td>
+									    			<td id ="point_<?= $row['id'] ?>"><?= $row['point'] ?></td>
+									    			<td id ="test_time_<?= $row['id'] ?>"><?= date('d/m/Y',$row['test_time']) ?></td>
+									    			<td><?= $row['frequency'] ?></td>
+									    			<td>
+									    				<a href="#" onclick="updateSelectedByModal(<?= $row['id'] ?>,<?= $_GET['class_id'] ?>)"><i class="glyphicon glyphicon-edit"></i> Sửa</a>
+									    			</td>
+									    			<td>
+									    				<a href="#" onclick="deleteSelectedPointStudent(<?= $row['id'] ?>, <?= "'".$row['name_student']."'" ?>)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
+									    			</td>
+									    		</tr>
+									    		<?php
+									    	}
+									    }
+									    ?>
+									</tbody>
+								</table>
+							</div>
 							<!-- Modal -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 								<div class="modal-dialog" role="document">
