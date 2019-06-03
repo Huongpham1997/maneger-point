@@ -67,7 +67,7 @@ require_once '../app/views/home/menu.php';
                     </td>
                     <td>
                         <a href="?url=teacher/detailTeacher&id=<?= $row['id'] ?>"><i
-                                    class="glyphicon glyphicon-eye-open"></i> Xóa</a>
+                                    class="glyphicon glyphicon-eye-open"></i> Chi tiết</a>
                     </td>
                 </tr>
                 <?php
