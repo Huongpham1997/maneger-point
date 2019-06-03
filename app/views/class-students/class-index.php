@@ -4,7 +4,7 @@
         <div class="cr-page-link">
             <a href="?url=home/index">Trang chủ</a>
             <span>/</span>
-            <a href="#">Quản lý giáo lớp</a>
+            <a href="#">Quản lý lớp học</a>
         </div>
     </div>
     <div class="container">
