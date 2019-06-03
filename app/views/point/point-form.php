@@ -38,3 +38,4 @@ require_once '../app/views/home/menu.php';
         }
     </script>
 </div>
+<?php require_once '../app/extend/footer.php'; ?>

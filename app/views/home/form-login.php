@@ -31,3 +31,4 @@ require_once '../app/extend/header.php';
         </div>
     </div>
 </div>
+<?php require_once '../app/extend/footer.php'; ?>

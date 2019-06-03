@@ -8,7 +8,9 @@ require_once '../app/views/home/menu.php';
         <div class="cr-page-link">
             <a href="?url=home/index">Trang chủ</a>
             <span>/</span>
-            <a href="#">Quản lý lớp học</a>
+            <a href="?url=classStudent/index">Quản lí lớp học</a>
+            <span>/</span>
+            <a href="#">Thêm mới lớp học</a>
         </div>
     </div>
     <div class="container">
@@ -75,3 +77,4 @@ require_once '../app/views/home/menu.php';
         </div>
     </div>
 </div>
+<?php require_once '../app/extend/footer.php'; ?>

@@ -113,4 +113,5 @@ require_once '../app/views/home/menu.php';
     {
         return (input - 0) == input && (''+input).trim().length > 0  ;
     }
-</script>    
+</script>
+<?php require_once '../app/extend/footer.php'; ?>

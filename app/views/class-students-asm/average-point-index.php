@@ -85,3 +85,4 @@ require_once '../app/views/home/menu.php';
 </div>
 </body>
 </html>
+<?php require_once '../app/extend/footer.php'; ?>

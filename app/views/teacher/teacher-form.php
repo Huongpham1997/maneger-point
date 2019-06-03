@@ -8,9 +8,9 @@ require_once '../app/views/home/menu.php';
         <div class="cr-page-link">
             <a href="?url=home/index">Trang chủ</a>
             <span>/</span>
-            <a href="#">Quản lý lớp học</a>
+            <a href="?url=teacher/index">Quản lý giáo viên</a>
             <span>/</span>
-            <a href="#"><?= empty($data['data']) ? 'Thêm giáo viên' : 'Cập nhật thông tin giáo viên' ?></a></li>
+            <a href="#"><?= empty($data['data']) ? 'Thêm mới giáo viên' : 'Cập nhật thông tin giáo viên' ?></a></li>
         </div>
     </div>
         <div class="container">
@@ -92,3 +92,4 @@ require_once '../app/views/home/menu.php';
         </div>
     </div>
 </div>
+<?php require_once '../app/extend/footer.php'; ?>

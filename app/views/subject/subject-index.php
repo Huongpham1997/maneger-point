@@ -78,3 +78,4 @@ if (!empty($data['resultMessageProcess'])) {
 </div>
 </body>
 </html>
+<?php require_once '../app/extend/footer.php'; ?>

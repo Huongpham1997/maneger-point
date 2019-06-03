@@ -89,3 +89,4 @@ $('#submit_change_pass').on('click', function() {
     }
 });
 </script>
+<?php require_once '../app/extend/footer.php'; ?>
