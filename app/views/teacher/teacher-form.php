@@ -64,8 +64,7 @@ require_once '../app/views/home/menu.php';
             <input class="form-control" required id="checkUsenameTeacher" name="username" type="text"
                    placeholder="Tên đăng nhập"><br>
             <input class="form-control" required name="password" type="text" placeholder="Mật khẩu đăng nhập"><br>
-            <input class="form-control" required name="sex" type="text" placeholder="Giới tính"
-                   value="<?= $row['sex'] ? $row['sex'] : '' ?>"><br>
+            <input class="form-control" required name="sex" type="text" placeholder="Giới tính"><br>
             <input class="btn btn-success" type="submit" name="submit_teacher" value="Thêm mới giáo viên">
         </form>
     <?php } ?>
