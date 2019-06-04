@@ -59,6 +59,8 @@ class subjectClass extends AuthController
                     $processSubjectClass->subject_id = $_POST['subject_id'];
                     $processSubjectClass->teacher_id = $_POST['teacher_id'];
                     $processSubjectClass->class_id = $class_id;
+                    $processSubjectClass->limit = "all";
+                    $processSubjectClass->page = 0;
                     $resultSubject = $processSubjectClass->addSubjectClass();
                     if ($resultSubject['success']) {
                         $result = $processSubjectClass->getListSubjectClass();
