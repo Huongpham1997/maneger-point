@@ -51,11 +51,11 @@ class Connect extends Controller
             $query = $this->_query . " LIMIT " . (($this->_page - 1) * $this->_limit) . ", $this->_limit";
         }
         $rs = $this->_conn->query($query);
+        $this->_total = $this->_conn->query($this->_query)->num_rows;
 
         $result = new stdClass();
         $result->page = $this->_page;
         $result->limit = $this->_limit;
-        $this->_total = $this->_conn->query($this->_query)->num_rows;
         $result->htmlPages = $this->createLinks($this->_total, "pagination");
         $result->data = $rs;
 
