@@ -15,7 +15,7 @@ require_once '../app/views/home/menu.php';
 	<div class="container">
 		<div class="main-cm-1">
 			<div class="creat-cp">
-				<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="btn btn-success">Thêm mới học sinh</a>
+				<a href="?url=students/addStudents&class_id=<?= $data['class_id'] ?>" class="bt-common-1">Thêm mới học sinh</a>
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-12">

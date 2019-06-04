@@ -71,7 +71,7 @@ require_once '../app/views/home/menu.php';
                 <br>
                 <div class="creat-cp">
                     <a href="?url=managerPoint/addPointStudents&class_id=<?= $_GET['class_id'] ?>"
-                       class="btn btn-success">Thêm điểm mới</a><br>
+                       class="bt-common-1">Thêm điểm mới</a><br>
                 </div>
                 <div class="col-md-12">
                     <h3 class="cp-name">Danh sách điểm</h3>
