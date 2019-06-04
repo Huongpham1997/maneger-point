@@ -3,6 +3,18 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
+<div class="content">
+	<div class="container">
+		<div class="cr-page-link">
+			<a href="?url=home/index">Trang chủ</a>
+			<span>/</span>
+			<a href="?url=classStudent/index&class_id=<?= $_GET['class_id'] ?>">Quản lý lớp</a>
+			<span>/</span>
+			<a href="?url=students/index&class_id=<?= $_GET['class_id'] ?>">Quản lý học sinh</a>
+			<span>/</span>
+			<a href="#"><?= empty($data['data']) ? 'Thêm mới điểm' : 'Cập nhật thông tin điểm' ?></a></li>
+		</div>
+	</div>
 <div class="col-md-12">
 <?php
 if (!empty($data['resultMessageProcess'])) {

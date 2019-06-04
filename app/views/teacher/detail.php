@@ -7,6 +7,8 @@ require_once '../app/views/home/menu.php';
         <div class="cr-page-link">
             <a href="?url=home/index">Trang chủ</a></li>
             <span>/</span>
+            <a href="?url=teacher/index">Quản lí giáo viên</a>
+            <span>/</span>
             <a href="#">Xem thông tin cá nhân giáo viên</a>
         </div>
     </div>

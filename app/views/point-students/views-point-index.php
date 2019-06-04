@@ -3,7 +3,6 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
-<!-- // chua lam -->
 <div class="content">
 	<div class="container">
 		<div class="cr-page-link">
@@ -13,7 +12,7 @@ require_once '../app/views/home/menu.php';
 			<span>/</span>
 			<a href="?url=students/index&class_id=<?= $_GET['class_id'] ?>">Quản lý học sinh</a>
 			<span>/</span>
-			<a href="#"><?= empty($data['data']) ? 'Thêm mới điểm' : 'Cập nhật thông tin điểm' ?></a></li>
+			<a href="#"><?= empty($data['data']) ? 'Thêm mới điểm' : 'Xem điểm của học sinh' ?></a></li>
 		</div>
 	</div>
 	<div class="container">
@@ -54,46 +53,48 @@ require_once '../app/views/home/menu.php';
 					    </style>
 					    <hr>
 					    <hr>
-						<table class="table">
-								<thead>
-									<tr>
-										<th>STT</th>
-										<th>Thời gian kiểm tra</th>
-										<th>Điểm</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									if(!empty($data['data'])){
-										$i = 1;
-										while ($row = $data['data']->data->fetch_assoc()) {
+					    <div class="table-responsive">
+							<table class="table">
+									<thead>
+										<tr>
+											<th>STT</th>
+											<th>Thời gian kiểm tra</th>
+											<th>Điểm</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										if(!empty($data['data'])){
+											$i = 1;
+											while ($row = $data['data']->data->fetch_assoc()) {
+												?>
+												<tr>
+													<td><?= $i++ ?></td>
+													<td><?= $row['point_name'] ?></td>
+													<td><?= $row['point'] ?></td>
+												</tr>
+												<?php
+											}
+										}
+										else{  
 											?>
 											<tr>
-												<td><?= $i++ ?></td>
-												<td><?= $row['point_name'] ?></td>
-												<td><?= $row['point'] ?></td>
-											</tr>
-											<?php
+											<td colspan="3" >
+												<p style="color: red">
+													<?php
+													if (!empty($data['resultMessage'])) {
+														echo $data['resultMessage'];
+										        } // đẩy ra data dc truyen tu controller
+										        ?>
+									   			</p>
+									    </td>
+									    </tr>
+										    <?php
 										}
-									}
-									else{  
 										?>
-										<tr>
-										<td colspan="3" >
-											<p style="color: red">
-												<?php
-												if (!empty($data['resultMessage'])) {
-													echo $data['resultMessage'];
-									        } // đẩy ra data dc truyen tu controller
-									        ?>
-								   			</p>
-								    </td>
-								    </tr>
-									    <?php
-									}
-									?>
-								</tbody>
+									</tbody>
 							</table>
+						</div>
 							<nav aria-label="Page navigation">
                         		<?= $data['data']->htmlPages ?>
                     		</nav>
