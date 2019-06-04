@@ -10,6 +10,8 @@ require_once '../app/views/home/menu.php';
             <span>/</span>
             <a href="?url=classStudent/index">Quản lí lớp học</a>
             <span>/</span>
+            <a href="?url=managerPoint/index&class_id=<?= $_GET['class_id'] ?>">Quản lí điểm</a>
+            <span>/</span>
             <a href="#"><?= empty($data['data']) ? 'Sửa điểm' : 'Thêm mới điểm' ?></a></li>
         </div>
     </div>
@@ -53,15 +55,15 @@ require_once '../app/views/home/menu.php';
                                     ?>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
                                     <input id="date_test" name="date_test" class="form-control" size="10" type="text" readonly required="true">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" placeholder="Số lần kiểm tra" name="frequency" class="form-control" required="true">
+                            <div class="col-md-2">
+                                <input type="text" placeholder="Bài số" name="frequency" class="form-control" required="true">
                             </div>
                                  <table class="table">
                                     <thead>

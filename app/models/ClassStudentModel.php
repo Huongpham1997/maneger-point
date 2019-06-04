@@ -320,12 +320,11 @@ class ClassStudentModel extends Controller
                 $lv=$lv+$row['level'];
             }
             $average = $tb/$lv;
-            $pointClass = (($average *2) +$average)/3;
-            // die("a");
-            $pointClass = round($pointClass,2);
+            $average = round($average,1, PHP_ROUND_HALF_DOWN);
+            $this->frequency = 1;
 
             //sql insert
-            $sql = "INSERT  INTO `student_point_asm` (`point_id`, `student_id` , `point`, `test_time`) VALUES (".$this::ID_EXPAMLE." , ".$studentId." , '".$pointClass."', ".time().")";
+            $sql = "INSERT  INTO `student_point_asm` (`point_id`,`subject_id`, `student_id` , `point`, `test_time`,`frequency`) VALUES (".$this::ID_EXPAMLE." ,".$this->subject_id.", ".$studentId." , '".$average."', ".time().", ".$this->frequency.")";
             // print_r($sql);die();
             $conModel = $this->model('Connect');
             // thực hiện câu lệnh 

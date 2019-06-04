@@ -22,6 +22,7 @@ class classStudent extends AuthController
     //index của tính điểm trung bình môn theo lớp
     public function index1()
     {
+        // die("A");
         $class_id = $_GET['class_id'];
         if (empty($class_id)) {
             $this->view('home/error', ['message' => 'Không tìm thấy lớp']);
@@ -48,6 +49,9 @@ class classStudent extends AuthController
                 'class_id' => $class_id,
                 'dataSubject' => $resultSubject['data']]);
             // 'student_id' => $student_id
+        }else {
+            // nếu không có dữ liệu trả về
+            $this->view('class-students-asm/sum-point-index', ['resultMessage' => $result['message']]);
         }
     }
 

@@ -148,6 +148,10 @@ require_once '../app/views/home/menu.php';
                             <?= $data['data']->htmlPages ?>
                         </nav>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel">
@@ -273,9 +277,6 @@ require_once '../app/views/home/menu.php';
                             }
                         }
                     </script>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 <?php require_once '../app/extend/footer.php'; ?>

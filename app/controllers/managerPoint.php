@@ -171,7 +171,7 @@ class managerPoint extends AuthController
 		}
 	}
 	public function updatePointById(){
-		session_start();
+		// session_start();
 		if(!empty($_POST['id']) && !empty($_POST['point'])){
 			$modelPointStudents =  $this->model('StudentPointAsmModel');
 			$modelPointStudents->id = $_POST['id'];
@@ -222,6 +222,7 @@ class managerPoint extends AuthController
 
 		if(!empty($_POST['subject_id']) && !empty($_GET['class_id'])){
 			$modelviewPonit->subject_id = $_POST['subject_id'];
+			// print_r($_POST['subject_id']);die();
 			$modelviewPonit->class_id = $_GET['class_id'];
 			$resultviewPonit = $modelviewPonit->processPoint();
 

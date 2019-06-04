@@ -18,7 +18,7 @@ require_once '../app/views/home/menu.php';
 			<div class="col-md-12">
 				<div class="col-md-12">
 					<br>
-					<form  action="?url=classStudent/averageOfClassByStudent&class_id=<?= $_GET['class_id'] ?>" method="post">
+					<form  action="?url=managerPoint/averageOfClassByStudent&class_id=<?= $_GET['class_id'] ?>" method="post">
 						<div class="col-md-6"> 
 							<select id="subjectId" class="form-control" name="subject_id">
 								<?php
