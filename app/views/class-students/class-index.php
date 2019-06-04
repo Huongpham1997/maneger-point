@@ -13,7 +13,6 @@
                 <a href="?url=classStudent/addClass" class="btn btn-success">Thêm mới lớp học</a>
             </div>
             <div class="col-md-12">
-                <div class="col-md-12">
                     <h3 class="cp-name">Danh sách các lớp</h3>
                     <?php
                     if (!empty($data['resultMessageProcess'])) {
@@ -50,7 +49,7 @@
                             if (!empty($data['data'])) {
                             // echo "<pre>";print_r($data['data']);die();
                                 $i = 1;
-                                while ($row = $data['data']->fetch_assoc()) {
+                                while ($row = $data['data']->data->fetch_assoc()) {
                                     ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
@@ -83,6 +82,10 @@
                             ?>
                         </tbody>
                     </table>
+
+                    <nav aria-label="Page navigation">
+                        <?= $data['data']->htmlPages ?>
+                    </nav>
                 </div>
                 <script>
                     // function dưới đây để gọi xóa lớp
@@ -116,8 +119,8 @@
                     //     // alert("Học sinh chưa đủ điểm để tính");
                     // }
                 </script>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 </body>

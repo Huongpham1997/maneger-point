@@ -6,6 +6,9 @@ class classStudent extends AuthController
     public function index()
     {
         $modelClass = $this->model('ClassStudentModel');
+        // Get limit and size of page
+        $modelClass->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelClass->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $result = $modelClass->getListClass();
         if ($result['success']) {
             // nếu có dữ liệu trả về
