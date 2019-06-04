@@ -124,6 +124,8 @@ class classStudent extends AuthController
                 $resultClass = $processClass->editClassStudent();
                 if ($resultClass['success']) {
                     // gọi lấy list thành công thì đẩy ra list
+                    $processClass->limit = 0;
+                    $processClass->page = 0;
                     $resultList = $processClass->getListClass();
                     if ($resultClass['success']) {
                         $this->view('class-students/class-index', ['resultMessageProcess' => $resultClass['message'], 'data' => $resultList['data']]);
