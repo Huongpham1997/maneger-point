@@ -65,6 +65,8 @@ class teacher extends AuthController
                 $modelTeacher->sex = $_POST['sex'];
                 $resultTeacher = $modelTeacher->editTeacher();
                 if ($resultTeacher['success']) {
+                    $modelTeacher->page = 0;
+                    $modelTeacher->limit = 0;
                     $resultList = $modelTeacher->getListTeacher();
                     if ($resultTeacher['success']) {
                         $this->view('teacher/teacher-index', ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
