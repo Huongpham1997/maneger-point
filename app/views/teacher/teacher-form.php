@@ -15,18 +15,7 @@ require_once '../app/views/home/menu.php';
         </div>
         <div class="container">
             <div class="main-cm-1">
-                <div class="left-cn hidden-xs hidden-sm">
-                    <div class="block-cm-left top-cn-left">
-                        <h4><?= $_SESSION['user']['username'] ?></h4>
-                        <p>Đang thực hiện thêm mới giáo viên</p>
-                    </div>
-                    <div class="block-cm-left">
-                        <h5><b>Truy cập nhanh</b></h5>
-                    </div>
-                    <div class="block-cm-left">
-                        <span class="t-span"><a href="?url=teacher/index"> <i class="glyphicon glyphicon-play"></i> Quản lý giáo viên</a></span><br>
-                    </div>
-                </div>
+                <?php include('../app/extend/left-menu.php'); ?>
                 <div class="right-cn">
                     <div class="box-login-page">
                         <div class="form-login">
