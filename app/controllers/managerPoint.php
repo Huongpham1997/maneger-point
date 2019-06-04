@@ -21,8 +21,8 @@ class managerPoint extends AuthController
 		$modelPointStudents->class_id = $class_id;
 		$modelPointStudents->point_id = 0;
 		$modelPointStudents->subject_id = 0;
-		if(!empty($_POST['submit_search'])){
-			// echo "<pre>";print_r($_POST);die;
+		if(!empty($_GET['submit_search'])){
+//			 echo "<pre>";print_r($_POST);die;
 			$modelPointStudents->point_id = $_GET['point_id'];
 			$modelPointStudents->subject_id = $_GET['subject_id'];
 			$modelPointStudents->test_time = $_GET['date_test'];
