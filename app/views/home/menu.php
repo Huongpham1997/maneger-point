@@ -2,7 +2,7 @@
 <div class="top-nav header">
     <div class="container">
         <a class="navbar-brand logo" href="">
-            <img src="/statics/img/logo.png" height="50">
+            <img src="/statics/img/logo.jpg" height="50">
         </a>
         <a class="ic-mn-mb hidden-mn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
            aria-controls="collapseExample">
@@ -10,9 +10,9 @@
         </a>
         <div class="top-lead hidden-xs hidden-sm">
             <a href="#" class="logo-cp">
-                <img src="/statics/img/logo-cp.png"></a>
+                <img src="/statics/img/icon-right.jpg"></a>
             <h5>
-                Tập đoàn VNPT<br>
+                <br>
                 <span>Đơn vị tài trợ CNTT</span>
             </h5>
         </div>
