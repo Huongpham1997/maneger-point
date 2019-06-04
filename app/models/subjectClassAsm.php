@@ -9,6 +9,9 @@ class subjectClassAsm extends Controller
     public $class_id;
     public $isNewRecord;
 
+    public $limit;
+    public $page;
+
     public function getListSubjectClass()
     {
         $sql = "SELECT  `subject_class_asm`.`id`,`subject`.`subject_title`,`teacher`.`name_teacher`

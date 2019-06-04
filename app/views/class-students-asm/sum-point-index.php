@@ -56,7 +56,7 @@ require_once '../app/views/home/menu.php';
 							</thead>
 							<tbody>
 								<?php
-								if(!empty($data['data'])){
+								if(!empty($data['data']->data)){
 										// echo "<pre>";print_r($data['data']);die();
 									$i = 1;
                                 while ($row = $data['data']->data->fetch_assoc()) {
@@ -77,7 +77,7 @@ require_once '../app/views/home/menu.php';
 							</tbody>
 						</table>
 						<nav aria-label="Page navigation">
-                        	<?= $data['data']->htmlPages ?>
+                        	<?= !empty($data['data']->htmlPages)? $data['data']->htmlPages : "" ?>
                     	</nav>
 					</div>
 					<script type="text/javascript">

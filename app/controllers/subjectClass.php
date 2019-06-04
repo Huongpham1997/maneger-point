@@ -48,6 +48,8 @@ class subjectClass extends AuthController
             // lấy danh sách môn học có trong bảng
             $modelSubject = $this->model('subjectClassAsm');
             $modelSubject->class_id = $class_id;
+            $modelSubject->limit = "all";
+            $modelSubject->page = 0;
             $resultSubject = $modelSubject->getListSubjectClass();
 
             if ($resultSubject['success']) {

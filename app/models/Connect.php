@@ -68,6 +68,11 @@ class Connect extends Controller
             return '';
         }
 
+        // nếu tổng số record < limit thì không trả về html phân trang nữa
+        if($this->_total < $this->_limit){
+            return "";
+        }
+
         $last = ceil($this->_total / $this->_limit);
 
         $start = (($this->_page - $links) > 0) ? $this->_page - $links : 1;
