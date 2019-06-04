@@ -53,7 +53,9 @@ class managerPoint extends AuthController
 	}
 
 	public function addPointStudents(){
+		// die("a");
 		if(empty($_GET['class_id'])){
+			// print_r($_GET['class_id']);die();
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
 		$class_id = $_GET['class_id'];

@@ -31,6 +31,8 @@ class classStudent extends AuthController
             $subject_id = $_POST['subject_id'];
         }
         $modelviewPonit = $this->model('ClassStudentModel');
+        $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $resultviewPonit = $modelviewPonit->getPointByClass();
         // print_r($resultviewPonit);die();
         // echo "<pre>";print_r($resultviewPonit);die();
@@ -39,6 +41,7 @@ class classStudent extends AuthController
         // print_r($modelviewPonit);die();
         $modelSubject = $this->model('subjectClassAsm');
         $resultSubject = $modelSubject->getSubjectDropdownlist();
+
         if ($resultviewPonit['success']) {
             $this->view('class-students-asm/sum-point-index', [
                 'data' => $resultviewPonit['data'],

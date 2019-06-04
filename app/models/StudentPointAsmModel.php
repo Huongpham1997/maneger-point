@@ -10,6 +10,8 @@ class StudentPointAsmModel extends Controller {
     public $frequency;
     public $average;
     public $result;
+    public $limit;
+    public $page;
     
     public function getListPointStudents(){
         $time_start = strtotime($this->test_time. '00:00:00');

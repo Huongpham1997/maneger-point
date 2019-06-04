@@ -21,6 +21,8 @@ class viewPoint extends AuthController
         $modelviewPonit->subject_id = $subject_id;
         $modelviewPonit->class_id = $class_id;
         $modelSubject = $this->model('subjectClassAsm');
+        $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $resultSubject = $modelSubject->getSubjectDropdownlist();
 
         $result = $modelviewPonit->getListPointView();

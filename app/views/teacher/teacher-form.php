@@ -29,7 +29,6 @@ require_once '../app/views/home/menu.php';
                             <?php if (!empty($data['data'])) {
                                 while ($row = $data['data']->fetch_assoc()) {
                                     ?>
-                                    <div class="col-md-12">
                                         <form action="?url=teacher/update&id=<?= $row['id'] ?>"
                                               method="post">
                                             <input type="hidden" name="id"
@@ -70,7 +69,6 @@ require_once '../app/views/home/menu.php';
                                             <input class="btn btn-success" type="submit"
                                                    name="submit_teacher" value="Cập nhật giáo viên">
                                         </form>
-                                    </div>
                                 <?php }
                             } else { ?>
                                 <form action="?url=teacher/addTeacher" method="post">

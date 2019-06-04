@@ -10,6 +10,8 @@ class StudentModel extends Controller {
     public $parents;
     public $class_id;
     public $result;
+    public $limit;
+    public $page;
     public function getListStudents(){
     	$sql = "SELECT `student`.* FROM `student` 
             INNER JOIN `class_students` 
