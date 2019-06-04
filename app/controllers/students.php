@@ -9,6 +9,8 @@ class students extends AuthController
             $this->view('students/students-index', ['resultMessage' => 'Không tìm thấy lớp']);
         }
         $modelStudents = $this->model('StudentModel');
+        $modelStudents->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelStudents->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $modelStudents->class_id = $class_id;
         $result = $modelStudents->getListStudents();
         if ($result['success']) {

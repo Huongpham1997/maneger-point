@@ -57,7 +57,7 @@ require_once '../app/views/home/menu.php';
 							    if (!empty($data['data'])) {
 						        // echo "<pre>";print_r($data['data']);die();
 							    	$i = 1;
-							    	while ($row = $data['data']->fetch_assoc()) {
+							    	while ($row = $data['data']->data->fetch_assoc()) {
 							    		?>
 							    		<tr>
 							    			<td><?= $i++ ?></td>
@@ -83,6 +83,9 @@ require_once '../app/views/home/menu.php';
 							    ?>
 							</tbody>
 						</table>
+						<nav aria-label="Page navigation">
+                        	<?= $data['data']->htmlPages ?>
+                    	</nav>
 					</div>
 					<script>
 						$('.form_date').datetimepicker({

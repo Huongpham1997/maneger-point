@@ -76,6 +76,9 @@ require_once '../app/views/home/menu.php';
 								?>
 							</tbody>
 						</table>
+						<nav aria-label="Page navigation">
+                        	<?= $data['data']->htmlPages ?>
+                    	</nav>
 					</div>
 					<script type="text/javascript">
 						$(document).ready(function(){

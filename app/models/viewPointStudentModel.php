@@ -27,9 +27,8 @@ class viewPointStudentModel extends Controller {
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
-        $result = $conModel->getConnect($sql);
-        // var_dump(expression)
-        if ($result->num_rows > 0) {
+        $result = $conModel->getData($sql, $this->limit, $this->page);
+        if (!empty($result->data)) {
             // trả kết quả cho controller
             return ['success' => true,'data' => $result];
         }

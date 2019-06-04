@@ -6,6 +6,8 @@ class managerSubject extends AuthController
     {
         $modelSubject = $this->model('subjectModel');
         $result = $modelSubject->getListSubject();
+        $modelSubject->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelSubject->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         if ($result['success']) {
             // nếu có dữ liệu trả về
             $this->view('subject/subject-index', ['data' => $result['data']]);

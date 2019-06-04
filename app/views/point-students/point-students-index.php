@@ -104,7 +104,7 @@ require_once '../app/views/home/menu.php';
 									    if(!empty($data['data'])){ 
 									    	// die("a");
 									    	$i = 1;
-									    	while ($row = $data['data']->fetch_assoc()) {
+									    	while ($row = $data['data']->data->fetch_assoc()) {
 									    		?>
 									    		<tr>
 									    			<td><?= $i++ ?></td>
@@ -127,6 +127,9 @@ require_once '../app/views/home/menu.php';
 									    ?>
 									</tbody>
 								</table>
+								<nav aria-label="Page navigation">
+                        			<?= $data['data']->htmlPages ?>
+                    			</nav>
 							</div>
 							<!-- Modal -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

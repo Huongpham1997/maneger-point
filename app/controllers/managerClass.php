@@ -6,6 +6,8 @@ class managerClass extends AuthController
     {
         $modelClassStudents = $this->model('ClassStudentsAsmModel');
         $modelPoint = $this->model('PointModel');
+        $modelClassStudents->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelClassStudents->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $modelClassStudents->point_id = 0;
         // $modelClassStudents->class_id = 0;
         // $modelClassStudents->student_id = 0;

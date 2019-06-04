@@ -3,6 +3,7 @@
 // Import file import.php
 require_once '../app/views/home/menu.php';
 ?>
+<!-- // chua lam -->
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="?url=home/index">Trang chủ</a></li>
@@ -56,7 +57,7 @@ require_once '../app/views/home/menu.php';
 				<?php
 				if(!empty($data['data'])){
 					$i = 1;
-					while ($row = $data['data']->fetch_assoc()) {
+					while ($row = $data['data']->data->fetch_assoc()) {
 						?>
 						<tr>
 							<td><?= $i++ ?></td>

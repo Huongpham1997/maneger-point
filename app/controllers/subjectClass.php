@@ -9,6 +9,8 @@ class subjectClass extends AuthController
             $this->view('subject-class-asm/subject-class-asm-index', ['resultMessage' => 'Không tìm thấy lớp']);
         }
         $modelSubjectClass = $this->model('subjectClassAsm');
+        $modelSubjectClass->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelSubjectClass->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $modelSubjectClass->class_id = $class_id;
         $result = $modelSubjectClass->getListSubjectClass();
         if ($result['success']) {

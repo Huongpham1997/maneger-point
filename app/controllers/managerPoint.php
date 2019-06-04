@@ -15,6 +15,8 @@ class managerPoint extends AuthController
 		$resultSubject = $modelSubject->getSubjectDropdownlist();
 		// lấy điểm của học sinh theo lớp
 		$modelPointStudents = $this->model('StudentPointAsmModel');	
+		$modelPointStudents->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelPointStudents->page = !empty($_GET['page']) ? $_GET['page'] : 1;
 		$modelPointStudents->class_id = $class_id;
 		$modelPointStudents->point_id = 0;
 		$modelPointStudents->subject_id = 0;
