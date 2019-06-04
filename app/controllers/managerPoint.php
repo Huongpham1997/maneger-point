@@ -82,7 +82,7 @@ class managerPoint extends AuthController
 					$modelPointStudents->test_time = strtotime($_POST['date_test']);
 					$modelPointStudents->frequency = $_POST['frequency'];
 					$i = 0;
-					while ($row = $resultStudents['data']->fetch_assoc()) {
+					while ($row = $resultStudents['data']->data->fetch_assoc()) {
 						// die("a");
 						$modelPointStudents->student_id = $row['id'];
 						$modelPointStudents->point = $_POST['point_'.$row['id']];
@@ -98,7 +98,8 @@ class managerPoint extends AuthController
 					$studentPointAsmModel->subject_id = $_POST['subject_id'];
 					$studentPointAsmModel->class_id = $class_id;
 					$studentPointAsmModel->test_time = $_POST['date_test'];
-
+					$studentPointAsmModel->limit = 0;
+					$studentPointAsmModel->page = 0;
 					$dataStudenAfterAdd = $studentPointAsmModel->getListPointStudents();
 					if($dataStudenAfterAdd['success']){
 						$this->view('point-students/point-students-index',[
