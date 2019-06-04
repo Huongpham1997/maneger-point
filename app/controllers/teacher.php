@@ -5,9 +5,12 @@ class teacher extends AuthController
     public function index()
     {
         $modelTeacher = $this->model('TeacherModel');
+        // Get limit and size of page
+        $modelTeacher->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelTeacher->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $result = $modelTeacher->getListTeacher();
         if ($result['success']) {
-            // nếu có dữ liệu trả về
+            // nếu có dữ liệu trả về lấy thêm đoạn html phân trang
             $this->view('teacher/teacher-index', ['data' => $result['data']]);
         } else {
             // nếu không có dữ liệu trả về
@@ -110,7 +113,8 @@ class teacher extends AuthController
         }
     }
 
-    public function detailTeacher(){
+    public function detailTeacher()
+    {
         $model = $this->model('TeacherModel');
         $model->id = $_GET['id'];
         $result = $model->getTeacherById();

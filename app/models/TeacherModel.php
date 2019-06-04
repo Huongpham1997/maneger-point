@@ -12,14 +12,17 @@ class TeacherModel extends Controller
     public $password;
     public $result;
 
+    public $page;
+    public $limit;
+
     public function getListTeacher()
     {
         $sql = "SELECT * FROM `teacher`";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-        // thực hiện câu lệnh 
-        $result = $conModel->getConnect($sql);
-        if ($result->num_rows > 0) {
+        // thực hiện câu lệnh
+        $result = $conModel->getData($sql, $this->limit, $this->page);
+        if (!empty($result->data)) {
             // trả kết quả cho controller
             return ['success' => true, 'data' => $result];
         } else {
