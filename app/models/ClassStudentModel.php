@@ -14,6 +14,9 @@ class ClassStudentModel extends Controller
     public $result;
     public $isNewRecord;
     public $point_id;
+    
+    public $page;
+    public $limit;
 
     const ID_EXPAMLE = 6;
     public function getListClass()
