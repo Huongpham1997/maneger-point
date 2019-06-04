@@ -1,7 +1,4 @@
-<?php
-// Import file import.php
-require_once '../app/extend/header.php';
-?>
+<?php require_once '../app/views/home/menu.php'; ?>
 <div class="content">
     <div class="container">
         <div class="box-login-page">

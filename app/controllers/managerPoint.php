@@ -3,10 +3,11 @@
 class managerPoint extends AuthController
 {
 	public function index(){
-		$class_id = $_GET['class_id'];
-		if(empty($class_id)){
+		if(empty($_GET['class_id'])){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
+		$class_id = $_GET['class_id'];
+
 		// lấy loại điểm
 		$modelPoint = $this->model('PointModel');
 		$resultPoint = $modelPoint->getPointDropdownlist();
@@ -52,10 +53,10 @@ class managerPoint extends AuthController
 	}
 
 	public function addPointStudents(){
-		$class_id = $_GET['class_id'];
-		if(empty($class_id)){
+		if(empty($_GET['class_id'])){
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
+		$class_id = $_GET['class_id'];
 
 		// lấy loại điểm
 		$modelPoint = $this->model('PointModel');
