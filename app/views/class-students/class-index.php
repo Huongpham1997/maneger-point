@@ -29,7 +29,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Mã lớp học</th>
+                                <th>STT</th>
                                 <th>Tên lớp học</th>
                                 <th>Số học sinh</th>
                                 <th>Niên khóa</th>
