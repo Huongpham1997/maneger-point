@@ -30,6 +30,10 @@ class teacher extends AuthController
             $modelTeacher->sex = $_POST['sex'];
             $modelTeacher->username = $_POST['username'];
             $modelTeacher->password = $_POST['password'];
+            if (!empty($_FILES['image_teacher'])) {
+                $imageModel = $this->model('FileUpload');
+                $imageModel->uploadImage('../../statics/images/images_teacher/', $_FILES['image_teacher']);
+            }
             $resultTeacher = $modelTeacher->addTeacher();
             if ($resultTeacher['success']) {
                 // gọi lại lấy list thành công thì đẩy ra list

@@ -2,7 +2,8 @@
 // Import file import.php//
 require_once '../app/extend/header.php';
 require_once '../app/views/home/menu.php';
-?>
+
+use common\models\User; ?>
     <div class="content">
         <div class="container">
             <div class="cr-page-link">
@@ -29,10 +30,10 @@ require_once '../app/views/home/menu.php';
                             <?php if (!empty($data['data'])) {
                                 while ($row = $data['data']->fetch_assoc()) {
                                     ?>
-                                    <form action="?url=teacher/update&id=<?= $row['id'] ?>"
-                                          method="post">
+                                    <form action="?url=teacher/update&id=<?= $row['id'] ?>" method="post" enctype='multipart/form-data'>>
                                         <input type="hidden" name="id"
                                                value="<?= $row['id'] ?>">
+
                                         <input class="form-control" required name="name_teacher"
                                                type="text" placeholder="Tên giáo viên"
                                                value="<?= $row['name_teacher'] ? $row['name_teacher'] : '' ?>"><br>
@@ -66,12 +67,13 @@ require_once '../app/views/home/menu.php';
                                         <input class="form-control" type="text" name="sex"
                                                placeholder="Giới tính"
                                                value="<?= $row['sex'] ? $row['sex'] : '' ?>"><br>
+                                        <input name="image_teacher" type="file">
                                         <input class="btn btn-success" type="submit"
                                                name="submit_teacher" value="Cập nhật giáo viên">
                                     </form>
                                 <?php }
                             } else { ?>
-                                <form action="?url=teacher/addTeacher" method="post">
+                                <form action="?url=teacher/addTeacher" method="post" enctype='multipart/form-data'>
                                     <button onclick="goBack()" class="btn btn-success">Trở về
                                     </button>
                                     <br><br>
@@ -105,6 +107,7 @@ require_once '../app/views/home/menu.php';
                                            placeholder="Mật khẩu đăng nhập"><br>
                                     <input class="form-control" required name="sex" type="text"
                                            placeholder="Giới tính"><br>
+                                    <input name="image_teacher" type="file"><br>
                                     <input class="btn btn-success" type="submit"
                                            name="submit_teacher"
                                            value="Thêm mới giáo viên">
