@@ -53,9 +53,7 @@ class managerPoint extends AuthController
 	}
 
 	public function addPointStudents(){
-		// die("a");
 		if(empty($_GET['class_id'])){
-			// print_r($_GET['class_id']);die();
 			$this->view('home/error',['message' => 'Không tìm thấy lớp']);
 		}
 		$class_id = $_GET['class_id'];
@@ -72,6 +70,7 @@ class managerPoint extends AuthController
 			// lấy danh sách học sinh
 			$modelStudents = $this->model('StudentModel');
 			$modelStudents->class_id = $class_id;
+			$modelStudents->limit = "all";
 			$resultStudents = $modelStudents->getListStudents();
 			//print_r($resultStudents);die();
 			if($resultStudents['success']){
