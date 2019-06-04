@@ -80,25 +80,25 @@ class Connect extends Controller
 
         $html = '<ul class="' . $list_class . '">';
         $class = ($this->_page == 1) ? "disabled" : "";
-        $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl()[0] . '?limit=' . $this->_limit . '&page=' . ($this->_page - 1) . '">&laquo;</a></li>';
+        $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl() . '&limit=' . $this->_limit . '&page=' . ($this->_page - 1) . '">&laquo;</a></li>';
 
         if ($start > 1) {
-            $html .= '<li><a href="/?url=' . $this->parseUrl()[0] . '?limit=' . $this->_limit . '&page=1">1</a></li>';
+            $html .= '<li><a href="/?url=' . $this->parseUrl() . '&limit=' . $this->_limit . '&page=1">1</a></li>';
             $html .= '<li class="disabled"><span>...</span></li>';
         }
 
         for ($i = $start; $i <= $end; $i++) {
             $class = ($this->_page == $i) ? "active" : "";
-            $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl()[0] . '?limit=' . $this->_limit . '&page=' . $i . '">' . $i . '</a></li>';
+            $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl() . '&limit=' . $this->_limit . '&page=' . $i . '">' . $i . '</a></li>';
         }
 
         if ($end < $last) {
             $html .= '<li class="disabled"><span>...</span></li>';
-            $html .= '<li><a href="/?url=' . $this->parseUrl()[0] . '?limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
+            $html .= '<li><a href="/?url=' . $this->parseUrl() . '&limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
         }
 
         $class = ($this->_page == $last) ? "disabled" : "";
-        $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl()[0] . '?limit=' . $this->_limit . '&page=' . ($this->_page + 1) . '">&raquo;</a></li>';
+        $html .= '<li class="' . $class . '"><a href="/?url=' . $this->parseUrl() . '&limit=' . $this->_limit . '&page=' . ($this->_page + 1) . '">&raquo;</a></li>';
         $html .= '</ul>';
 
         return $html;
@@ -109,6 +109,10 @@ class Connect extends Controller
         // var_dump($_GET['url']);die();
         if (isset($_GET['url'])) {// lay ddc url loc filter
             $url = explode('?', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+            $url = $url[0];
+            if(!empty($_GET['class_id'])){
+                $url .= "&class_id=".$_GET['class_id'];
+            }
             return $url;
         }
 
