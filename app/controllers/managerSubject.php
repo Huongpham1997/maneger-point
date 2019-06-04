@@ -26,6 +26,7 @@ class managerSubject extends AuthController
             if ($resultSubject['success']) {
                 // gọi lấy list thành công thì đẩy ra list
                 $resultList = $modelSubject->getListSubject();
+                $modelStudents->limit = "all";
                 if ($resultList['success']) {
                     $this->view('subject/subject-index',
                         ['resultMessageProcess' => $resultSubject['message'], 'data' => $resultList['data']]);

@@ -4,7 +4,8 @@ class viewPoint extends AuthController
 {
     public function index()
     {
-        $class_id = $_GET['class_id'];
+        $class_id = !empty($_GET['class_id']) ? $_GET['class_id'] : 0;
+        // $class_id = $_GET['class_id'];
         if (empty($class_id)) {
             $this->view('home/error', ['message' => 'Không tìm thấy lớp']);
         }
