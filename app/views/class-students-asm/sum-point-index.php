@@ -38,11 +38,11 @@ require_once '../app/views/home/menu.php';
                 </div>
                 <?php if(!empty($data['message'])){ ?>
                 <div class="col-md-12">
+                    <br>
                     <div class="alert alert-success">
                         <?= $data['message'] ?>
                     </div>
                     <div class="col-md-12">
-                        <br><br>
                         <div class="text-center">
                             <a href="<?= $data['link'] ?>"> Vui lòng click đây để xem điểm </a>
                         </div>

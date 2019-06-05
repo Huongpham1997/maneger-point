@@ -328,11 +328,13 @@ class ClassStudentModel extends Controller
             $average = round($average, 2, PHP_ROUND_HALF_DOWN);
             $this->frequency = 1;
 
+            $conModel = $this->model('Connect');
+            //Xóa toàn bộ điểm trung bình đã tính trước đó
+            $sqlDelete = "DELETE FROM `student_point_asm` where `subject_id` = $this->subject_id AND `student_id` =  $studentId AND `point_id` = " . $this::ID_EXPAMLE;
+            $conModel->getConnect($sqlDelete);
             //sql insert
             $sql = "INSERT  INTO `student_point_asm` (`point_id`,`subject_id`, `student_id` , `point`, `test_time`,`frequency`) VALUES (" . $this::ID_EXPAMLE . " ," . $this->subject_id . ", " . $studentId . " , '" . $average . "', " . time() . ", " . $this->frequency . ")";
-            // print_r($sql);die();
-            $conModel = $this->model('Connect');
-            // thực hiện câu lệnh 
+            // thực hiện câu lệnh
             $poitn_insert = $conModel->getConnect($sql, true);
         }
     }
