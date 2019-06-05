@@ -16,6 +16,17 @@
         <span class="t-span"><a href="?url=classStudent/index"> <i class="glyphicon glyphicon-play"></i> Quản lý lớp</a></span><br>
     </div>
     <div class="block-cm-left">
+        <span class="t-span"><a href="?url=managerPoint/index&class_id=<?= $_GET['class_id'] ?>"> <i class="glyphicon glyphicon-play"></i> Quản lí điểm</a></span><br>
+    </div>
+    <div class="block-cm-left">
         <span class="t-span"><a href="?url=subjectClass/index&class_id=<?= $_GET['class_id'] ?>"> <i class="glyphicon glyphicon-play"></i> Quản lý môn</a></span><br>
     </div>
+    <div class="block-cm-left">
+        <span class="t-span"><a href="?url=students/index&class_id=<?= $_GET['id'] ?>""> <i class="glyphicon glyphicon-play"></i> Quản lý học sinh</a></span><br>
+    </div>
+    <div class="block-cm-left">
+        <span class="t-span"><a href="?url=user/detail"> <i class="glyphicon glyphicon-play"></i> Quản lí tài khoản</a></span><br>
+    </div>
+    
+
 </div>
