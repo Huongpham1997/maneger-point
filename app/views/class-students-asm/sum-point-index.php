@@ -42,8 +42,8 @@ require_once '../app/views/home/menu.php';
                         <?= $data['message'] ?>
                     </div>
                     <div class="col-md-12">
+                        <br><br>
                         <div class="text-center">
-                            <br><br>
                             <a href="<?= $data['link'] ?>"> Vui lòng click đây để xem điểm </a>
                         </div>
                     </div>
