@@ -20,17 +20,16 @@ use common\models\User; ?>
                 <div class="right-cn">
                     <div class="box-login-page">
                         <div class="form-login">
-                            <div class="alert alert-danger">
-                                <?php
-                                if (!empty($data['resultMessageProcess'])) {
-                                    echo $data['resultMessageProcess'];
-                                } // đẩy ra data dc truyen tu controller
-                                ?>
-                            </div>
-                            <?php if (!empty($data['data'])) {
+                            <?php if (!empty($data['resultMessageProcess'])) { ?>
+                                <div class="alert alert-danger">
+                                    <?= $data['resultMessageProcess'] ?>
+                                </div>
+                            <?php }
+                            if (!empty($data['data'])) {
                                 while ($row = $data['data']->fetch_assoc()) {
                                     ?>
-                                    <form action="?url=teacher/update&id=<?= $row['id'] ?>" method="post" enctype='multipart/form-data'>>
+                                    <form action="?url=teacher/update&id=<?= $row['id'] ?>"
+                                          method="post" enctype='multipart/form-data'>>
                                         <input type="hidden" name="id"
                                                value="<?= $row['id'] ?>">
 
@@ -73,7 +72,8 @@ use common\models\User; ?>
                                     </form>
                                 <?php }
                             } else { ?>
-                                <form action="?url=teacher/addTeacher" method="post" enctype='multipart/form-data'>
+                                <form action="?url=teacher/addTeacher" method="post"
+                                      enctype='multipart/form-data'>
                                     <button onclick="goBack()" class="btn btn-success">Trở về
                                     </button>
                                     <br><br>

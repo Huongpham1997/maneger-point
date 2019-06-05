@@ -33,7 +33,16 @@
                     <div class="left-cn hidden-xs hidden-sm">
                         <div class="block-cm-left top-cn-left">
                             <a href="#" class="bt-edit"><i class="fa fa-pencil"></i></a>
-                            <img src="/statics/img/avt_df.png"><br>
+                            <?php
+                            if(!empty($row['image'])){?>
+                                <img src="/statics/img/<?= $row['image'] ?>"><br>
+                                <?php
+                            }else{
+                                ?>
+                                <img src="/statics/img/avt_df.png"><br>
+                                <?php
+                            }
+                            ?>
                             <h4><?= $row['name_teacher'] ?></h4>
                         </div>
                     </div>
