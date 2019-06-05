@@ -30,6 +30,7 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
+                                <th></th>
                                 <th>Tên giáo viên</th>
                                 <th>Địa chỉ</th>
                                 <th>Ngày sinh</th>
@@ -54,6 +55,19 @@
                                     ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
+                                        <td>
+                                            <?php
+                                            if (!empty($row['image'])) {
+                                                ?>
+                                                <img height="80" src="/statics/images/images_teacher/<?= $row['image'] ?>">
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <img height="80" src="/statics/img/avt_df.png">
+                                                <?php
+                                            }
+                                            ?>
+                                        </td>
                                         <td><?= $row['name_teacher'] ?></td>
                                         <td><?= $row['address'] ?></td>
                                         <td><?= $row['date_of_birth'] ?></td>
