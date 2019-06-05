@@ -31,6 +31,8 @@ class managerPoint extends AuthController
         if ($resultPoint['success']) {
             if ($result['success']) {
                 // nếu có dữ liệu trả về
+
+
                 $this->view('point-students/point-students-index', [
                     'data' => $result['data'],
                     'dataPoint' => $resultPoint['data'],
@@ -48,6 +50,67 @@ class managerPoint extends AuthController
             }
         } else {
             $this->view('home/error', ['message' => 'Không lấy được điểm']);
+        }
+    }
+
+    public function exportFile()
+    {
+        if (empty($_GET['class_id'])) {
+            return json_encode([
+                'message' => "Không tìm thấy lớp",
+                'success' => false
+            ]);
+        }
+
+        $modelPointStudents = $this->model('StudentPointAsmModel');
+
+        $modelPointStudents->class_id = $_GET['class_id'];
+        $modelPointStudents->point_id = $_GET['point_id'];
+        $modelPointStudents->subject_id = $_GET['subject_id'];
+        $modelPointStudents->test_time = $_GET['date_test'];
+
+        $modelPointStudents->limit = "all";
+        $modelPointStudents->page = 1;
+
+        $result = $modelPointStudents->getListPointStudents();
+        if ($result['success']) {
+            /** Include PHPExcel */
+            require_once dirname(__FILE__) . '/../libs/PHPExcel.php';
+
+            $objPHPExcel = new PHPExcel();
+
+            $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', 'Tên điểm')
+                ->setCellValue('B1', 'Tên môn học')
+                ->setCellValue('C1', 'Tên học sinh')
+                ->setCellValue('D1', 'Điểm')
+                ->setCellValue('E1', 'Thời gian kiểm tra')
+                ->setCellValue('F1', 'Số bài kiểm tra');
+
+            $i = 2;
+            while ($row = $result['data']->data->fetch_assoc()) {
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A' . $i, $row['point_name'])
+                    ->setCellValue('B' . $i, $row['subject_title'])
+                    ->setCellValue('C' . $i, $row['name_student'])
+                    ->setCellValue('D' . $i, $row['point'])
+                    ->setCellValue('E' . $i, date('d/m/Y', $row['test_time']))
+                    ->setCellValue('F' . $i, $row['frequency']);
+					$i++;
+            }
+
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="DataStudent.xls"');
+            header('Cache-Control: max-age=0');
+
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+            $objWriter->save("php://output");
+            ob_clean();
+        } else {
+            return json_encode([
+                'message' => "Không có dữ liêu",
+                'success' => false
+            ]);
         }
     }
 
