@@ -73,7 +73,7 @@
                                             <a href="?url=subjectClass/index&class_id=<?= $row['id'] ?>"> <i class="glyphicon glyphicon-book"></i> QL Môn</a>
                                         </td>
                                         <td>
-                                            <a href="?url=classStudent/index1&class_id=<?= $row['id'] ?>" class="btn btn-success"> Tính điểm TBM</a>
+                                            <a href="?url=classStudent/selectSubjectToAverage&class_id=<?= $row['id'] ?>" class="btn btn-success"> Tính điểm TBM</a>
                                         </td>
                                     </tr>
                                     <?php
@@ -108,16 +108,6 @@
                     function goBack() {
                         window.history.back();
                     }
-
-                    // function check(){
-                    //     // gửi lên control để xử lí thay đổi điểm
-                    // $.post("?url=classStudent/AvegareOfSubjectByStudent",
-                    // ).done(function(data) {
-                    //     alert("Học sinh chưa đủ điểm để tính");
-                    //     location.reload();
-                    // });
-                    //     // alert("Học sinh chưa đủ điểm để tính");
-                    // }
                 </script>
             </div>
         </div>

@@ -31,10 +31,8 @@ class StudentPointAsmModel extends Controller {
                 AND  (`student_point_asm`.`test_time` BETWEEN $time_start AND $time_end)) ";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
-        // thực hiện câu lệnh 
-        $result = $conModel->getData($sql, $this->limit, $this->page);
+        $result = $conModel->getData($sql);
         if (!empty($result->data)) {
-        // trả kết quả cho controller
             return ['success' => true,'data' => $result];
         }
         else{

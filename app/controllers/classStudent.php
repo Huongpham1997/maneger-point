@@ -19,27 +19,25 @@ class classStudent extends AuthController
         }
     }
 
-    //index của tính điểm trung bình môn theo lớp
-    public function index1()
+    /**
+     * Chỉ cần tính điểm trung bình rồi thông báo không cần lấy list
+     */
+    public function selectSubjectToAverage()
     {
-        // die("A");
-        $class_id = $_GET['class_id'];
-        if (empty($class_id)) {
+        if (empty($_GET['class_id'])) {
             $this->view('home/error', ['message' => 'Không tìm thấy lớp']);
         }
+        $class_id = $_GET['class_id'];
         $subject_id = 1;
-        if (!empty($_POST['PointByClassStudent'])) {
-            $subject_id = $_POST['subject_id'];
+        if (!empty($_GET['subject_id'])) {
+            $subject_id = $_GET['subject_id'];
         }
         $modelviewPonit = $this->model('ClassStudentModel');
-        // $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
-        // $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 1;
-        $resultviewPonit = $modelviewPonit->getPointByClass();
-        // print_r($resultviewPonit);die();
-        // echo "<pre>";print_r($resultviewPonit);die();
+        $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 0;
+        $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 0;
         $modelviewPonit->subject_id = $subject_id;
         $modelviewPonit->class_id = $class_id;
-        // print_r($modelviewPonit);die();
+        $resultviewPonit = $modelviewPonit->getPointByClass();
         $modelSubject = $this->model('subjectClassAsm');
         $resultSubject = $modelSubject->getSubjectDropdownlist();
 
@@ -49,38 +47,9 @@ class classStudent extends AuthController
                 'class_id' => $class_id,
                 'dataSubject' => $resultSubject['data']]);
             // 'student_id' => $student_id
-        }else {
+        } else {
             // nếu không có dữ liệu trả về
-            $this->view('class-students-asm/sum-point-index', ['resultMessage' => $result['message']]);
-        }
-    }
-
-    //index của tính điểm trung bình học kì theo lớp
-    public function index2()
-    {
-        $class_id = $_GET['class_id'];
-        if (empty($class_id)) {
-            $this->view('home/error', ['message' => 'Không tìm thấy lớp']);
-        }
-        $subject_id = 1;
-        if (!empty($_POST['PointByClassStudentOfSubject'])) {
-            $subject_id = $_POST['subject_id'];
-        }
-        $modelviewPonit = $this->model('ClassStudentModel');
-        $resultviewPonit = $modelviewPonit->getPointByClass();
-        // print_r($resultviewPonit);die();
-        // echo "<pre>";print_r($resultviewPonit);die();
-        $modelviewPonit->subject_id = $subject_id;
-        $modelviewPonit->class_id = $class_id;
-        // print_r($modelviewPonit);die();
-        $modelSubject = $this->model('subjectClassAsm');
-        $resultSubject = $modelSubject->getSubjectDropdownlist();
-        if ($resultviewPonit['success']) {
-            $this->view('class-students-asm/average-point-index', [
-                'data' => $resultviewPonit['data'],
-                'class_id' => $class_id,
-                'dataSubject' => $resultSubject['data']]);
-            // 'student_id' => $student_id
+            $this->view('class-students-asm/sum-point-index', ['resultMessage' => $resultviewPonit['message']]);
         }
     }
 

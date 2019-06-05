@@ -122,6 +122,9 @@ class Connect extends Controller
             if(!empty($_GET['date_test'])){
                 $url .= "&date_test=".$_GET['date_test'];
             }
+            if(!empty($_GET['student_id'])){
+                $url .= "&student_id=".$_GET['student_id'];
+            }
             return $url;
         }
 
