@@ -12,6 +12,7 @@
             <a href="#" class="logo-cp">
                 <img src="/statics/img/icon-right.jpg"></a>
             <h5>
+                <span>Khoa Công Nghệ Thông Tin</span>
                 <br>
                 <span>Đơn vị tài trợ CNTT</span>
             </h5>
