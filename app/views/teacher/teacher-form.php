@@ -20,13 +20,13 @@ use common\models\User; ?>
                 <div class="right-cn">
                     <div class="box-login-page">
                         <div class="form-login">
-                            <p style="color: red;text-align: center">
+                            <div class="alert alert-danger">
                                 <?php
                                 if (!empty($data['resultMessageProcess'])) {
                                     echo $data['resultMessageProcess'];
                                 } // đẩy ra data dc truyen tu controller
                                 ?>
-                            </p>
+                            </div>
                             <?php if (!empty($data['data'])) {
                                 while ($row = $data['data']->fetch_assoc()) {
                                     ?>
