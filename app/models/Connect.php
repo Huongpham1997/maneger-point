@@ -125,6 +125,9 @@ class Connect extends Controller
             if(!empty($_GET['student_id'])){
                 $url .= "&student_id=".$_GET['student_id'];
             }
+            if(!empty($_GET['submit_search'])){
+                $url .= "&submit_search=".$_GET['submit_search'];
+            }
             return $url;
         }
 
