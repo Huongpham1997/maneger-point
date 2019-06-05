@@ -85,19 +85,21 @@ class teacher extends AuthController
                         $this->view('teacher/teacher-form', ['resultMessageProcess' => $rsUpload['message']]);
                     }
                     $modelTeacher->image = $rsUpload['image'];
-                }else{
+                } else {
                     $modelTeacher->image = $old_image;
                 }
                 $resultTeacher = $modelTeacher->editTeacher();
                 if ($resultTeacher['success']) {
-                    $modelTeacher->page = 0;
-                    $modelTeacher->limit = 0;
-                    $resultList = $modelTeacher->getListTeacher();
-                    if ($resultTeacher['success']) {
-                        $this->view('teacher/teacher-index', ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
-                    } else
-                        // không lấy list thành công thì vẫn báo thêm thành công
-                        $this->view('class-students/class-form', ['resultMessageProcess' => 'Cập nhật thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
+                    $model = $this->model('TeacherModel');
+                    $model->id = $_GET['id'];
+                    $result = $model->getTeacherById();
+                    if ($result['success']) {
+                        // nếu có dữ liệu trả về
+                        $this->view('teacher/detail', ['data' => $result['data'], 'message' => $resultTeacher['message']]);
+                    } else {
+                        // nếu không có dữ liệu trả về
+                        $this->view('home/error', ['resultMessage' => $result['message']]);
+                    }
                 } else {
                     $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);
                 }

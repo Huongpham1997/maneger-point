@@ -28,6 +28,19 @@ use common\models\User; ?>
                             if (!empty($data['data'])) {
                                 while ($row = $data['data']->fetch_assoc()) {
                                     ?>
+                                    <div class="text-center">
+                                        <?php
+                                        if (!empty($row['image'])) {
+                                            ?>
+                                            <img height="150" src="/statics/images/images_teacher/<?= $row['image'] ?>">
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <img height="150" src="/statics/img/avt_df.png">
+                                            <?php
+                                        }
+                                        ?>
+                                    </div><br><br>
                                     <form action="?url=teacher/update&id=<?= $row['id'] ?>"
                                           method="post" enctype='multipart/form-data'>
                                         <input type="hidden" name="id"
@@ -40,7 +53,7 @@ use common\models\User; ?>
                                                type="text"
                                                placeholder="Địa chỉ"
                                                value="<?= $row['address'] ? $row['address'] : '' ?>"><br>
-                                           <div class="input-group date form_date" data-date=""
+                                        <div class="input-group date form_date" data-date=""
                                              data-date-format="yyyy/mm/dd"
                                              data-link-field="dtp_input2"
                                              data-link-format="yyyy/mm/dd">
@@ -66,7 +79,7 @@ use common\models\User; ?>
                                         <input class="form-control" type="text" name="sex"
                                                placeholder="Giới tính"
                                                value="<?= $row['sex'] ? $row['sex'] : '' ?>"><br>
-                                        <!-- <input name="image_teacher" type="file"><br> -->
+                                        <input name="image_teacher" type="file"><br>
                                         <input class="btn btn-success" type="submit"
                                                name="submit_teacher" value="Cập nhật giáo viên">
                                     </form>
