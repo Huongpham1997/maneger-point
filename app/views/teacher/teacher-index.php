@@ -59,7 +59,7 @@
                                             <?php
                                             if (!empty($row['image'])) {
                                                 ?>
-                                                <img height="80" src="/statics/images/images_teacher/<?= $row['image'] ?>">
+                                                <img width="80" height="80" src="/statics/images/images_teacher/<?= $row['image'] ?>">
                                                 <?php
                                             } else {
                                                 ?>
