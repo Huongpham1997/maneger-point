@@ -212,7 +212,7 @@ class ClassStudentModel extends Controller
         }
     }
 
-    //hàm lấy ra id của tất cả học sinh
+    //hàm lấy ra id học sinh theo lớp
     function startProcessAverage()
     {
         $sql = "SELECT `student_id` FROM `class_students`";
@@ -232,7 +232,6 @@ class ClassStudentModel extends Controller
     //hàm lấy ra mức nhân và điểm sau đó tiến hành tính điểm trung bình môn cho học sinh
     function getListPointByStudent($studentId)
     {
-        $arrPoint = [];
         $sql1 = "SELECT `point`.`level`,`student_point_asm`.`point`
                 FROM `student_point_asm`
                 INNER JOIN `point` 
