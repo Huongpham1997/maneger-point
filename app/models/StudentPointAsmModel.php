@@ -30,8 +30,9 @@ class StudentPointAsmModel extends Controller
                 INNER JOIN `class_students`
                 ON `student_point_asm`.`student_id` = `class_students`.`student_id`
                 WHERE `student_point_asm`.`point_id` = $this->point_id 
+                AND (`student_point_asm`.`subject_id` = $this->subject_id 
                 AND (`class_students`.`class_id` = $this->class_id
-                AND  (`student_point_asm`.`test_time` BETWEEN $time_start AND $time_end)) ";
+                AND  (`student_point_asm`.`test_time` BETWEEN $time_start AND $time_end)))";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         $conModel->limit = $this->limit;

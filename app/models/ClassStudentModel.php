@@ -211,6 +211,7 @@ class ClassStudentModel extends Controller
             return ['success' => false, 'message' => "Đã tính điểm trung bình xin kiểm tra lại"];
         }
     }
+
     //hàm lấy ra id của tất cả học sinh
     function startProcessAverage()
     {
@@ -245,7 +246,7 @@ class ClassStudentModel extends Controller
             $tb = 0;
             $lv = 0;
             while ($row = $result->fetch_assoc()) {
-                $tb = $row['level'] * $row['point'] +$tb;
+                $tb = $row['level'] * $row['point'] + $tb;
                 $lv = $lv + $row['level'];
             }
             $average = $tb / $lv;
@@ -320,12 +321,11 @@ class ClassStudentModel extends Controller
             $tb = 0;
             $lv = 0;
             while ($row = $result->fetch_assoc()) {
-                $tb = $row['level'] * $row['point'];
-                $lv = $row['level'];
+                $tb = $tb + $row['level'] * $row['point'];
+                $lv = $lv + $row['level'];
             }
             $average = $tb / $lv;
-            print_r($average);die();
-            // $average = round($average, 1, PHP_ROUND_HALF_DOWN);
+            $average = round($average, 2, PHP_ROUND_HALF_DOWN);
             $this->frequency = 1;
 
             //sql insert

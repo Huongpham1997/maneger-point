@@ -20,9 +20,9 @@ class managerPoint extends AuthController
         $modelPointStudents->class_id = $class_id;
         $modelPointStudents->point_id = 0;
         $modelPointStudents->subject_id = 0;
+        $modelPointStudents->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        $modelPointStudents->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         if (!empty($_GET['submit_search'])) {
-            $modelPointStudents->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
-            $modelPointStudents->page = !empty($_GET['page']) ? $_GET['page'] : 1;
             $modelPointStudents->point_id = $_GET['point_id'];
             $modelPointStudents->subject_id = $_GET['subject_id'];
             $modelPointStudents->test_time = $_GET['date_test'];
@@ -72,7 +72,6 @@ class managerPoint extends AuthController
             $modelStudents->class_id = $class_id;
             $modelStudents->limit = "all";
             $resultStudents = $modelStudents->getListStudents();
-            //print_r($resultStudents);die();
             if ($resultStudents['success']) {
                 if (!empty($_POST['insert_point'])) {
 
@@ -83,7 +82,6 @@ class managerPoint extends AuthController
                     $modelPointStudents->frequency = $_POST['frequency'];
                     $i = 0;
                     while ($row = $resultStudents['data']->data->fetch_assoc()) {
-                        // die("a");
                         $modelPointStudents->student_id = $row['id'];
                         $modelPointStudents->point = $_POST['point_' . $row['id']];
                         $resultInputPoint = $modelPointStudents->addPointStudent();
@@ -98,8 +96,8 @@ class managerPoint extends AuthController
                     $studentPointAsmModel->subject_id = $_POST['subject_id'];
                     $studentPointAsmModel->class_id = $class_id;
                     $studentPointAsmModel->test_time = $_POST['date_test'];
-                    $studentPointAsmModel->limit = 0;
-                    $studentPointAsmModel->page = 0;
+                    $studentPointAsmModel->limit = 10;
+                    $studentPointAsmModel->page = 1;
                     $dataStudenAfterAdd = $studentPointAsmModel->getListPointStudents();
                     if ($dataStudenAfterAdd['success']) {
                         $this->view('point-students/point-students-index', [
@@ -113,7 +111,6 @@ class managerPoint extends AuthController
                         ]);
                     }
 
-                    // var_dump($this);die();
                 } else {
                     $this->view('point-students/point-students-form', [
                         'data' => $resultStudents['data'],
@@ -140,7 +137,6 @@ class managerPoint extends AuthController
                 $modelStudents->class_id = $_GET['class_id'];
                 // nếu có post thì xử lý update lại thông tin
                 $modelPointStudents->point_id = $_POST['point_id'];
-                // print_r($_POST['point_id']);die();
                 $modelPointStudents->student_id = $_POST['student_id'];
                 $modelPointStudents->point = $_POST['point'];
                 $modelPointStudents->test_time = $_POST['test_time'];
