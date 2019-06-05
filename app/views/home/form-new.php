@@ -39,11 +39,12 @@
                                         <input class="form-control" name="short_description" type="text" placeholder="Mô tả ngắn" value="<?= $row['short_description'] ?>"><br>
                                         <div>
                                             <script type="text/javascript">
+                                                var contentText = "<?=  $row['description']  ?>";
                                                 var oFCKeditor = new FCKeditor('description');
                                                 oFCKeditor.BasePath	= "statics/fckeditor/" ;
                                                 oFCKeditor.Height	= 400 ;
                                                 oFCKeditor.width	= 800 ;
-                                                oFCKeditor.Value	= '<?= $row['description'] ?>';
+                                                oFCKeditor.Value	= contentText;
                                                 oFCKeditor.Config["Entermode"] = "br";
                                                 oFCKeditor.Create() ;
                                             </script>
@@ -63,7 +64,7 @@
 									<div>
 										<script type="text/javascript">
 											var oFCKeditor = new FCKeditor('description');
-											oFCKeditor.BasePath	= "fckeditor/" ;
+											oFCKeditor.BasePath	= "statics/fckeditor/" ;
 											oFCKeditor.Height	= 400 ;
 											oFCKeditor.width	= 800 ;
 											oFCKeditor.Value	= 'Nội dung bài viết';
