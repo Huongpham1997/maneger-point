@@ -29,10 +29,10 @@
                     while ($row = $data['data']->fetch_assoc()) {
                         ?>
                         <div class="main-cm-1">
-
                             <div class="left-cn hidden-xs hidden-sm">
                                 <div class="block-cm-left top-cn-left">
-                                    <a href="#" class="bt-edit"><i class="fa fa-pencil"></i></a>
+                                    <a href="?url=teacher/update&id=<?= $row['id'] ?>" class="bt-edit"><i class="fa fa-pencil">
+                                    </i></a>
                                     <?php
                                     if (!empty($row['image'])) {
                                         ?>
@@ -49,13 +49,28 @@
                             </div>
 
                             <div class="right-cn">
+                                <div class="text-center">
+                                        <?php
+                                        if (!empty($row['image'])) {
+                                            ?>
+                                            <img height="150" src="/statics/images/images_teacher/<?= $row['image'] ?>">
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <img height="150" src="/statics/img/avt_df.png">
+                                            <?php
+                                        }
+                                        ?>
+                                    </div><br><br>
                                 <?php if (!empty($data['message'])) { ?>
                                     <div class="alert alert-success">
                                         <?= $data['message'] ?>
                                     </div>
                                 <?php } ?>
 
+
                                 <div class="block-cm-left">
+
                                     <span class="t-span">Họ và tên</span><br>
                                     <span class="b-span"><?= $row['name_teacher'] ?></span>
                                 </div>
