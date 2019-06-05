@@ -9,7 +9,7 @@ require_once '../app/views/home/menu.php';
             <span>/</span>
             <a href="?url=classStudent/index">Quản lý lớp</a>
             <span>/</span>
-            <a href="">Quản lý môn học</a>
+            <a href="">Quản lý môn học theo lớp</a>
         </div>
     </div>
     <div class="container">
