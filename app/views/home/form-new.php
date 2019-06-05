@@ -40,7 +40,7 @@
                                         <div>
                                             <script type="text/javascript">
                                                 var oFCKeditor = new FCKeditor('description');
-                                                oFCKeditor.BasePath	= "fckeditor/" ;
+                                                oFCKeditor.BasePath	= "statics/fckeditor/" ;
                                                 oFCKeditor.Height	= 400 ;
                                                 oFCKeditor.width	= 800 ;
                                                 oFCKeditor.Value	= '<?= $row['description'] ?>';
