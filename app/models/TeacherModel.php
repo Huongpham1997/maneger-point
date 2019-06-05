@@ -3,6 +3,7 @@ class TeacherModel extends Controller
 {
     public $id;
     public $name_teacher;
+    public $image;
     public $ability;
     public $address;
     public $date_of_birth;
@@ -46,7 +47,7 @@ class TeacherModel extends Controller
             return ['success' => false, 'message' => 'Tên đăng nhập đã tồn tại'];
         }
 
-        $sql = "INSERT INTO `teacher` (`name_teacher`,`address`,`date_of_birth`, `ability`,`class_teacher`,`sex`) VALUES ('{$this->name_teacher}','{$this->address}','{$this->date_of_birth}','{$this->ability}','{$this->class_teacher}','{$this->sex}')";
+        $sql = "INSERT INTO `teacher` (`name_teacher`,`address`,`date_of_birth`, `ability`,`class_teacher`,`sex`, `image`) VALUES ('{$this->name_teacher}','{$this->address}','{$this->date_of_birth}','{$this->ability}','{$this->class_teacher}','{$this->sex}','{$this->image}')";
         // cách gọi vào model connect từ model
         // thực hiện câu lệnh
         $teacherId = $conModel->getConnect($sql, true);
@@ -67,7 +68,7 @@ class TeacherModel extends Controller
 
     public function editTeacher()
     {
-        $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`address`='{$this->address}',`date_of_birth`='{$this->date_of_birth}',`ability`='{$this->ability}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}' WHERE id='{$this->id}'";
+        $sql = "UPDATE `teacher` SET `name_teacher`='{$this->name_teacher}',`address`='{$this->address}',`date_of_birth`='{$this->date_of_birth}',`ability`='{$this->ability}',`class_teacher`='{$this->class_teacher}',`sex`= '{$this->sex}','{$this->image}' WHERE id='{$this->id}'";
         // cách gọi vào model connect từ model
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 

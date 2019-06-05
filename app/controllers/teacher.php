@@ -32,7 +32,11 @@ class teacher extends AuthController
             $modelTeacher->password = $_POST['password'];
             if (!empty($_FILES['image_teacher'])) {
                 $imageModel = $this->model('FileUpload');
-                $imageModel->uploadImage('../../statics/images/images_teacher/', $_FILES['image_teacher']);
+                $rsUpload = $imageModel->uploadImage('/../../public/statics/images/images_teacher/', $_FILES['image_teacher']);
+                if(!$rsUpload['success']){
+                    $this->view('teacher/teacher-form', ['resultMessageProcess' => $rsUpload['message']]);
+                }
+                $modelTeacher->image = $rsUpload['image'];
             }
             $resultTeacher = $modelTeacher->addTeacher();
             if ($resultTeacher['success']) {
@@ -67,6 +71,14 @@ class teacher extends AuthController
                 $modelTeacher->ability = $_POST['ability'];
                 $modelTeacher->class_teacher = $_POST['class_teacher'];
                 $modelTeacher->sex = $_POST['sex'];
+                if (!empty($_FILES['image_teacher'])) {
+                    $imageModel = $this->model('FileUpload');
+                    $rsUpload = $imageModel->uploadImage('/../../public/statics/images/images_teacher/', $_FILES['image_teacher']);
+                    if(!$rsUpload['success']){
+                        $this->view('teacher/teacher-form', ['resultMessageProcess' => $rsUpload['message']]);
+                    }
+                    $modelTeacher->image = $rsUpload['image'];
+                }
                 $resultTeacher = $modelTeacher->editTeacher();
                 if ($resultTeacher['success']) {
                     $modelTeacher->page = 0;
