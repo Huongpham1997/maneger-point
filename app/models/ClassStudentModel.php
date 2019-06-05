@@ -325,7 +325,7 @@ class ClassStudentModel extends Controller
                 $lv = $lv + $row['level'];
             }
             $average = $tb / $lv;
-            $average = round($average, 2, PHP_ROUND_HALF_DOWN);
+            $average = round($average, 1, PHP_ROUND_HALF_DOWN);
             $this->frequency = 1;
 
             $conModel = $this->model('Connect');
