@@ -33,7 +33,7 @@ class teacher extends AuthController
             if (!empty($_FILES['image_teacher'])) {
                 $imageModel = $this->model('FileUpload');
                 $rsUpload = $imageModel->uploadImage('/../../public/statics/images/images_teacher/', $_FILES['image_teacher']);
-                if(!$rsUpload['success']){
+                if (!$rsUpload['success']) {
                     $this->view('teacher/teacher-form', ['resultMessageProcess' => $rsUpload['message']]);
                 }
                 $modelTeacher->image = $rsUpload['image'];
@@ -63,6 +63,12 @@ class teacher extends AuthController
         if (!empty($_GET['id'])) {
             $modelTeacher = $this->model('TeacherModel');
             $modelTeacher->id = $_GET['id'];
+            $teacherOld = $modelTeacher->getTeacherById();
+            if ($teacherOld['success']) {
+                while ($row = $teacherOld['data']->fetch_assoc()) {
+                    $old_image = $row['image'];
+                }
+            }
             if (!empty($_POST['submit_teacher'])) {
                 // nếu có post thì xử lý update lại thông tin
                 $modelTeacher->name_teacher = $_POST['name_teacher'];
@@ -74,10 +80,12 @@ class teacher extends AuthController
                 if (!empty($_FILES['image_teacher'])) {
                     $imageModel = $this->model('FileUpload');
                     $rsUpload = $imageModel->uploadImage('/../../public/statics/images/images_teacher/', $_FILES['image_teacher']);
-                    if(!$rsUpload['success']){
+                    if (!$rsUpload['success']) {
                         $this->view('teacher/teacher-form', ['resultMessageProcess' => $rsUpload['message']]);
                     }
                     $modelTeacher->image = $rsUpload['image'];
+                }else{
+                    $modelTeacher->image = $old_image;
                 }
                 $resultTeacher = $modelTeacher->editTeacher();
                 if ($resultTeacher['success']) {
