@@ -224,7 +224,7 @@ class managerPoint extends AuthController
 			$modelviewPonit->subject_id = $_POST['subject_id'];
 			// print_r($_POST['subject_id']);die();
 			$modelviewPonit->class_id = $_GET['class_id'];
-			$resultviewPonit = $modelviewPonit->processPoint();
+			$resultviewPonit = $modelviewPonit->checkPointOfSubject();
 
 			if($resultviewPonit['success']){
 				// call back to get list average's students

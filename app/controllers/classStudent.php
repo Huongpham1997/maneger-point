@@ -32,8 +32,8 @@ class classStudent extends AuthController
             $subject_id = $_POST['subject_id'];
         }
         $modelviewPonit = $this->model('ClassStudentModel');
-        $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
-        $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 1;
+        // $modelviewPonit->limit = !empty($_GET['limit']) ? $_GET['limit'] : 10;
+        // $modelviewPonit->page = !empty($_GET['page']) ? $_GET['page'] : 1;
         $resultviewPonit = $modelviewPonit->getPointByClass();
         // print_r($resultviewPonit);die();
         // echo "<pre>";print_r($resultviewPonit);die();

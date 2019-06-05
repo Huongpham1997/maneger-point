@@ -42,7 +42,7 @@ class ClassStudentModel extends Controller
                 ON `student_point_asm`.`student_id` = `student`.`id`
                 INNER JOIN `point`
                 ON `student_point_asm`.`point_id` = `point`.`id`
- 
+                WHERE `student_point_asm`.`student_id` = `student`.`id`
                 ";
         $conModel = $this->model('Connect');
         // thực hiện câu lệnh 
