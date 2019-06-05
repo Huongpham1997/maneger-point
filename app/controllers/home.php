@@ -8,7 +8,15 @@ class home extends Controller
         if (empty($_SESSION['user'])) {
             $this->view('home/form-login');
         }
-        $this->view('home/index');
+        $model = $this->model('NewsModel');
+        $model->limit = !empty($_GET['limit'])?$_GET['limit']:10;
+        $model->page = !empty($_GET['page'])?$_GET['page']:1;
+        $rsNews = $model->findNews();
+        $rsRelated = $model->findRelated();
+        $this->view('home/index', [
+            'data' => !empty($rsNews['data']) ? $rsNews['data'] : '',
+            'dataRelated' => !empty($rsRelated['data']) ? $rsRelated['data'] : ''
+        ]);
     }
 
     public function login()
@@ -34,6 +42,7 @@ class home extends Controller
             $this->view('home/form-login', ['resultMessage' => $exit->result]);
         }
     }
+
     public function signUp()
     {
         $processSignUp = $this->model('Users');
@@ -44,4 +53,5 @@ class home extends Controller
         $this->view('home/sign-up', ['resultMessage' => $resultSignUp['message']]);
     }
 }
+
 ?>

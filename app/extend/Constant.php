@@ -8,4 +8,20 @@ class Constant
 
     const PAGE_SIZ_DEFAULT = 10;
     const MAX_PAGE_SIZE = 10;
+
+
+    static function substr($str, $length, $minword = 3)
+    {
+        $sub = '';
+        $len = 0;
+        foreach (explode(' ', $str) as $word) {
+            $part = (($sub != '') ? ' ' : '') . $word;
+            $sub .= $part;
+            $len += strlen($part);
+            if (strlen($word) > $minword && strlen($sub) >= $length) {
+                break;
+            }
+        }
+        return $sub . (($len < strlen($str)) ? '...' : '');
+    }
 }
