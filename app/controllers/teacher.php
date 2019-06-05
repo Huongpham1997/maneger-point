@@ -40,14 +40,15 @@ class teacher extends AuthController
             }
             $resultTeacher = $modelTeacher->addTeacher();
             if ($resultTeacher['success']) {
-                // gọi lại lấy list thành công thì đẩy ra list
-                $resultList = $modelTeacher->getListTeacher();
-                if ($resultList['success']) {
-                    $this->view('teacher/teacher-index',
-                        ['resultMessageProcess' => $resultTeacher['message'], 'data' => $resultList['data']]);
+                $model = $this->model('TeacherModel');
+                $model->id = $resultTeacher['id'];
+                $result = $model->getTeacherById();
+                if ($result['success']) {
+                    // nếu có dữ liệu trả về
+                    $this->view('teacher/detail', ['data' => $result['data'], 'message' => $resultTeacher['message']]);
                 } else {
-                    // không lấy list thành công thì vẫn báo thêm thành công
-                    $this->view('teacher/teacher-form', ['resultMessageProcess' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!']);
+                    // nếu không có dữ liệu trả về
+                    $this->view('home/error', ['resultMessage' => $result['message']]);
                 }
             } else {
                 $this->view('teacher/teacher-form', ['resultMessageProcess' => $resultTeacher['message']]);

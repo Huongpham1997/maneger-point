@@ -55,9 +55,9 @@ class TeacherModel extends Controller
             // add vào bảng user để đăng nhập
             $this->password = md5($this->password);
             $sqlInsertToUser = "INSERT INTO `user` (`username`, `password`, `fullName`, `teacher_id`, `role`) VALUES ('{$this->username}', '{$this->password}','{$this->name_teacher}', '{$teacherId}', " . Constant::ROLE_TEACHER . ")";
-            $rs = $conModel->getConnect($sqlInsertToUser);
+            $rs = $conModel->getConnect($sqlInsertToUser, true);
             if ($rs) {
-                return ['success' => true, 'message' => 'Thêm mới giáo viên thành công!'];
+                return ['success' => true, 'message' => 'Thêm mới giáo viên thành công!', 'id' => $teacherId];
             } else {
                 return ['success' => false, 'message' => 'Lỗi hệ thống, Không tạo thành công tên đăng nhập!'];
             }

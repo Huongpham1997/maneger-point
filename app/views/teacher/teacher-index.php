@@ -66,7 +66,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="#" onclick="deleteSelected(<?= $row['id'] ?>)">
+                                            <a href="#" onclick="deleteSelected(<?= $row['id'] ?>, '<?= $row['name_teacher'] ?>')">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

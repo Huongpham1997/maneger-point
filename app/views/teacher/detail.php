@@ -26,57 +26,63 @@
                 </p>
                 <?php
                 if (!empty($data['data'])) {
-                while ($row = $data['data']->fetch_assoc()) {
-                ?>
-                <div class="main-cm-1">
+                    while ($row = $data['data']->fetch_assoc()) {
+                        ?>
+                        <div class="main-cm-1">
 
-                    <div class="left-cn hidden-xs hidden-sm">
-                        <div class="block-cm-left top-cn-left">
-                            <a href="#" class="bt-edit"><i class="fa fa-pencil"></i></a>
-                            <?php
-                            if(!empty($row['image'])){?>
-                                <img src="/statics/img/<?= $row['image'] ?>"><br>
-                                <?php
-                            }else{
-                                ?>
-                                <img src="/statics/img/avt_df.png"><br>
-                                <?php
-                            }
-                            ?>
-                            <h4><?= $row['name_teacher'] ?></h4>
+                            <div class="left-cn hidden-xs hidden-sm">
+                                <div class="block-cm-left top-cn-left">
+                                    <a href="#" class="bt-edit"><i class="fa fa-pencil"></i></a>
+                                    <?php
+                                    if (!empty($row['image'])) {
+                                        ?>
+                                        <img src="/statics/images/images_teacher/<?= $row['image'] ?>"><br>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <img src="/statics/img/avt_df.png"><br>
+                                        <?php
+                                    }
+                                    ?>
+                                    <h4><?= $row['name_teacher'] ?></h4>
+                                </div>
+                            </div>
+
+                            <div class="right-cn">
+                                <?php if (!empty($data['message'])) { ?>
+                                    <div class="alert alert-success">
+                                        <?= $data['message'] ?>
+                                    </div>
+                                <?php } ?>
+
+                                <div class="block-cm-left">
+                                    <span class="t-span">Họ và tên</span><br>
+                                    <span class="b-span"><?= $row['name_teacher'] ?></span>
+                                </div>
+                                <div class="block-cm-left">
+                                    <span class="t-span">Địa chỉ</span><br>
+                                    <span class="b-span"><?= $row['address'] ?></span>
+                                </div>
+                                <div class="block-cm-left">
+                                    <span class="t-span">Ngày sinh</span><br>
+                                    <span class="b-span"><?= $row['date_of_birth'] ?></span>
+                                </div>
+                                <div class="block-cm-left">
+                                    <span class="t-span">Chuyên môn</span><br>
+                                    <span class="b-span"><?= $row['ability'] ?></span>
+                                </div>
+                                <div class="block-cm-left">
+                                    <span class="t-span">Chủ nhiệm lớp</span><br>
+                                    <span class="b-span"><?= !empty($row['class_teacher']) ? $row['class_teacher'] : "" ?></span>
+                                </div>
+                                <div class="block-cm-left">
+                                    <span class="t-span">Giới tính</span><br>
+                                    <span class="b-span"><?= $row['sex'] ?></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="right-cn">
-                        <div class="block-cm-left">
-                            <span class="t-span">Họ và tên</span><br>
-                            <span class="b-span"><?= $row['name_teacher'] ?></span>
-                        </div>
-                        <div class="block-cm-left">
-                            <span class="t-span">Địa chỉ</span><br>
-                            <span class="b-span"><?= $row['address'] ?></span>
-                        </div>
-                        <div class="block-cm-left">
-                            <span class="t-span">Ngày sinh</span><br>
-                            <span class="b-span"><?= $row['date_of_birth'] ?></span>
-                        </div>
-                        <div class="block-cm-left">
-                            <span class="t-span">Chuyên môn</span><br>
-                            <span class="b-span"><?= $row['ability'] ?></span>
-                        </div>
-                        <div class="block-cm-left">
-                            <span class="t-span">Chủ nhiệm lớp</span><br>
-                            <span class="b-span"><?= !empty($row['class_teacher']) ? $row['class_teacher'] : "" ?></span>
-                        </div>
-                        <div class="block-cm-left">
-                            <span class="t-span">Giới tính</span><br>
-                            <span class="b-span"><?= $row['sex'] ?></span>
-                            <?php
-                            }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>

@@ -37,8 +37,12 @@ class Connect extends Controller
     public function getData($sql, $limit = 10, $page = 1)
     {
         // validate limit
-        if($limit > $this::MAX_SIZE){
+        if($limit > $this::MAX_SIZE || $limit < 0){
             $limit = $this::MAX_SIZE;
+        }
+
+        if($page < 0){
+            $page = 1;
         }
 
         $this->_query = $sql;
