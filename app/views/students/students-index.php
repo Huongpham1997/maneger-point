@@ -63,7 +63,7 @@ require_once '../app/views/home/menu.php';
 							    			<td><?= $i++ ?></td>
 							    			<td><?= $row['name_student'] ?></td>
 							    			<td><?= $row['address'] ?></td>
-							    			<td><?= $row['sex'] ?></td>
+							    			<td><?= Constant::getGender()[$row['sex']] ?></td>
 							    			<td><?= $row['birthday'] ?></td>
 							    			<td><?= $row['status'] ?></td>
 							    			<td><?= $row['parents'] ?></td>

@@ -71,7 +71,7 @@
                                         <td><?= $row['name_teacher'] ?></td>
                                         <td><?= $row['address'] ?></td>
                                         <td><?= $row['date_of_birth'] ?></td>
-                                        <td><?= $row['sex'] ?></td>
+                                        <td><?= Constant::getGender()[$row['sex']] ?></td>
                                         <td><?= $row['ability'] ?></td>
                                         <td><?= $row['class_teacher'] ?></td>
                                         <td>
