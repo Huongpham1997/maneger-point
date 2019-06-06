@@ -1,7 +1,7 @@
 <?php require_once '../app/extend/header.php'; ?>
 <div class="top-nav header">
     <div class="container">
-        <a class="navbar-brand logo" href="">
+        <a class="navbar-brand logo" href="?url=home/index">
             <img src="/statics/img/logo.jpg" height="50">
         </a>
         <a class="ic-mn-mb hidden-mn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
