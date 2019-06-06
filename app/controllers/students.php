@@ -46,12 +46,17 @@ class students extends AuthController
             $resultStudents = $modelStudents->addStudent();
             if ($resultStudents['success']) {
                 // gọi lấy list thành công thì đẩy ra list
-                $resultList = $modelStudents->getListStudents();
+                $model = $this->model('StudentModel');
+                $model->limit = 10;
+                $model->page =1;
+                $model->class_id = $class_id;
+                $resultList = $model->getListStudents();
                 if ($resultList['success']) {
                     $this->view('students/students-index',
                         ['resultMessageProcess' => $resultStudents['message'], 'data' => $resultList['data']]);
                 } else {
                     // không lấy list thành công thì vẫn báo thêm thành công
+                    echo "<pre>";print_r($resultList);die();
                     $this->view('students/students-form', [
                         'resultMessaqugeAdd' => 'Thêm thành công vui lòng chuyển sang trang danh sách để kiểm tra!',
                         'class_id' => $class_id
