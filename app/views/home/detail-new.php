@@ -59,8 +59,8 @@
                                         <div class="l-related">
                                             <div class="thumb-common">
                                                 <img class="blank-img" src="/statics/img/blank.gif">
-                                                <a href="?url=news/detail&id=<?= $row['id'] ?>"><img class="thumb-cm"
-                                                                                                     src="/statics/images/<?= $row['image'] ?>"></a>
+                                                <a href="?url=news/detail&id=<?= $row['id'] ?>">
+                                                    <img class="thumb-cm" src="/statics/images/images_news/<?= $row['image'] ?>"></a>
                                             </div>
                                             <div class="l-i-rl">
                                                 <h4>
