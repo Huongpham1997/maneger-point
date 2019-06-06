@@ -2,7 +2,7 @@
 <div class="top-nav header">
     <div class="container">
         <a class="navbar-brand logo" href="?url=home/index">
-            <img src="/statics/img/anh.jpg" height="50">
+            <img src="/statics/img/anh.png" height="50">
         </a>
         <a class="ic-mn-mb hidden-mn" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
            aria-controls="collapseExample">
