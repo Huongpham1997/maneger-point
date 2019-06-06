@@ -27,7 +27,16 @@ class home extends Controller
             $processLogin->password = $_POST['pass'];
             $resultLogin = $processLogin->login();
             if ($resultLogin['success']) {
-                $this->view('home/index', ['resultMessage' => $resultLogin['message']]);
+                $model = $this->model('NewsModel');
+                $model->limit = !empty($_GET['limit'])?$_GET['limit']:10;
+                $model->page = !empty($_GET['page'])?$_GET['page']:1;
+                $rsNews = $model->findNews();
+                $rsRelated = $model->findRelated();
+                $this->view('home/index', [
+                    'resultMessage' => $resultLogin['message'],
+                    'data' => !empty($rsNews['data']) ? $rsNews['data'] : '',
+                    'dataRelated' => !empty($rsRelated['data']) ? $rsRelated['data'] : ''
+                ]);
             }
             $this->view('home/form-login', ['resultMessage' => $resultLogin['message']]);
         }
