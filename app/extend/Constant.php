@@ -28,9 +28,8 @@ class Constant
     static function getStatus()
     {
         return [
-            self::MALE => "Nam",
-            self::FEMALE => "Nữ",
-            self::OTHER => "Khác"
+            self::ACTIVE => "Hoạt động",
+            self::INACTIVE => "Khóa",
         ];
     }
 
