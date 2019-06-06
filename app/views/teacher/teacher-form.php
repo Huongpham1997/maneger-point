@@ -76,9 +76,15 @@ use common\models\User; ?>
                                                name="class_teacher"
                                                type="text" placeholder="Chủ nhiệm lớp"
                                                value="<?= $row['class_teacher'] ? $row['class_teacher'] : '' ?>"><br>
-                                        <input class="form-control" type="text" name="sex"
-                                               placeholder="Giới tính"
-                                               value="<?= $row['sex'] ? $row['sex'] : '' ?>"><br>
+                                        <select class="form-control" name="sex">
+                                            <?php
+                                            foreach (Constant::getGender() as $key => $gender) {
+                                                ?>
+                                                <option value="<?= $key ?>"><?= $gender ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select><br>
                                         <input name="image_teacher" type="file"><br>
                                         <input class="btn btn-success" type="submit"
                                                name="submit_teacher" value="Cập nhật giáo viên">
@@ -118,8 +124,15 @@ use common\models\User; ?>
                                            placeholder="Tên đăng nhập"><br>
                                     <input class="form-control" required name="password" type="text"
                                            placeholder="Mật khẩu đăng nhập"><br>
-                                    <input class="form-control" required name="sex" type="text"
-                                           placeholder="Giới tính"><br>
+                                    <select class="form-control" name="sex">
+                                        <?php
+                                            foreach (Constant::getGender() as $key => $gender) {
+                                                ?>
+                                                <option value="<?= $key ?>"><?= $gender ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select><br>
                                     <input name="image_teacher" type="file"><br>
                                     <input class="btn btn-success" type="submit"
                                            name="submit_teacher"

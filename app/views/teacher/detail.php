@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="block-cm-left">
                                     <span class="t-span">Giới tính</span><br>
-                                    <span class="b-span"><?= $row['sex'] ?></span>
+                                    <span class="b-span"><?= Constant::getGender()[$row['sex']] ?></span>
                                 </div>
                             </div>
                         </div>

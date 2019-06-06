@@ -9,6 +9,16 @@ class Constant
     const PAGE_SIZ_DEFAULT = 10;
     const MAX_PAGE_SIZE = 10;
 
+    const MALE = 1;
+    const FEMALE = 2;
+
+    static function getGender()
+    {
+        return [
+            self::MALE => "Nam",
+            self::FEMALE => "Nữ"
+        ];
+    }
 
     static function substr($str, $length, $minword = 3)
     {

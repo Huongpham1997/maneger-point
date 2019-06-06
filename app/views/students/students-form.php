@@ -35,7 +35,15 @@ require_once '../app/views/home/menu.php';
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                     <input class="form-control" required name="name_student" type="text" placeholder="Tên học sinh" value="<?= $row['name_student']?$row['name_student']:'' ?>"><br>
                                     <input class="form-control" required name="address" type="text" placeholder="Địa chỉ" value="<?= $row['address']?$row['address']:'' ?>"><br>
-                                    <input class="form-control" required name="sex" type="text" placeholder="Giới tính" value="<?= $row['sex']?$row['sex']:'' ?>" ><br>
+                                    <select class="form-control" name="sex">
+                                        <?php
+                                        foreach (Constant::getGender() as $key => $gender) {
+                                            ?>
+                                            <option value="<?= $key ?>"><?= $gender ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select><br>
                                     <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
                                         <input name="birthday" class="form-control" size="16" type="text" value="<?= $row['birthday']?$row['birthday']:'' ?>" readonly>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -51,7 +59,15 @@ require_once '../app/views/home/menu.php';
                                     <button onclick="goBack()" class="btn btn-success">Trở về</button><br><br>
                                     <input class="form-control" required name="name_student" type="text" placeholder="Tên học sinh" value=""><br>
                                     <input class="form-control" required name="address" type="text" placeholder="Địa chỉ"><br>
-                                    <input class="form-control" required name="sex" type="text" placeholder="Giới tính"><br>
+                                    <select class="form-control" name="sex">
+                                        <?php
+                                        foreach (Constant::getGender() as $key => $gender) {
+                                            ?>
+                                            <option value="<?= $key ?>"><?= $gender ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select><br>
                                     <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
                                         <input name="birthday" class="form-control" size="16" type="text" readonly>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
