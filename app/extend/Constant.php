@@ -11,12 +11,14 @@ class Constant
 
     const MALE = 1;
     const FEMALE = 2;
+    const OTHER = 3;
 
     static function getGender()
     {
         return [
             self::MALE => "Nam",
-            self::FEMALE => "Nữ"
+            self::FEMALE => "Nữ",
+            self::OTHER => "Khác"
         ];
     }
 
