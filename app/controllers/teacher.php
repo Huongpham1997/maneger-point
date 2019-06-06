@@ -78,7 +78,7 @@ class teacher extends AuthController
                 $modelTeacher->ability = $_POST['ability'];
                 $modelTeacher->class_teacher = $_POST['class_teacher'];
                 $modelTeacher->sex = $_POST['sex'];
-                if (!empty($_FILES['image_teacher'])) {
+                if (!empty($_FILES['image_teacher']['name'])) {
                     $imageModel = $this->model('FileUpload');
                     $rsUpload = $imageModel->uploadImage('/../../public/statics/images/images_teacher/', $_FILES['image_teacher']);
                     if (!$rsUpload['success']) {
