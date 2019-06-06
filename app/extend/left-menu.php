@@ -27,6 +27,9 @@
     <div class="block-cm-left">
         <span class="t-span"><a href="?url=user/detail"> <i class="glyphicon glyphicon-play"></i> Quản lí tài khoản</a></span><br>
     </div>
+    <div class="block-cm-left">
+        <span class="t-span"><a href="?url=news/create"> <i class="glyphicon glyphicon-play"></i> Thêm mới tin tức</a></span><br>
+    </div>
     
 
 </div>
