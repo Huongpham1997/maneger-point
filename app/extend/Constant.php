@@ -13,7 +13,19 @@ class Constant
     const FEMALE = 2;
     const OTHER = 3;
 
+    const ACTIVE = 1;
+    const INACTIVE = 2;
+
     static function getGender()
+    {
+        return [
+            self::MALE => "Nam",
+            self::FEMALE => "Nữ",
+            self::OTHER => "Khác"
+        ];
+    }
+
+    static function getStatus()
     {
         return [
             self::MALE => "Nam",

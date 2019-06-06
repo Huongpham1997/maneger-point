@@ -65,7 +65,7 @@ require_once '../app/views/home/menu.php';
 							    			<td><?= $row['address'] ?></td>
 							    			<td><?= Constant::getGender()[$row['sex']] ?></td>
 							    			<td><?= $row['birthday'] ?></td>
-							    			<td><?= $row['status'] ?></td>
+							    			<td><?= Constant::getGender()[$row['status']] ?></td>
 							    			<td><?= $row['parents'] ?></td>
 							    			<td>
 							    				<a href="#" onclick="updateSelected(<?= $row['id'] ?>,<?= $data['class_id'] ?>)" > <i class="glyphicon glyphicon-edit"></i> Sửa</a>

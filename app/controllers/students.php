@@ -92,8 +92,11 @@ class students extends AuthController
                 $modelStudents->parents = $_POST['parents'];
                 $resultStudents = $modelStudents->editStudents();
                 if ($resultStudents['success']) {
-                    $modelStudents->class_id = $class_id;
-                    $resultList = $modelStudents->getListStudents();
+                    $model = $this->model('StudentModel');
+                    $model->limit = 10;
+                    $model->page =1;
+                    $model->class_id = $class_id;
+                    $resultList = $model->getListStudents();
                     if ($resultList['success']) {
                         $this->view('students/students-index', ['resultMessageProcess' => $resultStudents['message'], 'data' => $resultList['data']]);
                     } else {

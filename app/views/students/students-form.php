@@ -49,7 +49,15 @@ require_once '../app/views/home/menu.php';
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div><br>
-                                    <input class="form-control" required name="status" type="text" placeholder="Trạng thái tài khoản" value="<?= $row['status']?$row['status']:'' ?>"><br>
+                                    <select class="form-control" name="status">
+                                        <?php
+                                        foreach (Constant::getStatus() as $key => $status) {
+                                            ?>
+                                            <option value="<?= $key ?>"><?= $status ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select><br>
                                     <input class="form-control" required name="parents" type="text" placeholder="Tên phụ huynh" value="<?= $row['parents']?$row['parents']:'' ?>"><br>
                                     <input type="hidden" name="class_id" value="<?= $data['class_id'] ?>">
                                     <input class="btn btn-success" type="submit" name="submit_students" value="Cập nhật học sinh">
@@ -73,7 +81,15 @@ require_once '../app/views/home/menu.php';
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div><br>
-                                    <input class="form-control" required name="status" type="text" placeholder="Trạng thái tài khoản"><br>
+                                    <select class="form-control" name="status">
+                                        <?php
+                                        foreach (Constant::getStatus() as $key => $status) {
+                                            ?>
+                                            <option value="<?= $key ?>"><?= $status ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select><br>
                                     <input class="form-control" required name="parents" type="text" placeholder="Tên phụ huynh"><br>
                                     <input type="hidden" name="class_id" value="<?= $data['class_id'] ?>">
                                     <input class="btn btn-success" type="submit" name="submit_students" value="Thêm mới học sinh">
